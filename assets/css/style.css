@@ -227,7 +227,7 @@ h1, h2, h3, h4, p, span, a {
 
 /* top bar */
 .header-top {
-  position: fixed; /* Fix the navbar at the top */
+  position: fixed; /* fix the navbar at the top */
   top: 0;
   left: 0;
   width: 100%;
@@ -241,8 +241,8 @@ h1, h2, h3, h4, p, span, a {
 
 .header-top .container {
   display: flex;
-  justify-content: space-between; /* Spread items across the navbar */
-  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* spread items across the navbar */
+  align-items: center; /* center items vertically */
   flex-wrap: wrap; /* allow wrapping on smaller screens */
   gap: 10px; /* add spacing between items */
 }
@@ -255,31 +255,31 @@ h1, h2, h3, h4, p, span, a {
 
 .contact-item {
   display: flex;
-  align-items: center; /* Center icon and text vertically */
+  align-items: center; /* center icon and text vertically */
   gap: 5px; /* add spacing between icon and text */
-  color: var(--white); /* Default text color */
-  text-decoration: none; /* Remove underline */
-  transition: color 0.3s ease; /* Smooth hover effect */
+  color: var(--white); /* default text color */
+  text-decoration: none; /* remove underline */
+  transition: color 0.3s ease; /* smooth hover effect */
 }
 
 .contact-item i {
-  color: var(--royal-red-light); /* Icon color */
+  color: var(--royal-red-light); /* icon color */
 }
 
 .contact-item:hover {
-  color: var(--royal-red-light); /* Change text color on hover */
+  color: var(--royal-red-light); /* change text color on hover */
 }
 
 /* social icons and language switch */
 .header-actions {
   display: flex;
-  align-items: center; /* Center items vertically */
+  align-items: center; /* center items vertically */
   gap: 25px; /* add spacing between social icons and language switch */
 }
 
 .social-list {
   display: flex;
-  align-items: center; /* Center social icons vertically */
+  align-items: center; /* center social icons vertically */
   gap: 10px; /* add spacing between social icons */
 }
 
@@ -407,6 +407,107 @@ body {
   font-weight: var(--fw-600);
   padding: 15px;
 }
+
+/* pop-Up overlay */
+.popup-overlay {
+  position: fixed;
+  top: calc(100px + 50px); /* adjust this value to position below the bottom header */
+  left: 0;
+  width: 100%;
+  height: 80%; /* adjust dynamically */
+  background-color: rgba(0, 0, 0, 0);
+  display: none; /* Hidden by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding-block: 20px; /* spacing from the top */
+}
+
+/* pop-up content */
+.popup-content {
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: var(--radius-4);
+  box-shadow: var(--shadow-3);
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  font-size: 1.4rem; /* increase or decrease text size */
+}
+
+/* close button */
+.popup-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--oxford-red-1);
+}
+
+/* form title */
+.popup-title {
+  font-size: var(--fs-4);
+  font-weight: var(--fw-700);
+  color: var(--oxford-red-1);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* form group */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: var(--fs-7);
+  font-weight: var(--fw-600);
+  margin-bottom: 5px;
+  color: var(--oxford-red-2);
+  font-family: var(--ff-poppins); /* default font for English */
+}
+
+.form-group label {
+  font-family: var(--ff-tiro-bangla); /* font for Bangla */
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius-4);
+  font-size: 1.4rem;
+  font-family: var(--ff-poppins);
+  color: var(--sonic-silver);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--royal-red-light);
+  box-shadow: 0 0 5px var(--royal-red-light);
+}
+
+/* submit button */
+.appointment-form .btn {
+  width: 100%;
+  padding: 10px;
+  font-size: var(--fs-6);
+  text-transform: uppercase;
+  background-image: var(--gradient);
+  color: var(--white);
+  border-radius: var(--radius-4);
+  transition: var(--transition);
+}
+
+.appointment-form .btn:hover {
+  background-image: linear-gradient(90deg, var(--royal-red-light) 0%, var(--carolina-red) 100%);
+}
+
 
 /* hero */
 .hero{
@@ -839,6 +940,24 @@ body {
 @media (max-width: 500px) {
  
   .container{ max-width: 488px;}
+  
+   .popup-content {
+    padding: 15px;
+    font-size: 1.2rem; /* adjusted for smaller screens */
+  }
+
+  .popup-title {
+    font-size: var(--fs-5);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 1.2rem;
+  }
+
+  .appointment-form .btn {
+    font-size: 1.2rem;
+  }
 
   .header-bottom {
     top: 44px;
@@ -852,7 +971,7 @@ body {
   }
 
   .header-bottom .container .logo img {
-    width: 65px; /* reduce logo size for smaller screens */
+    width: 65px; /* reduced logo size for smaller screens */
   }
 
   .header-bottom .container .logo span {
@@ -923,7 +1042,7 @@ body {
   }
 }
 
-/* For screens between 501px and 767px */
+/* for screens between 501px and 767px */
 @media (min-width: 501px) and (max-width: 767px) {
   
   .container{
@@ -951,7 +1070,7 @@ body {
   }
 }
 
-/* For screens between 501px and 991px */
+/* for screens between 501px and 991px */
 @media (min-width: 501px) and (max-width: 991px) {
 
   .container{
@@ -1125,7 +1244,7 @@ body {
   .container{ 
     max-width: 980px;
     width: 100%;
-    margin: 0 auto; /* Center the container horizontally */
+    margin: 0 auto; /* center the container horizontally */
     padding: 0 15px;
   }
 
