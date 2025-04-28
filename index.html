@@ -124,8 +124,8 @@
               </nav>
 
               <!-- apointment button -->
-              <a class="btn" href="#" 
-              data-translation data-lang-eng="Book an appointment" data-lang-ban="অ্যাপয়েন্টমেন্ট বুক করুন">
+              <a class="btn" href="#" id="appointmentButton" 
+                data-translation data-lang-eng="Book an appointment" data-lang-ban="অ্যাপয়েন্টমেন্ট বুক করুন">
                 Book an appointment
               </a>
 
@@ -140,6 +140,43 @@
           </div>
         </div>
       </header>
+
+      <!-- Pop-Up Appointment Form -->
+      <div class="popup-overlay" id="popupForm">
+        <div class="popup-content">
+          <button class="popup-close-btn" id="popupCloseBtn" aria-label="Close form">
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+
+          <h2 class="popup-title" data-translation data-lang-eng="Book an Appointment" data-lang-ban="অ্যাপয়েন্টমেন্ট বুক করুন">
+            Book an Appointment
+          </h2>
+
+          <form id="appointmentForm" class="appointment-form">
+            <div class="form-group">
+              <label for="name" data-translation data-lang-eng="Name" data-lang-ban="নাম">Name</label>
+              <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone" data-translation data-lang-eng="Phone" data-lang-ban="ফোন">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required pattern="[0-9]{11}" title="Please enter a valid 11-digit phone number">
+            </div>
+
+            <div class="form-group">
+              <label for="address" data-translation data-lang-eng="Address" data-lang-ban="ঠিকানা">Address</label>
+              <input type="text" id="address" name="address" placeholder="Enter your address" required>
+            </div>
+
+            <div class="form-group">
+              <label for="complaint" data-translation data-lang-eng="Chief Complaint" data-lang-ban="প্রধান অভিযোগ">Chief Complaint</label>
+              <textarea id="complaint" name="complaint" placeholder="Enter your chief complaint" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="btn" data-translation data-lang-eng="Submit" data-lang-ban="জমা দিন">Submit</button>
+          </form>
+        </div>
+      </div>
 
       <main>
         <article>
@@ -376,7 +413,7 @@
           <section class="section doctor" aria-label="doctor">
             <div class="container">
 
-              <p class="section-subtitle text-center" data-translation data-lang-eng="Our Doctors" data-lang-ban="">
+              <p class="section-subtitle text-center" data-translation data-lang-eng="Our Doctors" data-lang-ban="আমাদের ডাক্তাররা">
                 Our Doctors
               </p>
 
@@ -396,13 +433,13 @@
                     </div>
 
                     <h3 class="h3">
-                      <a href="#" class="card-title" data-translation data-lang-eng="Dr. Name, PT" data-lang-ban="ডা. নাম, পিটি">
-                        Dr. Name, PT
+                      <a href="#" class="card-title" data-translation data-lang-eng="Dr. Saddam Hossain, PT" data-lang-ban="ডা. সাদ্দাম হোসেন, পিটি">
+                        Dr. Saddam Hossain, PT
                       </a>
                     </h3>
 
-                    <p class="card-subtitle" data-translation data-lang-eng="Clinical Physiotherapist" data-lang-ban="ক্লিনিক্যাল ফিজিওথেরাপিস্ট">
-                      Clinical Physiotherapist
+                    <p class="card-subtitle" data-translation data-lang-eng="Senior Consultant" data-lang-ban="সিনিয়র কনসালটেন্ট">
+                      Senior Consultant
                     </p>
 
                     <ul class="card-social-list">
@@ -420,10 +457,9 @@
                       </li>
 
                     </ul>
-
                   </div>
                 </li>
-
+ 
                 <li class="scrollbar-item">
                   <div class="doctor-card">
 
@@ -433,13 +469,13 @@
                     </div>
 
                     <h3 class="h3">
-                      <a href="#" class="card-title" data-translation data-lang-eng="Dr. Name, PT" data-lang-ban="ডা. নাম, পিটি">
-                        Dr. Name, PT
+                      <a href="#" class="card-title" data-translation data-lang-eng="Dr. Mrs Saddam, PT" data-lang-ban="ডা. সাদ্দাম হোসেন, পিটি">
+                        Dr. Mrs Saddam, PT
                       </a>
                     </h3>
 
-                    <p class="card-subtitle" data-translation data-lang-eng="Clinical Physiotherapist" data-lang-ban="ক্লিনিক্যাল ফিজিওথেরাপিস্ট">
-                      Clinical Physiotherapist
+                    <p class="card-subtitle" data-translation data-lang-eng="Senior Consultant" data-lang-ban="সিনিয়র কনসালটেন্ট">
+                      Senior Consultant
                     </p>
 
                     <ul class="card-social-list">
@@ -457,6 +493,25 @@
                       </li>
 
                     </ul>
+                  </div>
+                </li> 
+ 
+                <li class="scrollbar-item">
+                  <div class="doctor-card">
+
+                    <div class="card-banner img-holder" style="--width: 460; --height: 500;">
+                      <img src="./assets/images/doctor-5.jpg" width="460" height="500" loading="lazy" alt="image" class="img-cover">
+                    </div>
+
+                    <h3 class="h3">
+                      <a href="#" class="card-title" data-translation data-lang-eng="Anamika Rani" data-lang-ban="অনামিকা রানী">
+                        Member 1
+                      </a>
+                    </h3>
+
+                    <p class="card-subtitle" data-translation data-lang-eng="Clinical Physiotherapist" data-lang-ban="ক্লিনিক্যাল ফিজিওথেরাপিস্ট">
+                      Clinical Physiotherapist
+                    </p>
 
                   </div>
                 </li>
@@ -465,12 +520,13 @@
                   <div class="doctor-card">
 
                     <div class="card-banner img-holder" style="--width: 460; --height: 500;">
-                      <img src="./assets/images/doctor-3.jpg" width="460" height="500" loading="lazy" alt="image" class="img-cover">
+                      <img src="./assets/images/doctor-4.jpg" width="460" height="500" loading="lazy" alt="image"
+                        class="img-cover">
                     </div>
 
                     <h3 class="h3">
-                      <a href="#" class="card-title" data-translation data-lang-eng="Dr. Name, PT" data-lang-ban="ডা. নাম, পিটি">
-                        Dr. Name, PT
+                      <a href="#" class="card-title" data-translation data-lang-eng="MD Abdullah Al Masud" data-lang-ban="মো. আবদুল্লাহ আল মাসুদ">
+                        Member 2
                       </a>
                     </h3>
 
@@ -478,21 +534,25 @@
                       Clinical Physiotherapist
                     </p>
 
-                    <ul class="card-social-list">
+                  </div>
+                </li>
 
-                      <li>
-                        <a href="#" class="card-social-link"><ion-icon name="logo-facebook"></ion-icon></a>
-                      </li>
+                <li class="scrollbar-item">
+                  <div class="doctor-card">
 
-                      <li>
-                        <a href="#" class="card-social-link"><ion-icon name="logo-twitter"></ion-icon></a>
-                      </li>
+                    <div class="card-banner img-holder" style="--width: 460; --height: 500;">
+                      <img src="./assets/images/doctor-5.jpg" width="460" height="500" loading="lazy" alt="image" class="img-cover">
+                    </div>
 
-                      <li>
-                        <a href="#" class="card-social-link"><ion-icon name="logo-linkedin"></ion-icon></a>
-                      </li>
+                    <h3 class="h3">
+                      <a href="#" class="card-title" data-translation data-lang-eng="Rajia Sultana" data-lang-ban="রাজিয়া সুলতানা">
+                        Member 3
+                      </a>
+                    </h3>
 
-                    </ul>
+                    <p class="card-subtitle" data-translation data-lang-eng="Clinical Physiotherapist" data-lang-ban="ক্লিনিক্যাল ফিজিওথেরাপিস্ট">
+                      Clinical Physiotherapist
+                    </p>
 
                   </div>
                 </li>
@@ -505,8 +565,8 @@
                     </div>
 
                     <h3 class="h3">
-                      <a href="#" class="card-title" data-translation data-lang-eng="Dr. Name, PT" data-lang-ban="ডা. নাম, পিটি">
-                        Dr. Name, PT
+                      <a href="#" class="card-title" data-translation data-lang-eng="Md. Sobhan" data-lang-ban="মোহাম্মদ সোবহান">
+                        Member 4
                       </a>
                     </h3>
 
@@ -514,21 +574,45 @@
                       Clinical Physiotherapist
                     </p>
 
-                    <ul class="card-social-list">
+                  </div>
+                </li>
 
-                      <li>
-                        <a href="#" class="card-social-link"><ion-icon name="logo-facebook"></ion-icon></a>
-                      </li>
+                <li class="scrollbar-item">
+                  <div class="doctor-card">
 
-                      <li>
-                        <a href="#" class="card-social-link"><ion-icon name="logo-twitter"></ion-icon></a>
-                      </li>
+                    <div class="card-banner img-holder" style="--width: 460; --height: 500;">
+                      <img src="./assets/images/doctor-5.jpg" width="460" height="500" loading="lazy" alt="image" class="img-cover">
+                    </div>
 
-                      <li>
-                        <a href="#" class="card-social-link"><ion-icon name="logo-linkedin"></ion-icon></a>
-                      </li>
+                    <h3 class="h3">
+                      <a href="#" class="card-title" data-translation data-lang-eng="Orin Ariha Any" data-lang-ban="অরিন আরিহা এনি">
+                        Member 5
+                      </a>
+                    </h3>
 
-                    </ul>
+                    <p class="card-subtitle" data-translation data-lang-eng="Clinical Physiotherapist" data-lang-ban="ক্লিনিক্যাল ফিজিওথেরাপিস্ট">
+                      Clinical Physiotherapist
+                    </p>
+
+                  </div>
+                </li>
+
+                <li class="scrollbar-item">
+                  <div class="doctor-card">
+
+                    <div class="card-banner img-holder" style="--width: 460; --height: 500;">
+                      <img src="./assets/images/doctor-2.jpg" width="460" height="500" loading="lazy" alt="image" class="img-cover">
+                    </div>
+
+                    <h3 class="h3">
+                      <a href="#" class="card-title" data-translation data-lang-eng="Shihab Ahmed Himel" data-lang-ban="শিহাব আহমেদ হিমেল">
+                        Member 6
+                      </a>
+                    </h3>
+
+                    <p class="card-subtitle" data-translation data-lang-eng="Clinical Physiotherapist" data-lang-ban="ক্লিনিক্যাল ফিজিওথেরাপিস্ট">
+                      Clinical Physiotherapist
+                    </p>
 
                   </div>
                 </li>
@@ -797,7 +881,7 @@
                       <p class="card-text" data-translation data-lang-eng="Recovery from a stroke can be challenging, but every small step counts. 
                         From regaining motor skills to improving balance and coordination, physiotherapy paves the path to a fulfilling recovery." 
                         data-lang-ban="স্ট্রোক থেকে সেরে ওঠা চ্যালেঞ্জ হতে পারে, তবে প্রতিটি ছোট পদক্ষেপই গুরুত্বপূর্ণ। মোটর দক্ষতা পুনরুদ্ধার থেকে শুরু করে ভারসাম্য 
-                        ও সমন্বয় উন্নত করা পর্যন্ত, ফিজিওথেরাপি পূর্ণাঙ্গ পুনরুদ্ধারের পথ দেখায়।।">
+                        ও সমন্বয় উন্নত করা পর্যন্ত, ফিজিওথেরাপি পূর্ণাঙ্গ পুনরুদ্ধারের পথ দেখায়।">
                         Recovery from a stroke can be challenging, but every small step counts. 
                         From regaining motor skills to improving balance and coordination, physiotherapy paves the path to a fulfilling recovery.
                       </p>
@@ -856,21 +940,21 @@
               <li>
                 <a href="./index.html" class="footer-link">
                   <ion-icon name="add-outline"></ion-icon>
-                  <span class="span">Home</span>
+                  <span class="span" data-translation data-lang-eng="Home" data-lang-ban="হোম" >Home</span>
                 </a>
               </li>
 
               <li>
                 <a href="#" class="footer-link">
                   <ion-icon name="add-outline"></ion-icon>
-                  <span class="span">About Us</span>
+                  <span class="span"data-translation data-lang-eng="About Us" data-lang-ban="আমাদের সম্পর্কে">About Us</span>
                 </a>
               </li>
 
               <li>
                 <a href="#" class="footer-link">
                   <ion-icon name="add-outline"></ion-icon>
-                  <span class="span">Services</span>
+                  <span class="span" data-translation data-lang-eng="Our Services" data-lang-ban="আমাদের সেবা সমূহ">Our Services</span>
                 </a>
               </li>
    
@@ -878,14 +962,15 @@
               <li>
                 <a href="#" class="footer-link">
                   <ion-icon name="add-outline"></ion-icon>
-                  <span class="span">Our Team</span>
+                  <span class="span" data-translation data-lang-eng="Our Team" data-lang-ban="আমাদের টিম">Our Team</span>
                 </a>
               </li>
 
               <li>
                 <a href="#" class="footer-link">
                   <ion-icon name="add-outline"></ion-icon>
-                  <span class="span">Latest Blog</span>
+                  <span class="span" data-nav-link 
+                    data-translation data-lang-eng="Latest Blog" data-lang-ban="সর্বশেষ ব্লগ">Latest Blog</span>
                 </a>
               </li>
 
