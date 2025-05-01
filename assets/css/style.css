@@ -804,6 +804,92 @@ body {
   background-color: var(--oxford-red-1);
 }
 
+
+
+/* branches section */
+.branch {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  gap: 30px;
+  padding: 20px;
+  margin: 10px auto;
+  margin-top: 10px;
+  margin-block-end: 50px;
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius-4);
+  box-shadow: var(--shadow-3);
+}
+
+.branch:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.branch-media {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.branch-image {
+  width: 100%;
+  border-radius: var(--radius-4);
+  box-shadow: var(--shadow-3);
+}
+
+.branch-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.branch-title {
+  font-size: var(--fs-4);
+  color: var(--oxford-red-1);
+  margin-bottom: 10px;
+}
+
+.branch-address,
+.branch-phone {
+  font-size: var(--fs-6);
+  color: var(--oxford-red-1);
+  margin-bottom: 10px;
+}
+
+.branch-address, .branch-phone a  {
+  color: var(--royal-red-light);
+  text-decoration: none;
+}
+
+.branch-address, .branch-phone a:hover {
+  text-decoration: none;
+}
+
+/* responsive design */
+@media (max-width: 768px) {
+  .branch {
+    flex-direction: column;
+  }
+
+  .branch:nth-child(even) {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 992px) {
+  .branch {
+    flex-direction: column;
+  }
+
+  .branch:nth-child(even) {
+    flex-direction: column;
+  }
+  
+  #branches {
+    padding-top: 190px;
+  }
+}
+
 /* footer */
 .footer-top{
   background-color: var(--oxford-red-2);
@@ -1235,9 +1321,9 @@ body {
 
   /* custom property */
   :root{
-    --fs-2: 6rem;
-    --fs-1: 4.6rem;
-    --fs-3: 4.6rem;
+    --fs-1: 5rem;
+    --fs-2: 4.6rem;
+    --fs-3: 4.2rem;
   }
 
   /* reused style */
@@ -1405,9 +1491,17 @@ body {
 
   /* custom property */
   :root{
-    --fs-2: 8rem;
-    --fs-1: 5.5rem;
-    --fs-3: 4.8rem;
+    --fs-1: 6rem;
+    --fs-2: 5rem;
+    --fs-3: 4.5rem;
+    --fs-4: 3rem;
+    --fs-5: 2.5rem;
+    --fs-6: 2rem;
+    --fs-7: 1.8rem;
+
+    h1, h2, h3, h4, p, span, a {
+      line-height: 1.5;
+    }
   }
 
   /* reused style */
