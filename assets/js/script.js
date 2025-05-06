@@ -161,21 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
   chatToggleBtn.addEventListener("click", () => {
     chatOptions.classList.toggle("active");
   });
-
-  // redirect to messaging services //
-  document.querySelectorAll(".chaty-channel-list a").forEach(link => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      const service = e.target.getAttribute("data-service");
-      if (service === "phone") {
-        window.location.href = "tel:+1234567890"; // replace with actual phone number
-      } else if (service === "messenger") {
-        window.open("https://m.me/yourusername", "_blank"); // replace with actual Messenger link
-      } else if (service === "whatsapp") {
-        window.open("https://wa.me/1234567890", "_blank"); // replace with actual WhatsApp number
-      }
-    });
-  });
   
 });
 
