@@ -7,7 +7,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="description" content="ADPORC - One of the best physiotherapy centers in Dhaka city for pain, paralysis, and sports injury treatment.">
 
-      <title>ADPORC | Our Branches</title>
+      <title>ADPORC | About Us</title>
       
       <!-- css start -->
 
@@ -112,8 +112,8 @@
                   <li><a href="#service" class="navbar-link" data-nav-link 
                     data-translation data-lang-eng="Our Services" data-lang-ban="আমাদের সেবা সমূহ">Our Services</a></li>
                   
-                  <li><a href="./our-branches.html" class="navbar-link" data-nav-link 
-                    data-translation data-lang-eng="Our Branches" data-lang-ban="আমাদের শাখা সমূহ">Our Branches</a></li>
+                  <li><a href="./about-us.html" class="navbar-link" data-nav-link 
+                    data-translation data-lang-eng="About Us" data-lang-ban="আমাদের সম্পর্কে">About Us</a></li>
                   
                   <li><a href="#blog" class="navbar-link" data-nav-link 
                     data-translation data-lang-eng="Blog" data-lang-ban="ব্লগ">Blog</a></li>
@@ -179,6 +179,21 @@
       </div>
 
       <main>
+
+        <!-- about us section -->
+        <section class="section about" id="about">
+          <div class="container">
+            <h1 class="h2 section-title text-center" data-translation data-lang-eng="About Us" data-lang-ban="আমাদের সম্পর্কে">
+              About Us
+            </h1>
+            <p class="section-text text-center" data-translation data-lang-eng="ADPORC is one of the best physiotherapy centers in Dhaka city, specializing in pain management, paralysis recovery, and sports injury treatment. Our mission is to provide advanced physiotherapy care to help you feel better, move easier, and live a healthier life." 
+              data-lang-ban="এডিপিওআরসি ঢাকার অন্যতম সেরা ফিজিওথেরাপি সেন্টার, যা ব্যথা ব্যবস্থাপনা, পক্ষাঘাত পুনরুদ্ধার এবং ক্রীড়া আঘাতের চিকিৎসায় বিশেষজ্ঞ। আমাদের লক্ষ্য উন্নত ফিজিওথেরাপি সেবা প্রদান করা, যাতে আপনি ভালো অনুভব করেন, সহজে চলাফেরা করেন এবং একটি সুস্থ জীবনযাপন করেন।">
+              ADPORC is one of the best physiotherapy centers in Dhaka city, specializing in pain management, paralysis recovery, and sports injury treatment. Our mission is to provide advanced physiotherapy care to help you feel better, move easier, and live a healthier life.
+            </p>
+          </div>
+        </section>
+
+        <!-- our branches section -->
         <section class="section branches" id="branches">
           <div class="container">
             <h1 class="h2 section-title text-center" data-translation data-lang-eng="Our Branches" data-lang-ban="আমাদের শাখা সমূহ">
@@ -247,11 +262,43 @@
               </div>
             </div>
           </div>
+
+          <!-- #chat toggle button -->
+          <div class="chat-toggle">
+            <button id="chatToggleBtn" class="chat-toggle-btn">
+              <i class="fa-solid fa-comments"></i> <!-- chat icon -->
+            </button>
+            <div class="chaty-channel-list" id="chatOptions">
+                <a href="tel:+8801950935236" target="_blank" class="chat-option" data-service="phone">
+                  <i class="fa-solid fa-phone"></i> <!-- phone icon -->
+                </a>
+                <a href="https://web.messenger.com/t/111178477047534?text=Assalamualaikum,%20" target="_blank" class="chat-option" data-service="messenger">
+                  <i class="fa-brands fa-facebook-messenger"></i> <!-- messenger icon -->
+                </a>
+                <a href="https://web.whatsapp.com/send?phone=8801950935236&amp;text=Assalamualaikum,%20" target="_blank" class="chat-option" data-service="whatsapp">
+                  <i class="fa-brands fa-whatsapp"></i> <!-- whatsapp icon -->
+                </a>
+            </div>
+          </div>
+
         </section>
       </main>
 
-      <!-- #footer -->
+      <!-- marquee container -->
+      <div class="marquee-container">
+        <div class="marquee">
+          <span>
+            <img src="./assets/images/adporc-icon.png" alt="Logo" class="marquee-logo">
+            Asia Digital Physiotherapy & Orthopedics Center
+          </span>
+          <span>
+            <img src="./assets/images/adporc-icon.png" alt="Logo" class="marquee-logo">
+            Asia Digital Physiotherapy & Orthopedics Center
+          </span>
+        </div>
+      </div>
 
+      <!-- #footer -->
       <footer class="footer">
 
         <div class="footer-top section">
@@ -460,11 +507,32 @@
         </div>
       </footer>
 
-      <!-- #back to top -->
+      <!-- floating buttons -->
+      <div class="floating-buttons">
 
-      <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
-        <ion-icon name="caret-up" aria-hidden="true"></ion-icon>
-      </a>
+        <!-- chat toggle button -->
+        <div class="chat-toggle">
+          <button id="chatToggleBtn" class="chat-toggle-btn">
+            <i class="fa-solid fa-comments"></i> <!-- chat icon -->
+          </button>
+          <div class="chaty-channel-list" id="chatOptions">
+            <a href="tel:+8801950935236" target="_blank" class="chat-option" data-service="phone">
+              <i class="fa-solid fa-phone"></i> <!-- phone icon -->
+            </a>
+            <a href="https://web.messenger.com/t/111178477047534?text=Assalamualaikum%2C%20" target="_blank" class="chat-option" data-service="messenger">
+              <i class="fa-brands fa-facebook-messenger"></i> <!-- messenger icon -->
+            </a>
+            <a href="https://api.whatsapp.com/send/?phone=8801950935236&text=Assalamualaikum%2C%20" target="_blank" class="chat-option" data-service="whatsapp">
+              <i class="fa-brands fa-whatsapp"></i> <!-- whatsapp icon -->
+            </a>
+          </div>
+        </div>
+      
+        <!-- back to top button -->
+        <a href="#top" class="back-top-btn" aria-label="Back to Top">
+          <ion-icon name="caret-up" aria-hidden="true"></ion-icon>
+        </a>
+      </div>
 
       <!-- custom js link -->
       <script src="./assets/js/script.js" defer></script>
@@ -472,37 +540,7 @@
       <!-- ionicon link -->
       <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
       <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-   
-      <!-- javaScript for form data -->
-      <script>
-        const form = document.getElementById('phoneForm');
-        form.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          const phoneNumber = form.phone_number.value;
-      
-          try {
-            const response = await fetch('https://script.google.com/macros/s/1UMltbHxw4v8zorUwA-1iS5PC-uQWaLa0xYYm9e37JEx45EjINQDu5Zec/exec', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ phone_number: phoneNumber }),
-            });
-      
-            const result = await response.json();
-            console.log('Submitting phone number:', phoneNumber);
-            console.log('Response:', result);
-      
-            if (result.status === 'success') {
-              alert('Your phone number has been saved!');
-              form.reset();
-            } else {
-              alert('There was an error. Please try again.');
-            }
-          } catch (error) {
-            console.error('Error:', error);
-            alert('There was an error. Please try again.');
-          }
-        });
-      </script>
+
     </body>
  </html>
 <!-- itzmehdude -->
