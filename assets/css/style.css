@@ -806,7 +806,30 @@ body {
 
 
 
-/* branches section */
+/* about section */
+
+#about {
+  text-align: center; /* Center-align all content */
+  padding-top: 120px; /* Adjust spacing from the top */
+  padding-bottom: 50px; /* Add spacing below the section */
+}
+
+/* Style the About Us title */
+#about .section-title {
+  font-size: var(--fs-2); /* Use a larger font size for the title */
+  color: var(--oxford-red-1); /* Use a bold color for the title */
+  margin-bottom: 20px; /* Add spacing below the title */
+}
+
+/* Style the About Us description text */
+#about .section-text {
+  font-size: var(--fs-6); /* Adjust font size for readability */
+  line-height: 1.8; /* Improve line spacing */
+  color: var(--sonic-silver); /* Use a softer color for the text */
+  max-width: 800px; /* Limit the width of the text */
+  margin: 0 auto; /* Center the text horizontally */
+}
+
 .branch {
   display: flex;
   align-items: center;
@@ -885,8 +908,143 @@ body {
     flex-direction: column;
   }
   
-  #branches {
+  #about {
     padding-top: 190px;
+  }
+}
+
+/* floating buttons container */
+.floating-buttons {
+  position: fixed;
+  bottom: 20px; /* adjust distance from the bottom */
+  right: 20px; /* adjust distance from the right */
+  display: flex;
+  flex-direction: column; /* stack buttons vertically */
+  gap: 15px; /* add spacing between buttons */
+  z-index: 1000; /* ensure it appears above other elements */
+}
+
+/* chat toggle button */
+.chat-toggle-btn {
+  background-color: var(--royal-red-light);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-4);
+  padding: 15px;
+  cursor: pointer;
+  font-size: 20px; /* adjust icon size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition);
+}
+
+.chat-toggle-btn:hover {
+  background-color: var(--carolina-red);
+}
+
+/* chat options */
+.chaty-channel-list {
+  display: none; /* hidden by default */
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background-color: var(--white);
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius-4);
+  box-shadow: var(--shadow-3);
+  padding: 10px;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.chaty-channel-list.active {
+  display: flex; /* show when active */
+}
+
+.chaty-channel-list a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: var(--royal-red-light);
+  color: var(--white);
+  border-radius: 50%;
+  font-size: 20px; /* adjust icon size */
+  transition: background-color var(--transition);
+  text-decoration: none;
+}
+
+.chaty-channel-list a:hover {
+  background-color: var(--carolina-red);
+}
+
+/* back to top button */
+.back-top-btn {
+  background-color: var(--royal-red-light);
+  color: var(--white);
+  font-size: 18px;
+  padding: 18px;
+  border-radius: 50%;
+  visibility: hidden;
+  opacity: 0;
+  transition: var(--transition);
+  z-index: 1000;
+}
+
+.back-top-btn.active {
+  transform: translateY(-10px);
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Marquee Container */
+.marquee-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--royal-red-light); /* Background color */
+  color: var(--white); /* Text color */
+  overflow: hidden;
+  z-index: 1000;
+  padding: 10px 0;
+  box-shadow: var(--shadow-2);
+}
+
+/* marquee content */
+.marquee {
+  display: flex;
+  align-items: center;
+  gap: 50px; /* space between repeated text */
+  animation: marquee 15s linear infinite; /* animation for continuous scrolling */
+  white-space: nowrap;
+}
+
+/* Marquee Text and Logo */
+.marquee span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.6rem;
+  font-weight: var(--fw-600);
+}
+
+.marquee-logo {
+  width: 24px; /* adjust logo size */
+  height: 24px;
+  object-fit: contain;
+}
+
+/* marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(100%); /* start from the right */
+  }
+  100% {
+    transform: translateX(-100%); /* move to the left */
   }
 }
 
@@ -989,27 +1147,6 @@ body {
 
 .footer-bottom .social-link:is(:hover, :focus) {
   background-image: var(--gradient);
-}
-
-/* back to top */
-.back-top-btn{
-  position: fixed;
-  bottom: 10px;
-  right: 20px;
-  background-color: var(--royal-red-light);
-  font-size: 18px;
-  color: var(--white);
-  padding: 14px;
-  border-radius: 50%;
-  visibility: hidden;
-  opacity: 0;
-  transition: var(--transition);
-}
-
-.back-top-btn.active{
-  transform: translateY(-10px);
-  visibility: visible;
-  opacity: 1;
 }
 
 .footer__bottom .developer, .developer p, .developer a{
