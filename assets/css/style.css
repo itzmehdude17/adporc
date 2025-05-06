@@ -1695,13 +1695,14 @@ body {
   .scrollbar-item{ min-width: calc(25% - 22.5px);}
 
   .has-scrollbar{
-    padding-block-end: 0;
-    margin-block-end: 0;
+    gap: 30px;
+    margin-inline: 15px;
+    padding-block-end: 30px;
+    margin-block-end: -20px;
+    scroll-snap-type: inline mandatory;
   }
 
   /* cta */
   .cta .container{ align-items: center;}
-
   .cta-banner{ margin-block-start: -120px;}
 }
-/* itzmehdude */
