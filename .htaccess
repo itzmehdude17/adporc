@@ -1,0 +1,10 @@
+# Turn on the Rewrite Engine
+RewriteEngine On
+
+# Remove .html extension
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+# Redirect from .html to non-.html (Optional but recommended for SEO)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html\ HTTP/
+RewriteRule ^([^.]+)\.html$ https://adporc.com/$1 [R=301,L]
