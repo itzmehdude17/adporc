@@ -1,0 +1,77 @@
+# Enable Rewrite Engine
+RewriteEngine On
+#  redirects start
+    # Keep these 301 redirects here, old sitemap URLs -> new sitemap URLs
+<IfModule mod_alias.c>
+    Redirect 301 /blogs/best-physiotherapy-dhaka /blogs/best-physiotherapy-center-dhaka
+    Redirect 301 /blogs/plantar-fasciitis-treatment-in-dhaka /blogs/plantar-fasciitis-physiotherapy-treatment-dhaka
+    Redirect 301 /blogs/carpal-tunnel-syndrome-treatment-in-dhaka /blogs/carpal-tunnel-syndrome-physiotherapy-treatment-dhaka
+    Redirect 301 /blogs/best-physiotherapy-for-plid-dhaka /blogs/plid-physiotherapy-treatment-dhaka
+    Redirect 301 /blogs/best-physiotherapy-for-trigger-finger-dhaka /blogs/trigger-finger-physiotherapy-treatment-dhaka
+    Redirect 301 /blogs/best-physiotherapy-for-tennis-elbow-dhaka /blogs/tennis-elbow-physiotherapy-treatment-dhaka
+    Redirect 301 /blogs/best-physiotherapy-for-frozen-shoulder /blogs/frozen-shoulder-physiotherapy-treatment-dhaka
+    Redirect 301 /blogs/best-physiotherapy-for-acl-dhaka /blogs/acl-injury-physiotherapy-treatment-dhaka
+    Redirect 301 /blogs/best-physiotherapy-for-knee-pain-dhaka /blogs/knee-pain-physiotherapy-treatment-dhaka
+    Redirect 301 /blogs/best-physiotherapy-for-back-pain-dhaka /blogs/back-pain-physiotherapy-treatment-dhaka
+    Redirect 301 /blogs/best-physiotherapy-for-neck-pain-dhaka /blogs/neck-pain-physiotherapy-treatment-dhaka
+    Redirect 301 /blogs/text-neck-syndrome-physiotherapy-dhaka /blogs/text-neck-syndrome-physiotherapy-treatment-dhaka
+    Redirect 301 /team/dr-saddam-hossain /team/dr-saddam-hossain-pt
+</IfModule>
+
+    # Fallback: if mod_alias unavailable, try mod_rewrite version
+<IfModule mod_rewrite.c>
+    RewriteRule ^blogs/best-physiotherapy-dhaka$ /blogs/best-physiotherapy-center-dhaka [R=301,L]
+    RewriteRule ^blogs/plantar-fasciitis-treatment-in-dhaka$ /blogs/plantar-fasciitis-treatment-treatment-dhaka [R=301,L]
+    RewriteRule ^blogs/carpal-tunnel-syndrome-treatment-in-dhaka$ /blogs/carpal-tunnel-syndirome-physiotherapy-treatment-dhaka [R=301,L]
+    RewriteRule ^blogs/haglunds-deformity-physiotherapy-treatment-dhaka$ /blogs/haglunds-deformity-physiotherapy-treatment-dhaka [R=301,L]
+    RewriteRule ^blogs/best-physiotherapy-for-plid-dhaka$ /blogs/plid-physiotherapy-treatment-dhaka [R=301,L]
+    RewriteRule ^blogs/best-physiotherapy-for-trigger-finger-dhaka$ /blogs/trigger-finger-physiotherapy-treatment-dhaka [R=301,L]
+    RewriteRule ^blogs/best-physiotherapy-for-tennis-elbow-dhaka$ /blogs/tennis-elbow-physiotherapy-treatment-dhaka [R=301,L]
+    RewriteRule ^blogs/best-physiotherapy-for-frozen-shoulder$ /blogs/frozen-shoulder-physiotherapy-treatment-dhaka [R=301,L]
+    RewriteRule ^blogs/best-physiotherapy-for-acl-dhaka$ /blogs/acl-injury-physiotherapy-treatment-dhaka [R=301,L]
+    RewriteRule ^blogs/best-physiotherapy-for-knee-pain-dhaka$ /blogs/knee-pain-physiotherapy-treatment-dhaka [R=301,L]
+    RewriteRule ^blogs/best-physiotherapy-for-back-pain-dhaka$ /blogs/back-pain-physiotherapy-treatment-dhaka [R=301,L]
+    RewriteRule ^blogs/best-physiotherapy-for-neck-pain-dhaka$ /blogs/neck-pain-physiotherapy-treatment-dhaka [R=301,L]
+   RewriteRule /blogs/text-neck-syndrome-physiotherapy-dhaka$ /blogs/text-neck-syndrome-physiotherapy-treatment-dhaka [R=301,L]
+    RewriteRule /team/dr-saddam-hossain$ /team/dr-saddam-hossain-pt [R=301,L]
+</IfModule>
+#  redirects end
+
+# Remove .html Extension (Internal Rewrite)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+# Redirect .html to non-.html (canonical)
+RewriteCond %{THE_REQUEST} \s/([^.]+)\.html\s [NC]
+RewriteRule ^([^.]+)\.html$ https://adporc.com/$1 [R=301,L]
+
+# Security Headers (Safe)
+<IfModule mod_headers.c>
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# Protect Critical Files
+<FilesMatch "^(\.htaccess|\.env|composer\.json|package\.json)">
+Require all denied
+</FilesMatch>
+
+# Protect Assets Folder from Hotlinking
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/assets/ [NC]
+RewriteCond %{HTTP_REFERER} !^https://(www\.)?adporc\.com/ [NC]
+RewriteRule \.(jpg|jpeg|png|gif|css|js)$ - [F,NC,L]
+</IfModule>
+
+# Extra protection for sensitive files inside assets (optional)
+<FilesMatch "\.(env|json|php)$">
+Require all denied
+</FilesMatch>
+
+# Custom Error Pages
+ErrorDocument 401 /401.html
+ErrorDocument 403 /403.html
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html

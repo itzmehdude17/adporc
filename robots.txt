@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://adporc.com/sitemap.xml
