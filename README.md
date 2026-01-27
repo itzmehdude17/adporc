@@ -7,4 +7,4 @@ Key features include structured service sections, educational blog content for p
 
 This project demonstrates practical frontend development for real world medical use cases, with a focus on usability, responsiveness, and professional presentation in a healthcare setting.
 
-🔗Live Preview: https://github.com/itzmehdude17/adporc/
+🔗Live Preview: https://itzmehdude17.github.io/adporc/
