@@ -1,32 +1,35 @@
-// itzmehdude //
-
 'use strict';
 
-// utility function to add event listeners to multiple elements //
+// Utility function
 const addEventOnElem = (elem, type, callback) => {
-  if (elem.length > 1) {
-    elem.forEach((el) => el.addEventListener(type, callback));
-  } else {
-    elem.addEventListener(type, callback);
+  if (!elem) return;
+
+  if (elem instanceof NodeList || Array.isArray(elem)) {
+    elem.forEach(el => el && el.addEventListener(type, callback));
+    return;
   }
+
+  elem.addEventListener(type, callback);
 };
 
-// initialize all functionality on DOMContentLoaded //
+// DOM Ready (ONLY ONCE)
 document.addEventListener("DOMContentLoaded", () => {
   initNavbar();
   initLanguageToggle();
   initPopupForm();
-  // initFormSubmissions(); // REMOVE or COMMENT OUT
+  initFormSubmissions();
   initChatToggle();
   initBackToTopButton();
-  // initBlogCards(); // REMOVE or COMMENT OUT
+  initFaqAccordion();
 });
 
-// navbar toggle functionality //
+// Navbar
 function initNavbar() {
   const navbar = document.querySelector("[data-navbar]");
   const navbarLinks = document.querySelectorAll("[data-nav-link]");
   const navbarToggler = document.querySelector("[data-nav-toggler]");
+
+  if (!navbar || !navbarToggler) return;
 
   const toggleNav = () => {
     navbar.classList.toggle("active");
@@ -43,206 +46,156 @@ function initNavbar() {
   addEventOnElem(navbarLinks, "click", closeNav);
 }
 
-// language toggle functionality //
+// Language Toggle
 function initLanguageToggle() {
   const langToggle = document.getElementById("languageToggle");
+  if (!langToggle) return;
+
   const blogEn = document.getElementById("blog-en");
   const blogBn = document.getElementById("blog-bn");
   let currentLang = localStorage.getItem("lang") || "ENG";
 
   function setLanguage(lang) {
-    // 1. Set body class for font switching
     document.body.classList.remove("lang-eng", "lang-bn");
     document.body.classList.add(lang === "BAN" ? "lang-bn" : "lang-eng");
 
-    // 2. Toggle blog articles if they exist
     if (blogEn && blogBn) {
-      if (lang === "BAN") {
-        blogEn.style.display = "none";
-        blogBn.style.display = "block";
-        langToggle.textContent = "ENG";
-      } else {
-        blogEn.style.display = "block";
-        blogBn.style.display = "none";
-        langToggle.textContent = "BAN";
-      }
-      localStorage.setItem("lang", lang);
-    } else if (langToggle) {
+      blogEn.style.display = lang === "BAN" ? "none" : "block";
+      blogBn.style.display = lang === "BAN" ? "block" : "none";
       langToggle.textContent = lang === "BAN" ? "ENG" : "BAN";
     }
 
-    // update all data-translation elements everywhere
-    document.querySelectorAll("[data-translation]").forEach((element) => {
-      const translationKey = lang === "BAN" ? "data-lang-ban" : "data-lang-eng";
-      if (element.hasAttribute(translationKey)) {
-        element.innerHTML = element.getAttribute(translationKey);
-      }
+    document.querySelectorAll("[data-translation]").forEach(el => {
+      const key = lang === "BAN" ? "data-lang-ban" : "data-lang-eng";
+      if (el.hasAttribute(key)) el.innerHTML = el.getAttribute(key);
     });
 
-    // update placeholders
-    const placeholders = [
-      { id: "name", eng: "Enter your name", ban: "আপনার নাম লিখুন" },
-      { id: "phone", eng: "Enter your phone number", ban: "আপনার ফোন নম্বর লিখুন" },
-      { id: "age", eng: "Enter your age", ban: "সংখ্যায় আপনার বয়স লিখুন" },
-      { id: "gender", eng: "Select your gender", ban: "আপনার লিঙ্গ নির্বাচন করুন" },
-      { id: "address", eng: "Enter your address", ban: "আপনার ঠিকানা লিখুন" },
-      { id: "complaint", eng: "Enter your chief complaint", ban: "আপনার মূল সমস্যা সম্পর্কে লিখুন" },
-    ];
-
-    placeholders.forEach((field) => {
-      const input = document.getElementById(field.id);
-      if (input) {
-        input.setAttribute("placeholder", lang === "BAN" ? field.ban : field.eng);
-      }
-    });
+    localStorage.setItem("lang", lang);
   }
 
   setLanguage(currentLang);
 
-  if (langToggle) {
-    langToggle.addEventListener("click", () => {
-      currentLang = currentLang === "ENG" ? "BAN" : "ENG";
-      setLanguage(currentLang);
-      localStorage.setItem("lang", currentLang);
+  langToggle.addEventListener("click", () => {
+    currentLang = currentLang === "ENG" ? "BAN" : "ENG";
+    setLanguage(currentLang);
+  });
+}
+
+// Form Submissions
+function initFormSubmissions() {
+  const appointmentForm = document.getElementById("appointmentForm");
+  const phoneForm = document.getElementById("phoneForm");
+
+  if (appointmentForm) {
+    appointmentForm.addEventListener("submit", e => {
+      e.preventDefault();
+      fetch(appointmentForm.action, {
+        method: "POST",
+        body: new FormData(appointmentForm)
+      })
+      .then(() => {
+        alert("Submitted successfully!");
+        appointmentForm.reset();
+        const popup = document.getElementById("popupForm");
+        if (popup) popup.style.display = "none";
+      })
+      .catch(() => alert("Submission failed."));
+    });
+  }
+
+  if (phoneForm) {
+    phoneForm.addEventListener("submit", e => {
+      e.preventDefault();
+      fetch(phoneForm.action, {
+        method: "POST",
+        body: new FormData(phoneForm)
+      })
+      .then(() => {
+        alert("Thank you! We'll call you soon.");
+        phoneForm.reset();
+      })
+      .catch(() => alert("Submission failed."));
     });
   }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  initLanguageToggle();
-});
-
-// form submission functionality //
-document.addEventListener("DOMContentLoaded", function() {
-  const appointmentForm = document.getElementById("appointmentForm");
-  if (appointmentForm) {
-    appointmentForm.addEventListener("submit", function(e) {
-      e.preventDefault();
-      const formData = new FormData(appointmentForm);
-      fetch("https://script.google.com/macros/s/AKfycbzwG_e3As_Ymeadtfi1cbkZyg3q7xVhmfUhCB-ZuKpg3LVikxJKT-mfLwPj5HThC-jfvQ/exec", {
-        method: "POST",
-        body: formData
-      })
-        .then((response) => {
-          alert("Submitted Successfully!");
-          appointmentForm.reset();
-          document.getElementById("popupForm").style.display = "none";
-        })
-        .catch((error) => {
-          alert("Submission failed. Please try again.");
-        });
-    });
-  }
-});
-
-// phone number submission functionality //
-document.addEventListener("DOMContentLoaded", function() {
-  const phoneForm = document.getElementById("phoneForm");
-  if (phoneForm) {
-    phoneForm.addEventListener("submit", function(e) {
-      e.preventDefault();
-      const formData = new FormData(phoneForm);
-      fetch("https://script.google.com/macros/s/AKfycbzckbkLPqBm0C71cwKK3t_F8lE9tQdg3qO4s4_zh3Gs3c6kZI52-iWWgOJc_qop0byHyA/exec", { 
-        method: "POST", body: formData })
-        .then((response) => {
-          alert("Thank you! We'll call you soon.");
-          phoneForm.reset();
-        })
-        .catch((error) => {
-          alert("Submission failed. Please try again.");
-        });
-    });
-  }
-});
-
-// pop-up form functionality //
+// Popup Form
 function initPopupForm() {
   const popupForm = document.getElementById("popupForm");
-  const appointmentButtons = document.querySelectorAll(".appointment-btn");
-  const closeButton = document.getElementById("popupCloseBtn");
+  const buttons = document.querySelectorAll(".appointment-btn");
+  const closeBtn = document.getElementById("popupCloseBtn");
 
-  const togglePopup = () => {
-    popupForm.style.display = popupForm.style.display === "flex" ? "none" : "flex";
-  };
+  if (!popupForm || !buttons.length) return;
 
-  appointmentButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
+  buttons.forEach(btn => {
+    btn.addEventListener("click", e => {
       e.preventDefault();
       popupForm.style.display = "flex";
     });
   });
 
-  if (closeButton) {
-    closeButton.addEventListener("click", () => {
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
       popupForm.style.display = "none";
     });
   }
 
-  if (popupForm) {
-    popupForm.addEventListener("click", (e) => {
-      if (e.target === popupForm) {
-        popupForm.style.display = "none";
-      }
-    });
-  }
-}
-
-// chat toggle functionality //
-function initChatToggle() {
-  const chatToggleBtn = document.getElementById("chatToggleBtn");
-  const chatOptions = document.querySelector(".chaty-channel-list");
-
-  if (chatToggleBtn && chatOptions) {
-    chatToggleBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      chatOptions.classList.toggle("active");
-    });
-
-    document.addEventListener("click", (e) => {
-      if (!chatOptions.contains(e.target) && e.target !== chatToggleBtn) {
-        chatOptions.classList.remove("active");
-      }
-    });
-  }
-}
-
-// back-to-top button functionality //
-function initBackToTopButton() {
-  const backToTopBtn = document.querySelector(".back-top-btn");
-
-  if (backToTopBtn) {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        backToTopBtn.classList.add("active");
-      } else {
-        backToTopBtn.classList.remove("active");
-      }
-    });
-
-    backToTopBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    });
-  }
-}
-
-// FAQ functionality
-document.querySelectorAll('.faq-question').forEach(btn => {
-  btn.addEventListener('click', function() {
-    const item = btn.parentElement;
-    const open = item.classList.contains('open');
-    // close all
-    document.querySelectorAll('.faq-item').forEach(i => {
-      i.classList.remove('open');
-      i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-    });
-    // toggle current
-    if (!open) {
-      item.classList.add('open');
-      btn.setAttribute('aria-expanded', 'true');
-    }
+  popupForm.addEventListener("click", e => {
+    if (e.target === popupForm) popupForm.style.display = "none";
   });
-});
+}
+
+// Chat Toggle
+function initChatToggle() {
+  const btn = document.getElementById("chatToggleBtn");
+  const list = document.querySelector(".chaty-channel-list");
+  if (!btn || !list) return;
+
+  btn.addEventListener("click", e => {
+    e.stopPropagation();
+    list.classList.toggle("active");
+  });
+
+  document.addEventListener("click", e => {
+    if (!list.contains(e.target)) list.classList.remove("active");
+  });
+}
+
+// Back To Top
+function initBackToTopButton() {
+  const btn = document.querySelector(".back-top-btn");
+  if (!btn) return;
+
+  window.addEventListener("scroll", () => {
+    btn.classList.toggle("active", window.scrollY > 300);
+  });
+
+  btn.addEventListener("click", e => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+// FAQ Accordion
+function initFaqAccordion() {
+  const questions = document.querySelectorAll(".faq-question");
+  if (!questions.length) return;
+
+  questions.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const item = btn.parentElement;
+      const open = item.classList.contains("open");
+
+      document.querySelectorAll(".faq-item").forEach(i => {
+        i.classList.remove("open");
+        const q = i.querySelector(".faq-question");
+        if (q) q.setAttribute("aria-expanded", "false");
+      });
+
+      if (!open) {
+        item.classList.add("open");
+        btn.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+}
