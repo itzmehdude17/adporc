@@ -4,212 +4,218 @@
   <!-- homepage -->
   <url>
     <loc>https://adporc.com/</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>1.00</priority>
   </url>
 
   <!-- static Pages -->
   <url>
     <loc>https://adporc.com/home</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>1.00</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/services</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.80</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/about-us</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.80</priority>
   </url>
 
   <!-- error pages -->
   <url>
     <loc>https://adporc.com/401</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
   <url>
     <loc>https://adporc.com/403</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
   <url>
     <loc>https://adporc.com/404</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
   <url>
     <loc>https://adporc.com/500</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <!-- blogs directory -->
   <url>
     <loc>https://adporc.com/blogs</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <!-- individual blogs -->
-   <url>
+  <url>
+    <loc>https://adporc.com/blogs/foot-pain-physiotherapy-treatment-dhaka</loc>
+    <lastmod>2026-02-02</lastmod>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
     <loc>https://adporc.com/blogs/groin-pain-physiotherapy-treatment-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/bells-palsy-physiotherapy-treatment-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/winter-joint-stiffness-physiotherapy-management-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/postop-joint-stiffness-physiotherapy-management-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
   
   <url>
     <loc>https://adporc.com/blogs/text-neck-syndrome-physiotherapy-treatment-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/best-stroke-physiotherapy-management-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/piriformis-syndrome-physiotherapy-in-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/sciatica-pain-physiotherapy-treatment-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/carpal-tunnel-syndrome-physiotherapy-treatment-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
   
   <url>
     <loc>https://adporc.com/blogs/plantar-fasciitis-physiotherapy-treatment-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/haglunds-deformity-physiotherapy-treatment-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/plid-physiotherapy-treatment-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/trigger-finger-physiotherapy-treatment-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/tennis-elbow-physiotherapy-treatment-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/frozen-shoulder-physiotherapy-treatment-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/acl-injury-physiotherapy-treatment-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/knee-pain-physiotherapy-treatment-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/back-pain-physiotherapy-treatment-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/neck-pain-physiotherapy-treatment-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
   
   <url>
     <loc>https://adporc.com/blogs/advance-electrotherapy-adporc-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/best-physiotherapy-center-jatrabari</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/best-physiotherapy-center-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://adporc.com/blogs/assisted-physiotherapy-dhaka</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
 
   <!-- team directory -->
   <url>
     <loc>https://adporc.com/team</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
   <!-- individual team members -->
   <url>
     <loc>https://adporc.com/team/dr-saddam-hossain-pt</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>1.00</priority>
   </url>
   <url>
     <loc>https://adporc.com/team/dr-kaniz-fatema-akhtar-pt</loc>
-    <lastmod>2026-01-29</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <priority>1.00</priority>
   </url>
 </urlset>

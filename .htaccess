@@ -1,5 +1,6 @@
 # Enable Rewrite Engine
 RewriteEngine On
+RewriteRule ^api/ - [L]
 #  redirects start
     # Keep these 301 redirects here, old sitemap URLs -> new sitemap URLs
 <IfModule mod_alias.c>

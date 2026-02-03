@@ -16,6 +16,7 @@ const addEventOnElem = (elem, type, callback) => {
 document.addEventListener("DOMContentLoaded", () => {
   initNavbar();
   initLanguageToggle();
+  initPageViews();
   initPopupForm();
   initFormSubmissions();
   initChatToggle();
@@ -198,4 +199,58 @@ function initFaqAccordion() {
       }
     });
   });
+}
+
+// Views count
+localStorage.setItem("lang", lang);
+document.dispatchEvent(new CustomEvent("languageChanged", { detail: { lang } }));
+localStorage.setItem("lang", lang);
+document.dispatchEvent(new CustomEvent("languageChanged", { detail: { lang } }));
+function initPageViews() {
+  // Only for blog pages
+  if (!location.pathname.startsWith("/blogs/")) return;
+
+  const blogMeta = document.querySelector(".blog-meta");
+  if (!blogMeta) return;
+
+  const slug = location.pathname.replace(/\/$/, "");
+  let cachedCount = null;
+
+  function render(lang) {
+    // Remove old view UI (important because language toggle rewrites innerHTML)
+    const old = blogMeta.querySelector(".page-views");
+    if (old) old.remove();
+
+    const label = (lang === "BAN") ? "ভিউ" : "Views";
+    const val = (cachedCount === null) ? "" : String(cachedCount);
+
+    blogMeta.insertAdjacentHTML(
+      "beforeend",
+      `<span class="page-views"> | ${label}: <span id="pageViewCount">${val}</span></span>`
+    );
+  }
+
+  // Initial render using saved lang
+  const currentLang = localStorage.getItem("lang") || "ENG";
+  render(currentLang);
+
+  // Re-render after language changes (because your translator overwrites blog-meta)
+  document.addEventListener("languageChanged", (e) => {
+    render(e.detail?.lang || (localStorage.getItem("lang") || "ENG"));
+  });
+
+  // Hit the server counter
+  fetch(`/api/views.php?slug=${encodeURIComponent(slug)}`, { cache: "no-store" })
+    .then(r => r.json())
+    .then(data => {
+      if (!data || !data.ok) return;
+      cachedCount = data.count;
+
+      // Update current visible number
+      const el = document.getElementById("pageViewCount");
+      if (el) el.textContent = String(cachedCount);
+    })
+    .catch(() => {
+      // fail silently (don't break page)
+    });
 }

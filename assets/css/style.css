@@ -72,7 +72,8 @@
   padding: 0;
   box-sizing: border-box;
 }
-ul, li{ list-style: none;}
+/* remove default markers only for unordered lists; keep ol markers intact */
+ul { list-style: none; }
 i{ display: inline-block;}
 .fa-solid {
   display: inline-block; /* ensure Font Awesome icons are visible */
@@ -1061,9 +1062,16 @@ body.lang-bn [data-lang-eng] { font-family: var(--ff-ban) !important; }
     }
     .blog .blog-meta {
       font-size: var(--fs-7);
+      font-style: italic;
       color: var(--sonic-silver);
       text-align: center;
       margin-bottom: 20px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .blog-meta span {
+      display: inline;
     }
     .blog .blog-banner img {
       width: 100%;
@@ -1079,18 +1087,21 @@ body.lang-bn [data-lang-eng] { font-family: var(--ff-ban) !important; }
       text-align: justify;
       text-decoration: none;
     }
-    .blog .blog-content h2 {
+    .blog .blog-content h2, h3, h4 {
       font-size: var(--fs-4);
       color: var(--oxford-red-1);
       margin-top: 30px;
       margin-bottom: 15px;
     }
     .blog .blog-content ol {
-      margin-left: 20px;
+      margin-left: 0;
+      padding-left: 30px;
       margin-bottom: 20px;
+      list-style-position: outside;
     }
     .blog .blog-content ol li {
       list-style-type: decimal;
+      display: list-item;
       margin-bottom: 10px;
     }
     #blog-bn ol li {
@@ -1111,17 +1122,21 @@ body.lang-bn [data-lang-eng] { font-family: var(--ff-ban) !important; }
     .blog .blog-content ol > li > ul,
     .blog .blog-content ol ul,
     .blog .blog-content ul.inside-ol {
-      list-style-type: disc outside;
-      list-style-position: outside;
-      margin-left: 20px;
+      list-style-type: disc !important;
+      margin-left: 25px;
       padding-left: 15px;
     }
     .blog .blog-content ol > li > ul > li,
     .blog .blog-content ol ul li,
     .blog .blog-content ul.inside-ol > li {
-      display: list-item;
-      list-style-type: disc outside;
+      display: list-item !important;
+      list-style-type: disc !important;
     }
+
+    #blog-bn ul li {
+      list-style-type: disc !important;
+    }
+
     .blog .blog-content ol ul li::marker,
     .blog .blog-content ul.inside-ol li::marker {
       font-weight: bold;
@@ -1372,6 +1387,20 @@ main > .section #error .card-text {
       gap: 5px;
       padding-block: 10px;
       transition: var(--transition);
+    }
+    /* Ensure other contact anchors in footer (e.g. contact-link) match footer-link styles */
+    .contact-link,
+    .footer .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding-block: 10px;
+      transition: var(--transition);
+      color: inherit;
+    }
+    .contact-link:is(:hover, :focus),
+    .footer .contact-link:is(:hover, :focus) {
+      color: var(--white);
     }
     .footer-link ion-icon{
       color: var(--royal-red-light);
@@ -1861,7 +1890,7 @@ main > .section #error .card-text {
       
       /* blog */
       .blog {
-        padding-top: calc(80px + 20px);
+        padding-top: calc(80px + 100px);
       }
       .blog-list{ grid-template-columns: repeat(3, 1fr);}
       
@@ -1875,7 +1904,7 @@ main > .section #error .card-text {
 
       /* blog */
       .blog-title{
-        padding-top: calc(80px + 58px);
+        padding-top: calc(80px + 60px);
       }
     }
 
@@ -1935,7 +1964,7 @@ main > .section #error .card-text {
 
       /* blog */
       .blog-title{
-        padding-top: calc(80px + 58px);
+        padding-top: calc(80px + 60px);
       }
     }
 /* media queries end */
