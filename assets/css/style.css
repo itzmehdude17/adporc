@@ -1133,7 +1133,7 @@ body.lang-bn [data-lang-eng] { font-family: var(--ff-ban) !important; }
       list-style-type: disc !important;
     }
 
-    #blog-bn ul li {
+    #blog-bn ol > li > ul li {
       list-style-type: disc !important;
     }
 
