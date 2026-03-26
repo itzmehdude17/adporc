@@ -21,11 +21,7 @@
     "photo": "/assets/images/team/dr-kaniz-fatema-akhtar-pt.jpg",
     "photo_alt": "best female physiotherapist jatrabari",
     "profile_url": "/team/dr-kaniz-fatema-akhtar-pt",
-    "social": {
-      "facebook": "https://www.facebook.com/",
-      "twitter": "https://www.x.com/",
-      "linkedin": "https://www.linkedin.com/in/"
-    }
+    "social": {}
   },
   {
     "name_en": "Shihab Ahmed Himel",
