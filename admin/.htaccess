@@ -1,0 +1,24 @@
+# Deny direct browser access to layout partials and auth helper
+<FilesMatch "^(_layout-|auth\.php)">
+  Require all denied
+</FilesMatch>
+
+# Do not inherit the global JSON deny for data/ — admin needs to read/write JSON via PHP
+# PHP execution is allowed here (no FilesMatch php block)
+
+# ── Hide .php extension (clean URLs) ──────────────────────
+Options -MultiViews
+RewriteEngine On
+
+# If the exact file exists, serve it directly (handles /admin/save.php API calls etc.)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Strip .php — redirect /admin/dashboard.php → /admin/dashboard
+RewriteCond %{THE_REQUEST} \s/admin/([^.]+)\.php[\s?] [NC]
+RewriteRule ^ /admin/%1 [R=301,L]
+
+# Internally rewrite /admin/dashboard → /admin/dashboard.php
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^.]+)$ $1.php [L]
+

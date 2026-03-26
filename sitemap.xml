@@ -4,14 +4,14 @@
   <!-- homepage -->
   <url>
     <loc>https://adporc.com/</loc>
-    <lastmod>2026-02-02</lastmod>
+    <lastmod>2026-03-26</lastmod>
     <priority>1.00</priority>
   </url>
 
   <!-- static Pages -->
   <url>
     <loc>https://adporc.com/home</loc>
-    <lastmod>2026-02-02</lastmod>
+    <lastmod>2026-03-26</lastmod>
     <priority>1.00</priority>
   </url>
 
@@ -52,11 +52,23 @@
   <!-- blogs directory -->
   <url>
     <loc>https://adporc.com/blogs</loc>
-    <lastmod>2026-02-02</lastmod>
+    <lastmod>2026-03-26</lastmod>
     <priority>0.70</priority>
   </url>
 
   <!-- individual blogs -->
+  <url>
+    <loc>https://adporc.com/blogs/elbow-pain-physiotherapy-treatment-dhaka</loc>
+    <lastmod>2026-03-20</lastmod>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://adporc.com/blogs/knee-pain-physiotherapy-treatment-dhaka</loc>
+    <lastmod>2026-03-13</lastmod>
+    <priority>0.70</priority>
+  </url>
+
   <url>
     <loc>https://adporc.com/blogs/dequervains-tenosynovitis-physiotherapy-treatment-dhaka</loc>
     <lastmod>2026-02-20</lastmod>
@@ -161,12 +173,6 @@
 
   <url>
     <loc>https://adporc.com/blogs/acl-injury-physiotherapy-treatment-dhaka</loc>
-    <lastmod>2026-02-02</lastmod>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://adporc.com/blogs/knee-pain-physiotherapy-treatment-dhaka</loc>
     <lastmod>2026-02-02</lastmod>
     <priority>0.70</priority>
   </url>
