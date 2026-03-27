@@ -64,22 +64,12 @@ include __DIR__ . '/_layout-top.php';
       </div>
       <div class="form-grid">
         <div class="form-group">
-          <label class="form-label">Date <span class="badge">EN</span> <small style="color:#999">e.g. Feb 2, 2026</small></label>
-          <input type="text" name="date_en" class="form-control" value="<?= h($blog['date_en'] ?? '') ?>">
+          <label class="form-label">Published Date</label>
+          <input type="date" name="date" class="form-control" value="<?= h($blog['datetime'] ?? '') ?>">
         </div>
-        <div class="form-group">
-          <label class="form-label">Date <span class="badge bn">BN</span> <small style="color:#999">Bengali date</small></label>
-          <input type="text" name="date_bn" class="form-control" value="<?= h($blog['date_bn'] ?? '') ?>">
-        </div>
-      </div>
-      <div class="form-grid">
         <div class="form-group">
           <label class="form-label">Slug (URL, no .html)</label>
           <input type="text" name="slug" class="form-control" value="<?= h($blog['slug'] ?? '') ?>" placeholder="blog-post-slug">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Datetime (ISO, for SEO)</label>
-          <input type="text" name="datetime" class="form-control" value="<?= h($blog['datetime'] ?? '') ?>" placeholder="2026-02-02T00:00:00+06:00">
         </div>
       </div>
       <div class="form-grid">
@@ -212,9 +202,34 @@ function renderPagination() {
 }
 
 /* ── Collect & Save ─────────────────────────────── */
+/* ── Date formatting helpers ──────────────────────────── */
+const MONTHS_EN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONTHS_BN = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+const BN_DIGITS = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+const BN_ORDINALS = {1:'লা',2:'রা',3:'রা',4:'ঠা',5:'ই',6:'ই',7:'ই',8:'ই',9:'ই',10:'ই',11:'ই',12:'ই',13:'ই',14:'ই',15:'ই',16:'ই',17:'ই',18:'ই',19:'শে',20:'শে',21:'শে',22:'শে',23:'শে',24:'শে',25:'শে',26:'শে',27:'শে',28:'শে',29:'শে',30:'শে',31:'শে'};
+
+function toBnDigits(n) { return String(n).split('').map(c => BN_DIGITS[c] || c).join(''); }
+
+function formatDateEn(iso) {
+  if (!iso) return '';
+  const [y, m, d] = iso.split('-').map(Number);
+  return `${MONTHS_EN[m - 1]} ${d}, ${y}`;
+}
+function formatDateBn(iso) {
+  if (!iso) return '';
+  const [y, m, d] = iso.split('-').map(Number);
+  return `${toBnDigits(d)}${BN_ORDINALS[d] || 'শে'} ${MONTHS_BN[m - 1]}, ${toBnDigits(y)} খ্রি.`;
+}
+
 function collectBlog(item) {
   const d = {};
   item.querySelectorAll('[name]').forEach(el => { d[el.name] = el.value; });
+  // Auto-generate date fields from the single date picker
+  const iso = d.date || '';
+  d.datetime = iso;
+  d.date_en  = formatDateEn(iso);
+  d.date_bn  = formatDateBn(iso);
+  delete d.date;
   return d;
 }
 
@@ -249,12 +264,8 @@ function newBlogHtml(n) {
       <div class="form-group"><label class="form-label">Excerpt <span class="badge bn">BN</span></label><textarea name="excerpt_bn" class="form-control" rows="2"></textarea></div>
     </div>
     <div class="form-grid">
-      <div class="form-group"><label class="form-label">Date <span class="badge">EN</span></label><input type="text" name="date_en" class="form-control" value=""></div>
-      <div class="form-group"><label class="form-label">Date <span class="badge bn">BN</span></label><input type="text" name="date_bn" class="form-control" value=""></div>
-    </div>
-    <div class="form-grid">
+      <div class="form-group"><label class="form-label">Published Date</label><input type="date" name="date" class="form-control" value=""></div>
       <div class="form-group"><label class="form-label">Slug</label><input type="text" name="slug" class="form-control" value="" placeholder="blog-post-slug"></div>
-      <div class="form-group"><label class="form-label">Datetime (ISO)</label><input type="text" name="datetime" class="form-control" value="" placeholder="2026-01-01T00:00:00+06:00"></div>
     </div>
     <div class="form-grid">
       <div class="form-group">
