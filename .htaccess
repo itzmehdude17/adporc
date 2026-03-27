@@ -38,7 +38,18 @@ RewriteRule ^api/ - [L]
 </IfModule>
 #  redirects end
 
-# Remove .html Extension (Internal Rewrite)
+# Pass /admin/ and /api/ requests directly (no rewriting)
+RewriteRule ^admin(/.*)?$ - [L]
+RewriteRule ^api(/.*)?$ - [L]
+
+# Protect /data/ directory — return 403
+RewriteRule ^data(/.*)?$ - [F,L]
+
+# Try .php first, then .html (extension stripping)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_URI}.php -f [NC]
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.html [NC,L]
 # Redirect .html to non-.html (canonical)
@@ -66,8 +77,8 @@ RewriteCond %{HTTP_REFERER} !^https://(www\.)?adporc\.com/ [NC]
 RewriteRule \.(jpg|jpeg|png|gif|css|js)$ - [F,NC,L]
 </IfModule>
 
-# Extra protection for sensitive files inside assets (optional)
-<FilesMatch "\.(env|json|php)$">
+# Block direct web access to .env and .json files (NOT .php — PHP must run)
+<FilesMatch "\.(env|json)$">
 Require all denied
 </FilesMatch>
 

@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initChatToggle();
   initBackToTopButton();
   initFaqAccordion();
+  initLoadMoreBlogs();
+  initCarousel();
 });
 
 // Navbar
@@ -82,6 +84,23 @@ function initLanguageToggle() {
   });
 }
 
+// Toast notification
+function showToast(message, type = "success") {
+  const existing = document.querySelector(".toast-notification");
+  if (existing) existing.remove();
+
+  const toast = document.createElement("div");
+  toast.className = `toast-notification toast-${type}`;
+  toast.textContent = message;
+  document.body.appendChild(toast);
+
+  requestAnimationFrame(() => toast.classList.add("show"));
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
 // Form Submissions
 function initFormSubmissions() {
   const appointmentForm = document.getElementById("appointmentForm");
@@ -90,32 +109,50 @@ function initFormSubmissions() {
   if (appointmentForm) {
     appointmentForm.addEventListener("submit", e => {
       e.preventDefault();
+      const submitBtn = appointmentForm.querySelector("[type='submit']");
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting...";
+
       fetch(appointmentForm.action, {
         method: "POST",
         body: new FormData(appointmentForm)
       })
       .then(() => {
-        alert("Submitted successfully!");
+        showToast("Submitted successfully!");
         appointmentForm.reset();
         const popup = document.getElementById("popupForm");
         if (popup) popup.style.display = "none";
       })
-      .catch(() => alert("Submission failed."));
+      .catch(() => showToast("Submission failed. Please try again.", "error"))
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      });
     });
   }
 
   if (phoneForm) {
     phoneForm.addEventListener("submit", e => {
       e.preventDefault();
+      const submitBtn = phoneForm.querySelector("[type='submit']");
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting...";
+
       fetch(phoneForm.action, {
         method: "POST",
         body: new FormData(phoneForm)
       })
       .then(() => {
-        alert("Thank you! We'll call you soon.");
+        showToast("Thank you! We'll call you soon.");
         phoneForm.reset();
       })
-      .catch(() => alert("Submission failed."));
+      .catch(() => showToast("Submission failed. Please try again.", "error"))
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      });
     });
   }
 }
@@ -202,10 +239,6 @@ function initFaqAccordion() {
 }
 
 // Views count
-localStorage.setItem("lang", lang);
-document.dispatchEvent(new CustomEvent("languageChanged", { detail: { lang } }));
-localStorage.setItem("lang", lang);
-document.dispatchEvent(new CustomEvent("languageChanged", { detail: { lang } }));
 function initPageViews() {
   // Only for blog pages
   if (!location.pathname.startsWith("/blogs/")) return;
@@ -253,4 +286,37 @@ function initPageViews() {
     .catch(() => {
       // fail silently (don't break page)
     });
+}
+
+// Load More Blogs
+function initLoadMoreBlogs() {
+  const btn = document.getElementById("loadMoreBlogs");
+  const blogList = document.querySelector(".blog-list");
+  if (!btn || !blogList) return;
+
+  btn.addEventListener("click", () => {
+    blogList.classList.add("show-all");
+    btn.style.display = "none";
+  });
+}
+
+// Doctor Carousel
+function initCarousel() {
+  const scrollbar = document.querySelector(".has-scrollbar");
+  const prevBtn = document.querySelector("[data-carousel-prev]");
+  const nextBtn = document.querySelector("[data-carousel-next]");
+  if (!scrollbar || !prevBtn || !nextBtn) return;
+
+  const getScrollAmount = () => {
+    const item = scrollbar.querySelector(".scrollbar-item");
+    return item ? item.offsetWidth + 30 : 300;
+  };
+
+  prevBtn.addEventListener("click", () => {
+    scrollbar.scrollBy({ left: -getScrollAmount(), behavior: "smooth" });
+  });
+
+  nextBtn.addEventListener("click", () => {
+    scrollbar.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
+  });
 }

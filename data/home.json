@@ -1,0 +1,80 @@
+{
+  "hero": {
+    "subtitle_en": "Welcome to ADPORC",
+    "subtitle_bn": "এডিপিওআরসি-তে স্বাগতম",
+    "title_en": "Asia Digital Physiotherapy &amp; Orthopedic Rehabilitation Center",
+    "title_bn": "এশিয়া ডিজিটাল ফিজিওথেরাপি এন্ড অর্থোপেডিক রিহ্যাবিলিটেশন সেন্টার",
+    "text_en": "One of the best physiotherapy centers in Dhaka city for the treatment of pain, paralysis &amp; sports injury.",
+    "text_bn": "ঢাকার মধ্যে অন্যতম সেরা একটি ফিজিওথেরাপি সেন্টার, যা ব্যথা, পক্ষাঘাত এবং ক্রীড়া আঘাতের চিকিৎসায় বিশেষায়িত।",
+    "bg_image": "/assets/images/hero-bg.png",
+    "banner_image": "/assets/images/hero-banner.png",
+    "banner_alt": "best physiotherapy center in dholaipar"
+  },
+  "about": {
+    "subtitle_en": "About Us",
+    "subtitle_bn": "আমাদের সম্পর্কে",
+    "title_en": "We Care For Your Health",
+    "title_bn": "আপনার সু-স্বাস্থ্যের ব্যাপারে আমরা যত্নবান",
+    "text_en": "One of the best physiotherapy centers in Dhaka city for the treatment of pain, paralysis &amp; sports injury.",
+    "text_bn": "ঢাকার মধ্যে অন্যতম সেরা একটি ফিজিওথেরাপি সেন্টার, যা ব্যথা, পক্ষাঘাত এবং ক্রীড়া আঘাতের চিকিৎসায় বিশেষায়িত।",
+    "banner": "/assets/images/banners/banner-6.jpeg"
+  },
+  "cta": {
+    "subtitle_en": "We're Open and Ready to Welcome You!",
+    "subtitle_bn": "আপনাকে স্বাগত জানাতে আমরা প্রস্তুত!",
+    "text_en": "Schedule your appointment today and take the first step toward a healthier, happier you.",
+    "text_bn": "আজই আপনার অ্যাপয়েন্টমেন্ট শিডিউল করুন এবং সুস্থ, আনন্দময় জীবনের পথে প্রথম পদক্ষেপ নিন।",
+    "banner": "/assets/images/cta-banner.png"
+  },
+  "services": [
+    {
+      "icon": "/assets/images/icons/neck-pain_S.png",
+      "title_en": "Neck Pain",
+      "title_bn": "ঘাড় ব্যথা",
+      "desc_en": "Our specialized treatments help relieve neck pain caused by poor posture, injury, or tension.",
+      "desc_bn": "খারাপ অঙ্গবিন্যাস, আঘাত বা টেনশনজনিত গল ব্যথা আমাদের বিশেষজ্ঞ পদ্ধতিতে উপশম করা হয়।",
+      "link": "/blogs/neck-pain-physiotherapy-treatment-dhaka"
+    },
+    {
+      "icon": "/assets/images/icons/spine_S.png",
+      "title_en": "PLID",
+      "title_bn": "পিএলআইডি",
+      "desc_en": "Targeted rehabilitation methods addressing PLID to reduce pain and restore function.",
+      "desc_bn": "পিএলআইডি সমস্যায় লক্ষ্যভিত্তিক পুনর্বাসন পদ্ধতি যা ব্যথা কমায় ও কার্যকারিতা ফিরিয়ে আনে।",
+      "link": "/blogs/plid-physiotherapy-treatment-dhaka"
+    },
+    {
+      "icon": "/assets/images/icons/elbow-pain_S.png",
+      "title_en": "Elbow Pain",
+      "title_bn": "কনুই ব্যথা",
+      "desc_en": "Our physiotherapy treatment alleviates elbow pain and reinforces joint strength.",
+      "desc_bn": "আমাদের ফিজিওথেরাপি চিকিৎসা কনুই ব্যথা উপশম করে এবং জয়েন্টের শক্তি বৃদ্ধি করে।",
+      "link": "/blogs/tennis-elbow-physiotherapy-treatment-dhaka"
+    },
+    {
+      "icon": "/assets/images/icons/knee-pain_S.png",
+      "title_en": "Knee Pain",
+      "title_bn": "হাঁটু ব্যথা",
+      "desc_en": "Our comprehensive therapy combines custom exercises and rehabilitation protocols to alleviate pain and restore function.",
+      "desc_bn": "আমাদের ফিজিওথেরাপি চিকিৎসা ব্যক্তিগত ব্যায়াম এবং পুনর্বাসন পদ্ধতি ব্যবহার করে ব্যথা কমায় ও কার্যকারিতা ফিরিয়ে আনে।",
+      "link": "/blogs/knee-pain-physiotherapy-treatment-dhaka"
+    },
+    {
+      "icon": "/assets/images/icons/mannual-therapy_1.png",
+      "title_en": "Manual Therapy",
+      "title_bn": "ম্যানুয়াল থেরাপি",
+      "desc_en": "Our manual therapy offers personalized, exercise-based treatments to correct biomechanical imbalances. Each session is uniquely tailored to promote optimal recovery.",
+      "desc_bn": "আমাদের ম্যানুয়াল থেরাপি প্রতিটি রোগীর জন্য বিশেষভাবে সাজানো, যেখানে ব্যায়ামের মাধ্যমে শরীরের ভারসাম্য ঠিক করা হয় এবং দ্রুত আরোগ্য লাভ করা সম্ভব হয়।",
+      "link": "/blogs/best-physiotherapy-center-dhaka"
+    },
+    {
+      "icon": "/assets/images/icons/electro-therapy.png",
+      "title_en": "Advanced Electrotherapy",
+      "title_bn": "আধুনিক ইলেকট্রোথেরাপি",
+      "desc_en": "Our advanced electrotherapy relieves pain and stimulates healing without invasive procedures. It's ideal for reducing inflammation and speeding up recovery.",
+      "desc_bn": "আমাদের আধুনিক ইলেকট্রোথেরাপি নন-ইনভেইসিভ পদ্ধতিতে ব্যথা উপশম এবং নিরাময় প্রক্রিয়া উদ্দীপিত করে। এটি প্রদাহ কমাতে ও দ্রুত পুনরুদ্ধার ত্বরান্বিত করতে উপযুক্ত।",
+      "link": "/blogs/advance-electrotherapy-adporc-dhaka"
+    }
+  ],
+  "service_banner": "/assets/images/icons/health-care.png"
+}

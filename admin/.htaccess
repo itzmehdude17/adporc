@@ -1,0 +1,7 @@
+# Deny direct browser access to layout partials and auth helper
+<FilesMatch "^(_layout-|auth\.php)">
+  Require all denied
+</FilesMatch>
+
+# Do not inherit the global JSON deny for data/ — admin needs to read/write JSON via PHP
+# PHP execution is allowed here (no FilesMatch php block)

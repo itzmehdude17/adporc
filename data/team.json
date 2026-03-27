@@ -1,0 +1,100 @@
+[
+  {
+    "name_en": "Dr. Saddam Hossain, PT",
+    "name_bn": "ডা. সাদ্দাম হোসেন, পিটি",
+    "role_en": "Chief Consultant",
+    "role_bn": "চিফ কনসালটেন্ট",
+    "photo": "/assets/images/team/dr-saddam-hossain-pt.jpg",
+    "photo_alt": "best male physiotherapist dhaka",
+    "profile_url": "/team/dr-saddam-hossain-pt",
+    "social": {
+      "facebook": "https://www.facebook.com/saddam.hossain.268187",
+      "twitter": "https://www.x.com/",
+      "linkedin": "https://www.linkedin.com/in/dr-saddam-hossain/"
+    }
+  },
+  {
+    "name_en": "Dr. Kaniz Fatema Akhtar, PT",
+    "name_bn": "ডা. কানিজ ফাতেমা আক্তার, পিটি",
+    "role_en": "Junior Consultant",
+    "role_bn": "জুনিয়র কনসালটেন্ট",
+    "photo": "/assets/images/team/dr-kaniz-fatema-akhtar-pt.jpg",
+    "photo_alt": "best female physiotherapist jatrabari",
+    "profile_url": "/team/dr-kaniz-fatema-akhtar-pt",
+    "social": {
+      "facebook": "https://www.facebook.com/",
+      "twitter": "https://www.x.com/",
+      "linkedin": "https://www.linkedin.com/in/"
+    }
+  },
+  {
+    "name_en": "Shihab Ahmed Himel",
+    "name_bn": "শিহাব আহমেদ হিমেল",
+    "role_en": "Medical Technologist (Physiotherapy)",
+    "role_bn": "মেডিকেল টেকনোলজিস্ট (ফিজিওথেরাপি)",
+    "photo": "/assets/images/team/himel.jpg",
+    "photo_alt": "best physiotherapy center in Dhaka",
+    "profile_url": "/team/dr-saddam-hossain-pt",
+    "social": {}
+  },
+  {
+    "name_en": "Rajia Sultana Hridhika",
+    "name_bn": "রাজিয়া সুলতানা হৃধিকা",
+    "role_en": "Medical Technologist (Physiotherapy)",
+    "role_bn": "মেডিকেল টেকনোলজিস্ট (ফিজিওথেরাপি)",
+    "photo": "/assets/images/team/hridhika.jpg",
+    "photo_alt": "best physiotherapy center in Dhaka",
+    "profile_url": "/team/dr-saddam-hossain-pt",
+    "social": {}
+  },
+  {
+    "name_en": "Sagro Roy",
+    "name_bn": "সাগর রায়",
+    "role_en": "Medical Technologist (Physiotherapy)",
+    "role_bn": "মেডিকেল টেকনোলজিস্ট (ফিজিওথেরাপি)",
+    "photo": "/assets/images/team/sagor.jpg",
+    "photo_alt": "best physiotherapy center in Dhaka",
+    "profile_url": "/team/dr-saddam-hossain-pt",
+    "social": {}
+  },
+  {
+    "name_en": "Anamika Rani Joya",
+    "name_bn": "অনামিকা রানী জয়া",
+    "role_en": "Medical Technologist (Physiotherapy)",
+    "role_bn": "মেডিকেল টেকনোলজিস্ট (ফিজিওথেরাপি)",
+    "photo": "/assets/images/team/joya.jpg",
+    "photo_alt": "best physiotherapy center in Dhaka",
+    "profile_url": "/team/dr-saddam-hossain-pt",
+    "social": {}
+  },
+  {
+    "name_en": "Md. Sobhan",
+    "name_bn": "মোহাম্মদ সোবহান",
+    "role_en": "Medical Technologist (Physiotherapy)",
+    "role_bn": "মেডিকেল টেকনোলজিস্ট (ফিজিওথেরাপি)",
+    "photo": "/assets/images/team/sobhan.jpg",
+    "photo_alt": "best physiotherapy center in Dhaka",
+    "profile_url": "/team/dr-saddam-hossain-pt",
+    "social": {}
+  },
+  {
+    "name_en": "Orin Ariha Any",
+    "name_bn": "অরিন আরিহা এনি",
+    "role_en": "Medical Technologist (Physiotherapy)",
+    "role_bn": "মেডিকেল টেকনোলজিস্ট (ফিজিওথেরাপি)",
+    "photo": "/assets/images/team/any.jpg",
+    "photo_alt": "best physiotherapy center in Dhaka",
+    "profile_url": "/team/dr-saddam-hossain-pt",
+    "social": {}
+  },
+  {
+    "name_en": "MD Abdullah Al Masud",
+    "name_bn": "মো. আব্দুল্লাহ আল মাসুদ",
+    "role_en": "Medical Technologist (Physiotherapy)",
+    "role_bn": "মেডিকেল টেকনোলজিস্ট (ফিজিওথেরাপি)",
+    "photo": "/assets/images/team/masud.jpg",
+    "photo_alt": "best physiotherapy center in Dhaka",
+    "profile_url": "/team/dr-saddam-hossain-pt",
+    "social": {}
+  }
+]
