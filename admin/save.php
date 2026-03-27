@@ -42,6 +42,32 @@ $sectionMap = [
 ];
 
 if (!array_key_exists($section, $sectionMap)) {
+    // Handle blog_views separately (stored in api/views.json, not data/)
+    if ($section === 'blog_views') {
+        if (!is_array($data)) {
+            http_response_code(400);
+            exit(json_encode(['ok' => false, 'error' => 'Invalid views data']));
+        }
+        $viewsFile = dirname(__DIR__) . '/api/views.json';
+        // Sanitize: only allow /blogs/... keys with integer values
+        $clean = [];
+        foreach ($data as $slug => $count) {
+            $slug = trim((string)$slug);
+            if (strpos($slug, '/blogs/') === 0 && $slug !== '/blogs/') {
+                $clean[$slug] = max(0, (int)$count);
+            }
+        }
+        $json = json_encode($clean, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+        $ok = ($json !== false) && (file_put_contents($viewsFile, $json, LOCK_EX) !== false);
+        if ($ok) {
+            echo json_encode(['ok' => true, 'message' => 'Views saved!']);
+        } else {
+            http_response_code(500);
+            echo json_encode(['ok' => false, 'error' => 'Failed to write views.json']);
+        }
+        exit;
+    }
+
     http_response_code(400);
     exit(json_encode(['ok' => false, 'error' => 'Unknown section']));
 }

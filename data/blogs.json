@@ -1,5 +1,16 @@
 [
   {
+    "slug": "elbow-pain-physiotherapy-treatment-dhaka",
+    "title_en": "Elbow Pain: Causes, Symptoms, and Physiotherapy Treatment in Jatrabari, Dhaka",
+    "title_bn": "কনুইয়ের ব্যথা: কারণ, উপসর্গ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি চিকিৎসা",
+    "excerpt_en": "Elbow pain is often underestimated at the beginning, but it can quickly interfere with essential daily activities such as lifting, gripping, typing, or even simple hand movements.",
+    "excerpt_bn": "কনুইয়ের ব্যথা অনেক সময় শুরুতে ছোট সমস্যা মনে হলেও ধীরে ধীরে এটি দৈনন্দিন কাজ যেমন কিছু তোলা, শক্ত করে ধরা, টাইপ করা বা হাতের সাধারণ নড়াচড়াকেও কঠিন করে তোলে।",
+    "banner": "/assets/images/banners/elbow-pain-physiotherapy.png",
+    "date_en": "March 20, 2026",
+    "date_bn": "২০শে মার্চ, ২০২৬ খ্রি.",
+    "datetime": "2026-03-20"
+  },
+  {
     "slug": "dequervains-tenosynovitis-physiotherapy-treatment-dhaka",
     "title_en": "De Quervain's Tenosynovitis: Causes, Symptoms & Physiotherapy Treatment in Jatrabari, Dhaka",
     "title_bn": "ডি কুয়েরভেইনের টেনোসাইনোভিটিস: কারণ, উপসর্গ, নির্ণয় ও যাত্রাবাড়ী, ঢাকায় ফিজিওথেরাপি ব্যবস্থাপনা",
@@ -240,5 +251,38 @@
     "date_en": "March 16, 2025",
     "date_bn": "১৬ই মার্চ, ২০২৫ খ্রি.",
     "datetime": "2025-03-16"
+  },
+  {
+    "slug": "assisted-physiotherapy-dhaka",
+    "title_en": "Empowering Recovery: Precision Care in Physiotherapy",
+    "title_bn": "সঠিক যত্নের মাধ্যমে পুনরুদ্ধার: উন্নত ফিজিওথেরাপি",
+    "excerpt_en": "Recovering from injuries or mobility issues requires precision care, a structured approach that combines expert physiotherapy techniques with tailored routines.",
+    "excerpt_bn": "আঘাত বা চলাচলের সমস্যার পর পুনরুদ্ধার করতে সঠিক যত্ন অত্যন্ত গুরুত্বপূর্ণ।",
+    "banner": "/assets/images/banners/banner-2.jpg",
+    "date_en": "March 14, 2025",
+    "date_bn": "১৪ই মার্চ, ২০২৫ খ্রি.",
+    "datetime": "2025-03-14"
+  },
+  {
+    "slug": "best-physiotherapy-center-dhaka",
+    "title_en": "Best Physiotherapy Center in Dhaka",
+    "title_bn": "ঢাকায় সেরা ফিজিওথেরাপি সেন্টার",
+    "excerpt_en": "Living in Dhaka and struggling with physical pain? Whether it's work stress, injury, or age-related stiffness, physiotherapy plays a vital role in restoring a pain-free, active life.",
+    "excerpt_bn": "আপনি কি ঢাকায় থাকেন এবং শারীরিক ব্যথায় ভুগছেন? ফিজিওথেরাপি এমন এক চিকিৎসা, যা ব্যথা থেকে মুক্তি দিয়ে আপনাকে আবার স্বাভাবিক জীবনে ফিরিয়ে আনতে পারে।",
+    "banner": "/assets/images/banners/banner-1.jpg",
+    "date_en": "March 14, 2025",
+    "date_bn": "১৪ই মার্চ, ২০২৫ খ্রি.",
+    "datetime": "2025-03-14"
+  },
+  {
+    "slug": "best-physiotherapy-center-jatrbari",
+    "title_en": "Best Physiotherapy Center in Jatrabari",
+    "title_bn": "যাত্রাবাড়ীতে সেরা ফিজিওথেরাপি সেন্টার",
+    "excerpt_en": "Jatrabari is one of the busiest and most active zones in Dhaka. ADPORC combines clinical expertise, advanced electrotherapy, and personalized rehabilitation to deliver the best physiotherapy in Jatrabari.",
+    "excerpt_bn": "যাত্রাবাড়ী ঢাকার সবচেয়ে ব্যস্ত এলাকাগুলোর একটি। ADPORC-এ আমরা ক্লিনিক্যাল দক্ষতা, উন্নত ইলেক্ট্রোথেরাপি ও ব্যক্তিগত পুনর্বাসনের সমন্বয়ে সেরা ফিজিওথেরাপি প্রদান করি।",
+    "banner": "/assets/images/banners/banner-1.jpg",
+    "date_en": "March 14, 2025",
+    "date_bn": "১৪ই মার্চ, ২০২৫ খ্রি.",
+    "datetime": "2025-03-14"
   }
 ]

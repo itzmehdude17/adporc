@@ -1,345 +1,1274 @@
-<?php
-function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); }
-function loadJson($file) {
-    $path = __DIR__ . '/data/' . $file;
-    if (!file_exists($path)) return null;
-    $raw = file_get_contents($path);
-    return $raw ? json_decode($raw, true) : null;
-}
-
-$site  = loadJson('site.json')  ?: [];
-$blogs = loadJson('blogs.json') ?: [];
-
-$phone       = $site['clinic']['phone']      ?? '01950-935236';
-$address_en  = $site['clinic']['address_en'] ?? '270/1 Dholaipar, South Jatrabari, Dhaka-1204';
-$address_bn  = $site['clinic']['address_bn'] ?? '২৭০/১ ধোলাইপাড়, দক্ষিণ যাত্রাবাড়ী, ঢাকা-১২০৪';
-$maps_url    = $site['clinic']['maps_url']   ?? 'https://maps.app.goo.gl/GWgL6zbSVLHhMkFY9';
-$social      = $site['social']              ?? [];
-$schedule_en = $site['schedule']['en']      ?? "Saturday to Friday:<br>10:00am - 01:00pm<br>02:00pm - 10:00pm";
-$schedule_bn = $site['schedule']['bn']      ?? 'প্রতিদিন সকাল ১০টা থেকে দুপুর ১টা <br>এবং বিকাল ৩টা থেকে রাত ১০টা';
-$footer_text_en = $site['footer']['text_en'] ?? "One of the best physiotherapy center in Dhaka city. Feel better, move easier, and get back to living your life with simple and effective physiotherapy care.";
-$footer_text_bn = $site['footer']['text_bn'] ?? "ঢাকা শহরের অন্যতম সেরা ফিজিওথেরাপি সেন্টার।";
-$google_sheet_url = $site['google_sheet_appointment_url'] ?? '';
-$ga_id      = $site['analytics']['gtag_id']    ?? 'G-BJMDW5QDN2';
-$clarity_id = $site['analytics']['clarity_id'] ?? 'uh2rk88w4t';
-$gtm_id     = $site['analytics']['gtm_id']     ?? 'GTM-5DZHWJDS';
-?>
 <!-- itzmehdude -->
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Language" content="en, bn">
-    <meta name="author" content="Dr. Saddam Hossain, Consultant Physiotherapist">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://adporc.com/blogs">
-    <link rel="shortcut icon" href="/assets/images/adporc-icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="/assets/images/adporc-icon.png">
-    <meta name="theme-color" content="#000000">
-    <title>Blogs | ADPORC</title>
-    <meta name="description" content="Read informative blogs by ADPORC about physiotherapy, pain relief, sports rehab, and postural tips. Written by experts for public awareness. Book your session with Dr. Saddam Hossain.">
-    <meta name="keywords" content="adporc, asia digital physiotherapy, best physiotherapy dhaka, best physiotherapy jatrabari, dr saddam hossain, physiotherapy blog bangla, ফিজিওথেরাপি যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি">
-    <meta name="physiotherapist" content="Dr Saddam Hossain, Senior Consultant Physiotherapist, Course Co-ordinator JBFCPHS">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="ADPORC">
-    <meta property="og:title" content="Blogs | ADPORC">
-    <meta property="og:description" content="Jatrabari's one of the best physiotherapy center.">
-    <meta property="og:image" content="/assets/images/og-image.jpeg">
-    <meta property="og:url" content="https://adporc.com/blogs">
-    <meta name="facebook-domain-verification" content="u5hks6vsnjk4jmb7ammgdmc9ybhk3o"/>
-    <!-- css -->
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" href="/assets/css/style.css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Tiro+Bangla:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <!-- JSON-LD schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        { "@type": "WebSite", "name": "ADPORC", "url": "https://adporc.com" },
+ <html lang="en">
+    <head>
+      <!-- meta-data start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Language" content="en, bn">
+        <meta name="author" content="Dr. Saddam Hossain, Consultant Physiotherapist">
+        <meta name="robots" content="index, follow">
+        <link rel="canonical" href="https://adporc.com/">
+        <!-- favicon -->
+        <link rel="shortcut icon" href="/assets/images/adporc-icon.png" alt="ADPORC physiotherapy center logo" type="image/png">
+        <link rel="apple-touch-icon" href="/assets/images/adporc-icon.png">
+        <!-- title -->
+        <title>Blogs | ADPORC</title>
+        <!-- description -->
+        <meta name="description" content="Read informative blogs by ADPORC about physiotherapy, pain relief, sports rehab, and postural tips. 
+          Written by experts for public awareness. Book your session with Dr. Saddam Hossain." >
+        <!-- keywords -->
+        <meta name="keywords" id="meta-keywords" content="adporc, asia digital physiotherapy, asia digital physiotherapy orthopedic rehabilitation center, dr saddam hossain, 
+          best physiotherapy dhaka, best physiotherapy jatrabari, best physiotherapy dholaipar, best physiotherapy shonir akhra, best physiotherapy doyagonj, best physiotherapy mirhazirbag, best physiotherapy saydabad, best physiotherapy doyagonj, best physiotherapy jurain, best physiotherapy hasnabad, best physiotherapy puran dhaka, best physiotherapy narayanganj, ফিজিওথেরাপি যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি">
+        <meta name="physiotherapist" content="Dr Saddam Hossain, Senior Consultant Physiotherapist, Course Co-ordinator JBFCPHS">
+        <!-- open-graph meta-tags start -->
+          <meta property="og:type" content="website">
+          <meta property="og:site_name" content="ADPORC">
+          <meta property="og:title" content="Blogs | ADPORC">
+          <meta property="og:description" content="Jatrabari's one of the best physiotherapy center.">
+          <meta property="og:image" content="/assets/images/og-image.jpeg">
+          <meta property="og:url" content="https://adporc.com/blogs">
+      <!-- meta-data end -->
+      
+      <!-- css start -->
+        <!-- box-icons -->
+        <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+        <!-- font-awsome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        <!-- main-css -->
+        <link rel="stylesheet" href="/assets/css/style.css"/>
+        <!-- google font link -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@300;400;500;600;700;800;900&family=Tiro+Bangla:ital,wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+      <!-- css end -->
+      
+      <!-- JSON-LD Schema -->
+      <script type="application/ld+json">
         {
-          "@type": "Blog",
-          "name": "Blogs | ADPORC",
-          "url": "https://adporc.com/blogs",
-          "image": "https://adporc.com/assets/images/og-image.jpeg",
-          "description": "ADPORC physiotherapy blogs — pain management, sports rehab, paralysis recovery, and more.",
-          "telephone": "+8801950935236",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Jatrabari, Dhaka",
-            "addressLocality": "Dhaka", "addressRegion": "BD",
-            "postalCode": "1204", "addressCountry": "BD"
-          },
-          "sameAs": [
-            "<?= h($social['facebook'] ?? 'https://www.facebook.com/adporc') ?>",
-            "<?= h($social['youtube']  ?? 'https://www.youtube.com/@adporc') ?>",
-            "<?= h($social['linkedin'] ?? 'https://www.linkedin.com/company/adporc/posts/') ?>",
-            "https://www.upscrolled.com/adporc/"
-          ],
-          "logo": "https://adporc.com/assets/images/adporc-icon.png"
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "PhysicalTherapy",
+              "name": "ADPORC",
+              "url": "https://adporc.com"
+            },
+            {
+              "@type": "Blog",
+              "name": "Blogs | ADPORC",
+              "url": "https://adporc.com/blogs",
+              "image": "https://adporc.com/assets/images/og-image.jpeg",
+              "description": "ADPORC - One of the best physiotherapy centers in Dhaka city for pain, paralysis, and sports injury treatment. Book your session with Dr. Saddam Hossain.", 
+              "telephone": "+8801950935236",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Jatrabari, Dhaka",
+                "addressLocality": "Dhaka",
+                "addressRegion": "BD",
+                "postalCode": "1204",
+                "addressCountry": "BD"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "23.7104",
+                "longitude": "90.4074"
+              },
+              "sameAs": [
+                "https://www.facebook.com/@adporc/",
+                "https://www.instagram.com/@adporc/",
+                "https://www.tiktok.com/@adporc/",
+                "https://www.youtube.com/@adporc",
+                "https://www.linkedin.com/company/adporc/posts/",
+                "https://www.upscrolled.com/adporc/"
+              ],
+              "logo": "https://adporc.com/assets/images/adporc-icon.png"
+            }
+          ]
         }
-      ]
-    }
-    </script>
-    <!-- Google tag -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=<?= h($ga_id) ?>"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '<?= h($ga_id) ?>');
-    </script>
-    <!-- Microsoft Clarity -->
-    <script>
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "<?= h($clarity_id) ?>");
-    </script>
-  </head>
-  <body id="top">
-    <a href="#blog" class="skip-to-content">Skip to main content</a>
-    <!-- #header -->
-    <header class="header">
-      <div class="header-wrapper">
-        <div class="header-top">
-          <div class="container">
-            <ul class="contact-list">
-              <li class="contact-item">
-                <i class="fa-solid fa-location-dot"></i>
-                <a href="<?= h($maps_url) ?>" target="_blank" rel="noopener noreferrer" data-translation
-                  data-lang-eng="<?= h($address_en) ?>"
-                  data-lang-ban="<?= h($address_bn) ?>"><?= h($address_en) ?></a>
-              </li>
-              <li class="contact-item">
-                <i class="fa-solid fa-phone"></i>
-                <a href="tel:+880<?= h(str_replace('-', '', $phone)) ?>" target="_blank" rel="noopener noreferrer" class="font-eng"><?= h($phone) ?></a>
-              </li>
-            </ul>
-            <div class="header-actions">
-              <ul class="social-list">
-                <li><a href="<?= h($social['facebook'] ?? '#') ?>" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><ion-icon name="logo-facebook"></ion-icon></a></li>
-                <li><a href="<?= h($social['youtube'] ?? '#') ?>" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube"><ion-icon name="logo-youtube"></ion-icon></a></li>
-                <li><a href="<?= h($social['linkedin'] ?? '#') ?>" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+      </script>
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRLW458V8P"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-NRLW458V8P');
+      </script>
+      <!-- google tag manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5DZHWJDS');</script>
+      <!-- microsoft clarity tracking -->
+      <script>
+          (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "uh2rk88w4t");
+      </script>
+    </head>
+    <body id="top">
+      <!-- #header -->
+      <header class="header">
+        <div class="header-wrapper">
+          <div class="header-top">
+            <div class="container">
+              <!-- contact info -->
+              <ul class="contact-list">
+                <li class="contact-item">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <a href="https://maps.app.goo.gl/GWgL6zbSVLHhMkFY9" target="_blank" rel="noopener noreferrer" data-translation 
+                    data-lang-eng="270/1 Dholaipar, South Jatrabari, Dhaka-1204" 
+                    data-lang-ban="২৭০/১ ধোলাইপাড়, দক্ষিণ যাত্রাবাড়ী, ঢাকা-১২০৪">
+                    270/1 Dholaipar, South Jatrabari, Dhaka-1204
+                  </a>
+                </li>
+                <li class="contact-item">
+                  <i class="fa-solid fa-phone"></i>
+                  <a href="tel:+8801950935236" target="_blank" rel="noopener noreferrer" style="font-family: Poppins">01950-935236</a>
+                </li>
               </ul>
-              <div class="language-switch">
-                <button id="languageToggle" class="lang-btn" data-translation data-lang-eng="BAN" data-lang-ban="ENG">ENG</button>
+              <!-- social media links -->
+              <div class="header-actions">
+                <ul class="social-list">
+                  <li>
+                    <a href="https://www.facebook.com/adporc" target="_blank" rel="noopener noreferrer" class="social-link">
+                      <ion-icon name="logo-facebook"></ion-icon>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.youtube.com/@adporc" target="_blank" rel="noopener noreferrer" class="social-link">
+                      <ion-icon name="logo-youtube"></ion-icon>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.linkedin.com/company/adporc/posts/" target="_blank" rel="noopener noreferrer" class="social-link">
+                      <ion-icon name="logo-linkedin"></ion-icon>
+                    </a>
+                  </li>
+                </ul>
+                <!-- language switch -->
+                <div class="language-switch">
+                  <button id="languageToggle" class="lang-btn" data-translation 
+                    data-lang-eng="BAN" data-lang-ban="ENG">ENG
+                  </button>                                    
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="header-bottom">
-          <div class="container">
-            <a class="logo" href="/home">
-              <img src="/assets/images/ADPORC11.png" alt="best physiotherapy center in Jatrabari, Dhaka">
-              <span>ADPORC</span>
-            </a>
-            <nav class="navbar" data-navbar>
-              <ul class="navbar-list">
-                <li><a href="/home" class="navbar-link" data-nav-link data-translation data-lang-eng="Home" data-lang-ban="হোম">Home</a></li>
-                <li><a href="/services" class="navbar-link" data-nav-link data-translation data-lang-eng="Services" data-lang-ban="সেবা সমূহ">Services</a></li>
-                <li><a href="/about-us" class="navbar-link" data-nav-link data-translation data-lang-eng="About Us" data-lang-ban="আমাদের সম্পর্কে">About Us</a></li>
-                <li><a href="/blogs" class="navbar-link" data-nav-link data-translation data-lang-eng="Blogs" data-lang-ban="ব্লগ সমূহ">Blogs</a></li>
-              </ul>
-            </nav>
-            <a class="btn appointment-btn" id="appointmentButton" data-translation data-lang-eng="Book an appointment" data-lang-ban="অ্যাপয়েন্টমেন্ট বুক করুন">Book an appointment</a>
-            <button class="nav-toggle-btn" aria-label="Toggle menu" data-nav-toggler>
-              <ion-icon name="menu-sharp" aria-hidden="true" class="menu-icon"></ion-icon>
-              <ion-icon name="close-sharp" aria-hidden="true" class="close-icon"></ion-icon>
-            </button>
+          <!-- bottom navbar -->
+          <div class="header-bottom">
+            <div class="container">
+              <!-- logo -->
+              <a class="logo" href="/home.html">
+                <img src="/assets/images/ADPORC11.png" alt="best physiotherapy center in Jatrabari, Dhaka">
+                <span>ADPORC</span>
+              </a>
+              <!-- navbar -->
+              <nav class="navbar" data-navbar>
+                <ul class="navbar-list">
+                  <!-- home -->
+                  <li><a href="/home.html" class="navbar-link" data-nav-link 
+                    data-translation data-lang-eng="Home" data-lang-ban="হোম">Home</a>
+                  </li>
+                  <!-- services -->
+                  <li><a href="/services.html" class="navbar-link" data-nav-link 
+                    data-translation data-lang-eng="Services" data-lang-ban="সেবা সমূহ">Services</a>
+                  </li>
+                  <!-- about-us -->
+                  <li><a href="/about-us.html" class="navbar-link" data-nav-link 
+                    data-translation data-lang-eng="About Us" data-lang-ban="আমাদের সম্পর্কে">About Us</a>
+                  </li>
+                  <!-- blogs -->
+                  <li><a href="/blogs.html" class="navbar-link" data-nav-link 
+                    data-translation data-lang-eng="Blogs" data-lang-ban="ব্লগ সমূহ">Blogs</a>
+                  </li>
+                </ul>
+              </nav>
+              <!-- apointment button -->
+              <a class="btn appointment-btn" id="appointmentButton" 
+                data-translation data-lang-eng="Book an appointment" data-lang-ban="অ্যাপয়েন্টমেন্ট বুক করুন">
+                Book an appointment
+              </a>
+              <!-- mobile menu toggle -->
+              <button class="nav-toggle-btn" aria-label="Toggle menu" data-nav-toggler>
+                <ion-icon name="menu-sharp" aria-hidden="true" class="menu-icon"></ion-icon>
+                <ion-icon name="close-sharp" aria-hidden="true" class="close-icon"></ion-icon>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
-
-    <!-- pop-up appointment form -->
-    <div class="popup-overlay" id="popupForm">
-      <div class="popup-content">
-        <button class="popup-close-btn" id="popupCloseBtn" aria-label="Close form">
-          <ion-icon name="close-outline"></ion-icon>
-        </button>
-        <h2 class="popup-title" data-translation data-lang-eng="Book an Appointment" data-lang-ban="অ্যাপয়েন্টমেন্ট বুক করুন">Book an Appointment</h2>
-        <form id="appointmentForm" name="submit-to-google-sheet" class="appointment-form"
-          action="<?= h($google_sheet_url) ?>">
-          <div class="form-group">
-            <label for="name" data-translation data-lang-eng="Name" data-lang-ban="নাম">Name</label>
-            <input name="Name" type="text" id="name" placeholder="Enter your name" required>
-          </div>
-          <div class="form-group">
-            <label for="phone" data-translation data-lang-eng="Phone Number" data-lang-ban="ফোন নম্বর">Phone Number</label>
-            <input name="Phone" type="tel" id="phone" placeholder="Enter your phone number" required pattern="[0-9]{11}" title="Please enter a valid 11-digit phone number">
-          </div>
-          <div class="form-group">
-            <label for="age" data-translation data-lang-eng="Age" data-lang-ban="বয়স">Age</label>
-            <input name="Age" type="tel" id="age" placeholder="Enter your age">
-          </div>
-          <div class="form-group">
-            <label for="gender" data-translation data-lang-eng="Gender" data-lang-ban="লিঙ্গ">Gender</label>
-            <select class="form-control" name="Gender" id="gender" required>
-              <option value="" disabled selected hidden data-translation data-lang-eng="Select your gender (Binary Only)" data-lang-ban="আপনার লিঙ্গ নির্বাচন করুন (শুধুমাত্র বাইনারি)"></option>
-              <option value="male" data-translation data-lang-eng="Male" data-lang-ban="পুরুষ">Male</option>
+      </header>
+      <!-- pop-up appointment form -->
+      <div class="popup-overlay" id="popupForm">
+        <div class="popup-content">
+          <button class="popup-close-btn" id="popupCloseBtn" aria-label="Close form">
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+          <h2 class="popup-title" data-translation data-lang-eng="Book an Appointment" data-lang-ban="অ্যাপয়েন্টমেন্ট বুক করুন">
+            Book an Appointment
+          </h2>
+          <form id="appointmentForm" name="submit-to-google-sheet" class="appointment-form">
+            <!-- name -->
+            <div class="form-group">
+              <label for="name" data-translation data-lang-eng="Name" data-lang-ban="নাম">Name</label>
+              <input name="Name" type="text" id="name" placeholder="Enter your name" required>
+            </div>
+            <!-- phone -->
+            <div class="form-group">
+              <label for="phone" data-translation data-lang-eng="Phone Number" data-lang-ban="ফোন নম্বর">Phone Number</label>
+              <input name="Phone" type="tel" id="phone" placeholder="Enter your phone number" required pattern="[0-9]{11}" title="Please enter a valid 11-digit phone number">
+            </div>
+            <!-- age -->
+            <div class="form-group">
+              <label for="age" data-translation data-lang-eng="Age" data-lang-ban="বয়স">Age</label>
+              <input name="Age" type="tel" id="age" placeholder="Enter your age" title="Numbers only">
+            </div>
+            <!-- gender -->
+            <div class="form-group">
+              <label for="gender" data-translation data-lang-eng="Gender" data-lang-ban="লিঙ্গ">Gender</label>
+              <select class="form-control" name="Gender" id="gender" required>
+                <option value="" disabled selected hidden data-translation data-lang-eng="Select your gender (Binary Only)" data-lang-ban="আপনার লিঙ্গ নির্বাচন করুন (শুধুমাত্র বাইনারি) "></option>
+                <option value="male" data-translation data-lang-eng="Male" data-lang-ban="পুরুষ">Male</option>
               <option value="female" data-translation data-lang-eng="Female" data-lang-ban="স্ত্রী">Female</option>
             </select>
-          </div>
-          <div class="form-group">
-            <label for="address" data-translation data-lang-eng="Address" data-lang-ban="ঠিকানা">Address</label>
-            <input name="Address" type="text" id="address" placeholder="Enter your address" required>
-          </div>
-          <div class="form-group">
-            <label for="complaint" data-translation data-lang-eng="Chief Complaint" data-lang-ban="মূল সমস্যা">Chief Complaint</label>
-            <textarea name="Complaint" id="complaint" placeholder="Enter your chief complaint" rows="4" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block" data-translation data-lang-eng="Submit" data-lang-ban="জমা দিন">Submit</button>
-        </form>
+            </div>
+            <!-- address -->
+            <div class="form-group">
+              <label for="address" data-translation data-lang-eng="Address" data-lang-ban="ঠিকানা">Address</label>
+              <input name="Address" type="text" id="address" placeholder="Enter your address" required>
+            </div>
+            <!-- complaint -->
+            <div class="form-group">
+              <label for="complaint" data-translation data-lang-eng="Chief Complaint" data-lang-ban="মূল সমস্যা">Chief Complaint</label>
+              <textarea name="Complaint" id="complaint" placeholder="Enter your chief complaint" rows="4" required></textarea>
+            </div>
+            <!-- button -->
+            <button type="submit" class="btn btn-primary btn-block" data-translation data-lang-eng="Submit" data-lang-ban="জমা দিন">Submit</button>
+          </form>
+        </div>
       </div>
-    </div>
-
-    <!-- main-body -->
-    <main>
-      <section class="section blog" id="blog" aria-label="blog">
-        <div class="container">
-          <h1 class="section-subtitle text-center" data-translation
-            data-lang-eng="ADPORC<br>Physiotherapy Blogs"
-            data-lang-ban="ADPORC<br>ফিজিওথেরাপি ব্লগসমূহ">ADPORC <br> Physiotherapy Blogs</h1>
-          <p class="section-title" data-translation
-            data-lang-eng="<b>Latest Blogs</b>"
-            data-lang-ban="<b>সর্বশেষ ব্লগসমূহ</b>"><b>Latest Blogs</b></p>
-          <div class="blog-list">
-            <?php foreach ($blogs as $blog): ?>
-            <div class="blog-card">
-              <figure class="card-banner">
-                <img src="<?= h($blog['banner'] ?? '') ?>" loading="lazy" alt="<?= h($blog['title_en'] ?? 'ADPORC blog') ?>" class="img-cover">
-                <div class="card-badge">
-                  <ion-icon name="calendar-outline"></ion-icon>
-                  <time class="time" datetime="<?= h($blog['datetime'] ?? '') ?>" data-translation
-                    data-lang-eng="<?= h($blog['date_en'] ?? '') ?>"
-                    data-lang-ban="<?= h($blog['date_bn'] ?? '') ?>"><?= h($blog['date_en'] ?? '') ?></time>
+      <!-- main-body -->
+      <main>
+        <!-- our blogs -->
+        <section class="section blog" id="blog" aria-label="blog">
+          <div class="container">
+            <h1 class="section-subtitle text-center" data-translation data-lang-eng="ADPORC<br>Physiotherapy Blogs" data-lang-ban="ADPORC<br>ফিজিওথেরাপি ব্লগসমূহ">ADPORC <br> Physiotherapy Blogs</h1>
+            <p class="section-title" data-translation data-lang-eng="<b>Latest Blogs</b>" data-lang-ban="<b>সর্বশেষ ব্লগসমূহ</b>"><b>Latest Blogs</b></p>
+            <div class="blog-list">
+              <!-- blog-23: elbow pain -->
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <img src="/assets/images/banners/elbow-pain-physiotherapy.png" loading="lazy" alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2026-03-20" data-translation 
+                      data-lang-eng="March 20, 2026" 
+                      data-lang-ban="২০শে মার্চ, ২০২৬ খ্রি.">March 20, 2026
+                    </time>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">
+                    <a href="/blogs/elbow-pain-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Elbow Pain: Causes, Symptoms, and Physiotherapy Treatment in Jatrabari, Dhaka" 
+                      data-lang-ban="কনুইয়ের ব্যথা: কারণ, উপসর্গ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি চিকিৎসা">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Elbow pain is often underestimated at the beginning, but it can quickly interfere with essential daily activities such as lifting, gripping, typing, or even simple hand movements. Whether caused by repetitive strain, sports activities, prolonged device use, or sudden injury, elbow pain can significantly affect upper limb performance and overall productivity."
+                    data-lang-ban="কনুইয়ের ব্যথা অনেক সময় শুরুতে ছোট সমস্যা মনে হলেও ধীরে ধীরে এটি দৈনন্দিন কাজ যেমন কিছু তোলা, শক্ত করে ধরা, টাইপ করা বা হাতের সাধারণ নড়াচড়াকেও কঠিন করে তোলে। বারবার একই ধরনের কাজ করা, খেলাধুলা, দীর্ঘ সময় মোবাইল বা কম্পিউটার ব্যবহার, অথবা হঠাৎ আঘাতের কারণে এই ব্যথা হতে পারে, যা হাতের কার্যক্ষমতা ও কাজের দক্ষতা কমিয়ে দেয়।">
+                  </p>
+                  <a href="/blogs/elbow-pain-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
                 </div>
-              </figure>
-              <div class="card-content">
-                <h3 class="h3 card-title">
-                  <a href="/blogs/<?= h($blog['slug'] ?? '#') ?>" class="card-title" data-translation
-                    data-lang-eng="<?= h($blog['title_en'] ?? '') ?>"
-                    data-lang-ban="<?= h($blog['title_bn'] ?? '') ?>"><?= h($blog['title_en'] ?? '') ?></a>
-                </h3>
-                <p class="card-text" data-translation
-                  data-lang-eng="<?= h($blog['excerpt_en'] ?? '') ?>"
-                  data-lang-ban="<?= h($blog['excerpt_bn'] ?? '') ?>"></p>
-                <a href="/blogs/<?= h($blog['slug'] ?? '#') ?>" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
+              </div>
+              <!-- blog-22: knee pain -->
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <img src="/assets/images/banners/knee-pain-physiotherapy.png" loading="lazy" alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2026-03-13" data-translation 
+                      data-lang-eng="March 13, 2026" 
+                      data-lang-ban="১৩ই মার্চ, ২০২৬ খ্রি.">March 13, 2026
+                    </time>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">
+                    <a href="/blogs/knee-pain-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Knee Pain: Causes, Symptoms, and Physiotherapy Treatment  in Jatrabari, Dhaka" 
+                      data-lang-ban="হাঁটুর ব্যথা: কারণ, উপসর্গ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি চিকিৎসা">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Knee pain is one of the most common musculoskeletal complaints affecting people of all ages. It can interfere with daily activities such as walking, standing, climbing stairs, squatting, or sitting for long periods. Many people initially ignore knee pain or rely on painkillers and rest, assuming it will resolve on its own."
+                    data-lang-ban="হাঁটুর ব্যথা সব বয়সের মানুষের মধ্যে খুবই সাধারণ একটি মাংসপেশী ও অস্থিসন্ধি সম্পর্কিত সমস্যা। এটি হাঁটা, দাঁড়ানো, সিঁড়ি ওঠানামা করা, বসা বা দীর্ঘ সময় একই অবস্থায় থাকার মতো দৈনন্দিন কাজকে প্রভাবিত করতে পারে। অনেকেই শুরুতে হাঁটুর ব্যথাকে গুরুত্ব দেন না এবং ব্যথানাশক ওষুধ বা বিশ্রামের মাধ্যমে সাময়িকভাবে নিয়ন্ত্রণ করার চেষ্টা করেন।">
+                  </p>
+                  <a href="/blogs/knee-pain-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
+                </div>
+              </div>
+              <!-- blog-21: foot pain -->
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <img src="/assets/images/banners/foot-pain-physiotherapy.png" loading="lazy" alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2026-02-02" data-translation 
+                      data-lang-eng="February 2, 2026" 
+                      data-lang-ban="২রা ফেব্রুয়ারি, ২০২৬ খ্রি.">February 2, 2026
+                    </time>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">
+                    <a href="/blogs/foot-pain-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Foot Pain: Causes, Symptoms, Diagnosis, and Physiotherapy Management in Jatrabari, Dhaka" 
+                      data-lang-ban="পায়ের ব্যথা: কারণ, উপসর্গ, নির্ণয় ও যাত্রাবাড়ী, ঢাকায় ফিজিওথেরাপি ব্যবস্থাপনা">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Foot pain is a common but often neglected problem that can significantly affect daily activities such as standing, walking, climbing stairs, or wearing regular footwear. When foot pain is left untreated, altered walking patterns can gradually place abnormal stress on the knees, hips, and lower back, leading to secondary musculoskeletal pain and long-term mobility issues."
+                    data-lang-ban="পায়ের ব্যথা একটি খুবই সাধারণ সমস্যা, কিন্তু অধিকাংশ সময়ই এটি অবহেলা করা হয়, দাঁড়ানো, হাঁটা, সিঁড়ি ওঠানামা করা বা সাধারণ জুতা পরার মতো দৈনন্দিন কাজেও পায়ের ব্যথা বড় ধরনের সমস্যা তৈরি করতে পারে। সময়মতো চিকিৎসা না করলে পায়ের ব্যথার কারণে হাঁটার স্বাভাবিক ধরন পরিবর্তিত হয়, যা ধীরে ধীরে হাঁটু, নিতম্ব ও কোমরের ওপর অতিরিক্ত চাপ সৃষ্টি করে। এর ফলে ভবিষ্যতে দীর্ঘমেয়াদি মাংসপেশী ও অস্থিসন্ধির ব্যথা এবং চলাচলের সমস্যা দেখা দিতে পারে।">
+                  </p>
+                  <a href="/blogs/foot-pain-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
+                </div>
+              </div>
+              <!-- blog-20: groin pain -->
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <img src="/assets/images/banners/groin-pain-physiotherapy.png" loading="lazy" alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2026-01-20" data-translation 
+                      data-lang-eng="January 29, 2026" 
+                      data-lang-ban="২৯শে জানুয়ারি, ২০২৬ খ্রি.">January 29, 2026
+                    </time>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">
+                    <a href="/blogs/groin-pain-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Groin Pain: Causes, Symptoms & Best Physiotherapy Treatment in Jatrabari, Dhaka" 
+                      data-lang-ban="গ্রোইন পেইন: উপসর্গ, কারণ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি ">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Groin pain is one of the most confusing pain areas because the groin sits at the junction of the hip joint, pelvis, spine, and multiple muscles and tendons. A small problem in one structure can feel like pain “inside the groin,” even when the real source is the hip joint or lower back."
+                    data-lang-ban="গ্রোইন পেইন বা কুঁচকির ব্যথা শরীরের সবচেয়ে বিভ্রান্তিকর ব্যথার সমস্যাগুলোর একটি। কারণ এই অঞ্চলটি উরু সন্ধি, পেলভিস, মেরুদণ্ড এবং একাধিক পেশি ও টেন্ডনের সংযোগস্থলে অবস্থিত। এখানের কোনো একটি কাঠামোর সামান্য সমস্যাও অনেক সময় গভীরভাবে “কুঁচকির ভেতরে ব্যথা” ব্যথা হিসেবে মনে হতে পারে, যদিও প্রকৃত সমস্যাটি উরু সন্ধি বা কোমরের নিচের অংশ থেকেও আসতে পারে।">
+                  </p>
+                  <a href="/blogs/groin-pain-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
+                </div>
+              </div>
+              <!-- blog-19: bells palsy -->
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <img src="/assets/images/banners/bells-palsy-physiotherapy.png" loading="lazy" alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2026-01-20" data-translation 
+                      data-lang-eng="January 20, 2026" 
+                      data-lang-ban="২০শে জানুয়ারি, ২০২৬ খ্রি.">January 15, 2026
+                    </time>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">
+                    <a href="/blogs/bells-palsy-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Bell’s Palsy: Causes, Symptoms & Best Physiotherapy Treatment in Jatrabari, Dhaka" 
+                      data-lang-ban="বেলস্ পালসি: উপসর্গ, কারণ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি ">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Bell’s Palsy is a sudden condition that causes weakness or paralysis of the muscles on one side of the face. Patients often wake up noticing facial drooping, difficulty closing one eye, or an inability to smile properly. This sudden change creates fear and confusion, and many people mistakenly think it is a stroke."
+                    data-lang-ban="বেলস্‌ পালসি একটি হঠাৎ দেখা দেওয়া অবস্থা স্নায়বিক সমস্যা যেখানে মুখের এক পাশের পেশি দুর্বল হয়ে যায় বা আংশিক কিংবা সম্পূর্ণভাবে অবশ হয়ে যেতে পারে। অনেক সময় রোগীরা সকালে ঘুম থেকে উঠে লক্ষ্য করেন যে মুখ বেঁকে গেছে, একটি চোখ ঠিকভাবে বন্ধ করতে পারছেন না, অথবা স্বাভাবিকভাবে হাসতে পারছেন না। এই হঠাৎ পরিবর্তন রোগীদের মধ্যে ভয় ও বিভ্রান্তি তৈরি করে এবং অনেকেই ভুল করে এটিকে স্ট্রোক মনে করেন।">
+                  </p>
+                  <a href="/blogs/bells-palsy-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
+                </div>
+              </div>
+              <!-- blog-18: winter post-op joint stiffness -->
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <img src="/assets/images/banners/joint-stiffnesses.jpg" loading="lazy" alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2026-01-15" data-translation 
+                      data-lang-eng="January 15, 2026" 
+                      data-lang-ban="১৫ই জানুয়ারি, ২০২৬ খ্রি.">January 15, 2026
+                    </time>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">
+                    <a href="/blogs/winter-joint-stiffness-physiotherapy-management-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Winter Joint Stiffness After Surgery & Physiotherapy Management in Jatrabari, Dhaka" 
+                      data-lang-ban="শীতকালে অস্ত্রোপচারের পর জয়েন্ট স্টিফনেস এবং যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি ব্যবস্থাপনা">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Winter joint stiffness after surgery is a common complaint among patients in Bangladesh. Many people notice that their operated joint becomes more painful, tight, and difficult to move during cold weather. This is not just discomfort. If ignored, winter-related stiffness can slow recovery and lead to long-term movement restriction."
+                    data-lang-ban="শীতকালে অপারেশনের পর জয়েন্ট শক্ত হয়ে যাওয়া বাংলাদেশের অনেক রোগীর একটি সাধারণ সমস্যা। অনেকেই লক্ষ্য করেন, শীত পড়লেই অপারেশন করা জয়েন্টে ব্যথা, শক্তভাব এবং নড়াচড়ার অসুবিধা বেড়ে যায়। এটি শুধু অস্বস্তি নয়। সময়মতো ব্যবস্থা না নিলে এই স্টিফনেস দীর্ঘমেয়াদি সমস্যায় পরিণত হতে পারে।">
+                  </p>
+                  <a href="/blogs/winter-joint-stiffness-physiotherapy-management-dhaka.html" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
+                </div>
+              </div>
+              <!-- blog-17: post-op stiffess -->
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <img src="/assets/images/banners/postop-joint-stiffness-physiotherapy.png" loading="lazy" alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2026-01-10" data-translation 
+                      data-lang-eng="January 10, 2026" 
+                      data-lang-ban="১০ই জানুয়ারি, ২০২৬ খ্রি.">January 10, 2026
+                    </time>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">
+                    <a href="/blogs/postop-joint-stiffness-physiotherapy-management-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Post-Operative Joint Stiffness: Causes, Complications & Complete Physiotherapy Management in Jatrabari, Dhaka" 
+                      data-lang-ban="পোস্ট-অপারেটিভ জয়েন্ট স্টিফনেস: কারণ, জটিলতা এবং যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি ব্যবস্থাপনা">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Post-operative joint stiffness is one of the most common yet neglected problems after surgery. Many patients believe stiffness is a normal part of recovery and will resolve on its own. In reality, untreated stiffness can lead to long-term disability, chronic pain, and even permanent loss of joint movement."
+                    data-lang-ban="স্ট্রোক বিশ্বজুড়ে দীর্ঘমেয়াদি অক্ষমতার অন্যতম প্রধান কারণ, এবং এটি একজন রোগীর জীবনে ব্যাপক পরিবর্তন এনে দিতে পারে। অনেকে হাঁটতে, কথা বলতে, হাত ব্যবহার করতে, বা দৈনন্দিন কাজ করতে সমস্যা অনুভব করেন। সুখবর হলো সঠিক সময়ে শুরু করা আধুনিক ফিজিওথেরাপি রোগীকে উল্লেখযোগ্যভাবে সুস্থ হতে সাহায্য করে।">
+                  </p>
+                  <a href="/blogs/postop-joint-stiffness-physiotherapy-management-dhaka.html" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
+                </div>
+              </div>
+              <!-- blog-16: text neck syndrome -->
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <img src="/assets/images/banners/text-neck-syndrome-physiotherapy.png" loading="lazy" alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-12-30" data-translation 
+                      data-lang-eng="December 30, 2025" 
+                      data-lang-ban="৩০শে ডিসেম্বর ২০২৫ খ্রি.">December 30, 2025
+                    </time>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">
+                    <a href="/blogs/text-neck-syndrome-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Text Neck Syndrome: Causes, Symptoms & Physiotherapy Treatment in Jatrabari, Dhaka" 
+                      data-lang-ban="টেক্সট নেক সিন্ড্রোম: উপসর্গ, কারণ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি চিকিৎসা">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Text Neck Syndrome can disrupt your daily life by causing persistent neck pain, stiffness, headaches, and reduced neck mobility due to prolonged screen use. At ADPORC, we provide specialized physiotherapy care to correct posture, reduce pain, and restore normal neck movement through safe and effective treatment."
+                    data-lang-ban="টেক্সট নেক সিনড্রোম আপনার দৈনন্দিন জীবন ব্যাহত করতে পারে, কারণ দীর্ঘ সময় স্ক্রিন ব্যবহারের ফলে ঘাড়ের ব্যথা, শক্তভাব, মাথাব্যথা এবং ঘাড়ের নড়াচড়া কমে যায়। ADPORC-এ আমরা পোশচার কারেকশন, ব্যথা কমানো এবং ঘাড়ের স্বাভাবিক নড়াচড়া ফিরিয়ে আনতে নিরাপদ ও কার্যকর ফিজিওথেরাপি চিকিৎসা প্রদান করি।">
+                  </p>
+                  <a href="/blogs/text-neck-syndrome-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
+                </div>
+              </div>
+              <!-- blog-15: stroke physiotherapy management -->
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <img src="/assets/images/banners/stroke-physiotherapy.png" loading="lazy" alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-12-08" data-translation 
+                    data-lang-eng="December 8, 2025" 
+                    data-lang-ban="৮ই ডিসেম্বর ২০২৫ খ্রি.">December 8, 2025</time>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">
+                    <a href="/blogs/best-stroke-physiotherapy-management-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Stroke: Causes, Symptoms & Physiotherapy Management, Stroke Rehabilitation in Jatrabari, Dhaka" 
+                      data-lang-ban="স্ট্রোক এবং পক্ষাঘাত-এর: কারণ, জটিলতা এবং যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি ব্যবস্থাপনা">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Stroke is one of the leading causes of long-term disability worldwide, and its impact on a patient’s life can be profound. Many survivors experience difficulty walking, talking, using their hands, or performing daily activities. 
+                    The good news is: modern physiotherapy can significantly improve recovery, especially when treatment begins early and follows a structured plan." 
+                    data-lang-ban="স্ট্রোক বিশ্বজুড়ে দীর্ঘমেয়াদি অক্ষমতার অন্যতম প্রধান কারণ, এবং এটি একজন রোগীর জীবনে ব্যাপক পরিবর্তন এনে দিতে পারে। অনেকে হাঁটতে, কথা বলতে, হাত ব্যবহার করতে, বা দৈনন্দিন কাজ করতে সমস্যা অনুভব করেন। সুখবর হলো সঠিক সময়ে শুরু করা আধুনিক ফিজিওথেরাপি রোগীকে উল্লেখযোগ্যভাবে সুস্থ হতে সাহায্য করে।">
+                  </p>
+                  <a href="/blogs/best-stroke-physiotherapy-management-dhaka.html" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
+                </div>
+              </div>
+              <!-- blog-14: piriformis syndrome -->
+              <div class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 1180; --height: 800;">
+                  <img src="/assets/images/banners/piriformis-syndrome-physiotherapy.png" width="1180" height="800" loading="lazy"
+                    alt="best physiotherapy center in Dhaka" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-12-05" data-translation 
+                      data-lang-eng="December 5, 2025" data-lang-ban="৫ই ডিসেম্বর ২০২৫ খ্রি."></time>
+                  </div>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="/blogs/piriformis-syndrome-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Piriformis Syndrome: Causes, Symptoms & Physiotherapy Treatment in Jatrabari, Dhaka" 
+                      data-lang-ban="ঢাকায় পাইরিফরমিস সিন্ড্রোম: উপসর্গ, কারণ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Piriformis Syndrome is a condition where the piriformis muscle in the buttock compresses the sciatic nerve, causing buttock pain, hip pain, and radiating leg pain similar to sciatica. This condition is increasingly common among people who sit for long hours, ride motorcycles, or perform repetitive hip movements." 
+                    data-lang-ban="পাইরিফরমিস সিন্ড্রোম হলো এমন একটি অবস্থা যেখানে নিতম্বের গভীরে থাকা পাইরিফরমিস মাসল সায়াটিক নার্ভকে চাপ দেয়। এর ফলে নিতম্বে ব্যথা, হিপ জয়েন্ট ব্যথা এবং সায়াটিকার ব্যথা মতো পায়ে ছড়ানো ব্যথা অনুভূত হয়। যারা দীর্ঘ সময় বসে কাজ করেন, মোটরসাইকেল চালান বা বারবার হিপ মুভমেন্ট করেন তাদের মধ্যে এই সমস্যা ক্রমশ বাড়ছে।">
+                  </p>
+                  <a href="/blogs/piriformis-syndrome-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন"></a>
+                </div>
+              </div>
+              <!-- blog-13: sciatica pain -->
+              <div class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 1180; --height: 800;">
+                  <img src="/assets/images/banners/sciatica-pain-physiotherapy.png" width="1180" height="800" loading="lazy"
+                    alt="best physiotherapy center in Dhaka" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-11-24" data-translation 
+                      data-lang-eng="November 24, 2025" data-lang-ban="২৪শে নভেম্বর ২০২৫ খ্রি."></time>
+                  </div>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="/blogs/sciatica-pain-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Sciatica Pain: Causes, Symptoms & Physiotherapy Treatment in Jatrabari, Dhaka"
+                      data-lang-ban="সায়াটিকা পেইন: উপসর্গ, কারণ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Sciatica pain causes sharp discomfort that travels from the lower back through the hip and down the leg, often accompanied by tingling or numbness. The pain may worsen after sitting for a long time, sudden twisting, or standing for extended periods. Many patients feel increased pain while walking, bending forward, or trying to stand up from a seated position." 
+                    data-lang-ban="সায়াটিকা পেইন কোমর থেকে নিতম্ব হয়ে পা পর্যন্ত তীব্র ব্যথা, ঝিনঝিনি কিংবা অবশভাব তৈরি করে। অনেক সময় বসে থাকা, হঠাৎ মুচড়ানো, বা লম্বা সময় দাঁড়িয়ে থাকার পর ব্যথা আরও বেড়ে যায়। কিছু রোগীর ক্ষেত্রে হাঁটা, উঠবস করা কিংবা সামান্য সামনে ঝুঁকলেও ব্যথা তীব্রভাবে নেমে আসে পায়ে।">
+                  </p>
+                  <a href="/blogs/sciatica-pain-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন"></a>
+                </div>
+              </div>
+              <!-- blog-12: carpal tunnel syndrome -->
+              <div class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 1180; --height: 800;">
+                  <img src="/assets/images/banners/carpal-tunnel-syndrome-physiotherapy.png" width="1180" height="800" loading="lazy"
+                    alt="best physiotherapy center in Dhaka" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-11-20" data-translation 
+                      data-lang-eng="November 20, 2025" data-lang-ban="২০শে নভেম্বর ২০২৫ খ্রি."></time>
+                  </div>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="/blogs/carpal-tunnel-syndrome-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Carpal Tunnel Syndrome (CTS): Causes, Symptoms & Physiotherapy Treatment in Jatrabari, Dhaka"
+                      data-lang-ban="কার্পাল টানেল সিনড্রোম (CTS): উপসর্গ, কারণ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি চিকিৎসা">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Carpal Tunnel Syndrome (CTS) is one of the most common nerve compression disorders affecting office workers, homemakers, mobile users, and people who frequently use their hands for repetitive tasks. At ADPORC, Jatrabari, Dhaka, we offer scientific, non-surgical physiotherapy to relieve numbness, pain, and tingling caused by CTS." 
+                    data-lang-ban="কার্পাল টানেল সিনড্রোম বা CTS হলো এক ধরণের নার্ভ চাপে পড়ে যাওয়া সমস্যা, যা সবচেয়ে বেশি দেখা যায় অফিস কর্মী, গৃহিণী, মোবাইল ব্যবহারকারী এবং যাদের হাতের পুনরাবৃত্তিক কাজ বেশি করতে হয় তাদের মধ্যে। ADPORC, যাত্রাবাড়ী, ঢাকায় আমরা বৈজ্ঞানিক ও অ-অস্ত্রোপচারভিত্তিক ফিজিওথেরাপির মাধ্যমে CTS-এর ঝিনঝিন, অবশভাব ও ব্যথা কমাতে সাহায্য করি।">
+                  </p>
+                  <a href="/blogs/carpal-tunnel-syndrome-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন"></a>
+                </div>
+              </div>
+              <!-- blog-11: plantar fasciitis -->
+              <div class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 1180; --height: 800;">
+                  <img src="/assets/images/banners/plantar-fasciitis-physiotherapy.png" width="1180" height="800" loading="lazy"
+                    alt="best physiotherapy center in Dhaka" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-11-14" data-translation 
+                      data-lang-eng="November 14, 2025" data-lang-ban="১৪ই নভেম্বর ২০২৫ খ্রি."></time>
+                  </div>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="/blogs/plantar-fasciitis-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Plantar Fasciitis (Heel Pain): Causes, Symptoms &  Physiotherapy Treatment in Jatrabari, Dhaka"
+                      data-lang-ban="প্লান্টার ফ্যাসাইটিস (পায়ের পাতায় ব্যথা): উপসর্গ, কারণ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Plantar fasciitis, commonly known as heel pain, is one of the most frequent causes of foot discomfort in adults. It becomes worse in the morning, during the first steps after waking up, or after long periods of standing." 
+                    data-lang-ban="প্লানটার ফ্যাসাইটিস বা হিল পেইন প্রাপ্তবয়স্কদের মধ্যে সবচেয়ে বেশি দেখা যাওয়া পায়ের সমস্যাগুলোর একটি। বিশেষ করে সকালে ঘুম থেকে ওঠার পর প্রথম কয়েকটি পা ফেলতেই ব্যথা তীব্র হয়ে ওঠে। দীর্ঘক্ষণ দাঁড়িয়ে থাকা বা হাঁটার পর ব্যথা আরও বেড়ে যায়।">
+                  </p>
+                  <a href="/blogs/plantar-fasciitis-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন"></a>
+                </div>
+              </div>
+              <!-- blog-10: haglunds deformity -->
+              <div class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 1180; --height: 800;">
+                  <img src="/assets/images/banners/haglunds-deformity-physiotherapy.png" width="1180" height="800" loading="lazy"
+                    alt="best physiotherapy center in Dhaka" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-11-04" data-translation 
+                      data-lang-eng="November 4, 2025" data-lang-ban="৪ঠা নভেম্বর ২০২৫ খ্রি."></time>
+                  </div>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="/blogs/haglunds-deformity-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Haglund’s Deformity (Heel Pain): Causes, Symptoms & Physiotherapy Treatment in Jatrabari, Dhaka"
+                      data-lang-ban="হাগলান্ডস ডিফর্মিটি (গোড়ালি ব্যথা): উপসর্গ, কারণ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Haglund’s deformity is a common but often misunderstood heel condition where a bony enlargement develops at the back of the calcaneus. This bump leads to friction, swelling, and pain, especially when 
+                    wearing closed shoes. The condition is prevalent in young adults, office workers, athletes, and anyone who frequently walks or uses tight shoes." 
+                    data-lang-ban="Haglund’s deformity হলো গোড়ালির পিছনে হাড়ের একটি বাড়তি অংশ যা জুতার ঘর্ষণে সহজেই ব্যথা ও ফোলা তৈরি করে। ঢাকায় অনেক মানুষ- বিশেষ করে অফিস কর্মী, ছাত্র, ক্রীড়াবিদ, বেশি হাঁটেন বা টাইট জুতা পরেন তারা এই সমস্যায় ভোগেন।">
+                  </p>
+                  <a href="/blogs/haglunds-deformity-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন"></a>
+                </div>
+              </div>
+              <!-- blog-9: plid -->
+              <div class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 1180; --height: 800;">
+                  <img src="/assets/images/banners/plid-physiotherapy.png" width="1180" height="800" loading="lazy"
+                    alt="best physiotherapy center in Dhaka" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-04-19" data-translation 
+                      data-lang-eng="April 19, 2025" data-lang-ban="১৯শে এপ্রিল, ২০২৫ খ্রি."></time>
+                  </div>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="/blogs/plid-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="PLID (Prolapsed Lumbar Intervertebral Disc): Causes, Symptoms & Physiotherapy Treatment in Jatrabari, Dhaka"
+                      data-lang-ban="PLID বা ডিস্ক প্রলাপ্স-এর: কারণ, উপসর্গ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি চিকিৎসা">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Prolapsed Lumbar Intervertebral Disc (PLID) occurs when one of the soft discs between the vertebrae in your lower back bulges out or ruptures, pressing on nearby spinal nerves. This leads to 
+                     lower back pain, sciatica (leg pain), numbness, or weakness." 
+                    data-lang-ban="PLID (প্রোলাপ্সড লাম্বার ইন্টারভারটেব্রাল ডিস্ক) হলো এমন একটি অবস্থা, যেখানে কোমরের মেরুদণ্ডে ডিস্কের বাহ্যিক অংশ বেরিয়ে আসে বা ফেটে যায়, নার্ভে চাপ পড়ে, যার ফলে পিঠে ব্যথা, পায়েঝাড় বা শূন্যতা অনুভব হতে পারে। 
+                     যাত্রাবাড়ীর ADPORC-তে আমরা এই সমস্যায় অস্ত্রোপচার ছাড়া ফিজিওথেরাপি চিকিৎসায় বিশেষজ্ঞ।">
+                  </p>
+                  <a href="/blogs/plid-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন"></a>
+                </div>
+              </div>
+              <!-- blog-8: trigger finger -->
+              <div class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 1180; --height: 800;">
+                  <img src="/assets/images/banners/trigger-finger-physiotherapy.png" width="1180" height="800" loading="lazy"
+                    alt="best physiotherapy center in Dhaka" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-04-16" data-translation data-lang-eng="April 16, 2025" data-lang-ban="১৬ই এপ্রিল, ২০২৫ খ্রি."></time>
+                  </div>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="/blogs/trigger-finger-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Trigger Finger (Stenosing Tenosynovitis): Causes, Symptoms & Physiotherapy Treatment in Jatrabari, Dhaka"
+                      data-lang-ban="ট্রিগার ফিঙ্গার (স্টেনোসিং টেনোসাইনোভাইটিস): কারণ, উপসর্গ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি চিকিৎসা">
+                    </a>
+                  </h3>
+                  <p class="card-text" 
+                    data-translation data-lang-eng="Trigger Finger, medically known as stenosing tenosynovitis, is a painful hand condition where a finger gets stuck in a bent position and suddenly straightens with a snap." 
+                    data-lang-ban="ট্রিগার ফিঙ্গার বা স্টেনোসিং টেনোসাইনোভাইটিস হলো হাতে আঙুল বাঁকা হয়ে আটকে যাওয়ার এবং হঠাৎ শব্দ করে সোজা হওয়ার একটি কষ্টদায়ক অবস্থা।">
+                  </p>
+                  <a href="/blogs/trigger-finger-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন"></a>
+                </div>
+              </div>
+              <!-- blog-7: tennsi elbow -->
+              <div class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 1180; --height: 800;">
+                  <img src="/assets/images/banners/tennis-elbow-physiotherapy.png" width="1180" height="800" loading="lazy"
+                    alt="best physiotherapy center in Dhaka" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-04-12" data-translation data-lang-eng="April 12, 2025" data-lang-ban="১২ই এপ্রিল, ২০২৫ খ্রি."></time>
+                  </div>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="/blogs/tennis-elbow-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Tennis Elbow (Lateral Epicondylitis): Causes, Symptoms & Physiotherapy Treatment in Jatrabari, Dhaka"
+                      data-lang-ban="টেনিস এলবো (ল্যাটেরাল এপিকন্ডাইলাইটিস): কারণ, উপসর্গ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি চিকিৎসা">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Tennis elbow, medically known as lateral epicondylitis, is a painful condition where the tendons on the outer side of the elbow become inflamed due to repetitive wrist and forearm movements. 
+                    Despite the name, this problem does not only affect tennis players. Office workers, carpenters, housewives, plumbers, and anyone who performs repetitive gripping or wrist actions may suffer from this condition." 
+                    data-lang-ban="টেনিস এলবো বা ল্যাটেরাল এপিকন্ডাইলাইটিস হলো কনুইয়ের বাইরের দিকে টেন্ডনের প্রদাহ, যা বারবার হাত ও কবজির নড়াচড়া করার কারণে হয়ে থাকে। শুধু খেলোয়াড় নয়- অফিস কর্মী, রাজমিস্ত্রি, কাঠমিস্ত্রি, গৃহিণী, রান্নাঘরের কাজ বা কম্পিউটার ব্যবহারকারীরাও এই সমস্যায় ভুগে থাকেন।">
+                  </p>
+                  <a href="/blogs/tennis-elbow-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন">Read more</a>
+                </div>
+              </div>
+              <!-- blog-6: frozen shoulder -->
+              <div class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 1180; --height: 800;">
+                  <img src="/assets/images/banners/frozen-shoulder-physiotherapy.png" width="1180" height="800" loading="lazy"
+                    alt="best physiotherapy center in Dhaka" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-04-08" data-translation data-lang-eng="April 8, 2025" data-lang-ban="৮ই এপ্রিল, ২০২৫ খ্রি."></time>
+                  </div>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="/blogs/frozen-shoulder-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Frozen Shoulder: Causes, Symptoms & Physiotherapy Treatment in Jatrabari, Dhaka"
+                      data-lang-ban="ফ্রোজেন শোল্ডার: কারণ, উপসর্গ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি চিকিৎসা">
+                    </a>
+                  </h3>
+                  <p class="card-text" 
+                    data-translation data-lang-eng="Frozen shoulder can rob you of lifting your arm overhead, reaching behind your back, or sleeping pain-free. <b>At ADPORC,</b> Dr. Saddam Hossain’s expert physiotherapy eases stiffness, restores shoulder mobility, and helps you move freely again." 
+                    data-lang-ban="ফ্রোজেন শোল্ডার আপনার হাত উঁচুতে তোলা, পেছনে পৌঁছানো বা বেদনামুক্ত রাতে ঘুমানো থেকে বঞ্চিত করে। <b>ADPORC-তে</b> ডা. সাদ্দাম হোসেনের ফিজিওথেরাপি চিকিৎসা শিথিলতা কমিয়ে কাঁধের গতিশীলতা ফিরিয়ে আনে এবং আপনাকে আবার স্বাচ্ছন্দ্যে চলতে সাহায্য করে।">
+                  </p>
+                  <a href="/blogs/frozen-shoulder-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন">Read more</a>
+                </div>
+              </div>
+              <!-- blog-5: acl injury -->
+              <div class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 1180; --height: 800;">
+                  <img src="/assets/images/banners/acl-physiotherapy.png" width="1180" height="800" loading="lazy"
+                    alt="best physiotherapy center in Dhaka" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-03-29" data-translation data-lang-eng="March 29, 2025" data-lang-ban="২৯শে মার্চ, ২০২৫ খ্রি."></time>
+                  </div>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="/blogs/acl-injury-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="ACL injury (Anterior Cruciate Ligament): Causes, Symptoms & Physiotherapy Treatment in Jatrabari, Dhaka"
+                      data-lang-ban="ACL লিগামেন্ট ইনজুরি: কারণ, উপসর্গ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি চিকিৎসা">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="An ACL injury can limit your movement and confidence, making daily tasks and sports feel out of reach. At ADPORC, we provide expert, evidence‑based physiotherapy 
+                    to restore knee stability, improve strength, and help you get back to an active life safely." 
+                    data-lang-ban="ACL ইনজুরি চলাফেরা ও আত্মবিশ্বাস কমিয়ে দেয় ফলে সাধারণ কাজকর্ম বা খেলাধুলাও কঠিন হয়ে পড়ে। ADPORC-এ আমরা বিশেষজ্ঞ ফিজিওথেরাপির মাধ্যমে হাঁটুর স্থিতি ফিরিয়ে আনি, পেশী শক্তিশালী করি এবং আপনাকে নিরাপদে সক্রিয় জীবনে ফিরতে সাহায্য করি।">
+                  </p>
+                  <a href="/blogs/acl-injury-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন"></a>
+                </div>
+              </div>
+              <!-- blog-4: knee pain -->
+              <div class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 1180; --height: 800;">
+                  <img src="/assets/images/banners/knee-pain-physiotherapy.png" width="1180" height="800" loading="lazy"
+                    alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-03-25" data-translation data-lang-eng="March 25, 2025" data-lang-ban="২৫শে মার্চ, ২০২৫ খ্রি."></time>
+                  </div>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="/blogs/knee-pain-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Knee Pain Physiotherapy Treatment in Dhaka"
+                      data-lang-ban="ঢাকায় হাঁটু ব্যথা জন্য সেরা ফিজিওথেরাপি">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Knee pain can limit your freedom from walking up stairs to sitting down for namaz. At ADPORC, 
+                    we provide gentle yet effective physiotherapy to reduce pain, improve joint function, and help you move confidently again." 
+                    data-lang-ban="হাঁটু ব্যথা আপনার চলাফেরার স্বাধীনতাকে সীমিত করে দিতে পারে সিঁড়ি বেয়ে ওঠা, নামাজে বসা বা সাধারণ হাঁটা-চলা কঠিন হয়ে যায়। ADPORC-এ 
+                    আমরা সঠিক ও কার্যকর ফিজিওথেরাপির মাধ্যমে ব্যথা কমিয়ে হাঁটুর কার্যকারিতা ফিরিয়ে আনি।">
+                  </p>
+                  <a href="/blogs/knee-pain-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন"></a>
+                </div>
+              </div>
+              <!-- blog-3: back pain -->
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <img src="/assets/images/banners/back-pain-physiotherapy.png" loading="lazy" alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-03-21" data-translation data-lang-eng="March 21, 2025" data-lang-ban="২১শে মার্চ, ২০২৫ খ্রি."></time>
+                  </div>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="/blogs/back-pain-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Low Back Pain (LBP) Physiotherapy Treatment in Jatrabari, Dhaka"
+                      data-lang-ban="যাত্রাবাড়ী, ঢাকায় ব্যাক পেইনের জন্য সেরা ফিজিওথেরাপি">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Back pain affects millions, and for many in Dhaka, it's one of the top reasons to seek physiotherapy. Whether it's due to poor posture, long office hours, injury, or spine conditions like PLID or arthritis, ADPORC provides expert care to bring lasting relief." 
+                    data-lang-ban="পিঠের ব্যথা লক্ষ লক্ষ মানুষকে প্রভাবিত করে, এবং ঢাকায় অনেকের জন্য এটি ফিজিওথেরাপির প্রধান কারণগুলোর একটি। 
+                    এটি যদি ভুল ভঙ্গি, দীর্ঘক্ষণ অফিসে বসে থাকা, আঘাত, বা PLID ও বাতজনিত স্পাইন সমস্যার কারণে হয়, ADPORC দীর্ঘস্থায়ী আরামের জন্য বিশেষজ্ঞ যত্ন প্রদান করে।">
+                  </p>
+                  <a href="/blogs/back-pain-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন"></a>
+                </div>
+              </div>
+              <!-- blog-2: neck pain -->
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <img src="/assets/images/banners/neck-pain-physiotherapy.png" loading="lazy" alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-03-17" data-translation data-lang-eng="March 17, 2025" data-lang-ban="১৭ই মার্চ, ২০২৫ খ্রি."></time>
+                  </div>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="/blogs/neck-pain-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Neck Pain Physiotherapy Treatment in Jatrabari, Dhaka"
+                      data-lang-ban="যাত্রাবাড়ী, ঢাকায় ঘাড় ব্যথার জন্য সেরা ফিজিওথেরাপি">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Neck pain can interrupt your daily life causing stiffness, headaches, and even dizziness. At ADPORC, we offer specialized care to reduce pain and improve movement through gentle, effective neck pain physiotherapy." 
+                    data-lang-ban="ঘাড়ের ব্যথা আপনার প্রতিদিনের কাজ-কর্মে ব্যাঘাত ঘটাতে পারে শক্ত হয়ে যাওয়া, মাথাব্যথা, এমনকি মাথা ঘোরা। ADPORC-এ, আমরা গলার ব্যথার জন্য নির্ভরযোগ্য ও কার্যকর ফিজিওথেরাপি সেবা দিয়ে থাকি।">
+                  </p>
+                  <a href="/blogs/neck-pain-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন"></a>
+                </div>
+              </div>
+              <!-- blog-1: advance electrotherapy -->
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <img src="/assets/images/banners/advance-electrotherapy.png" loading="lazy" alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-03-16" data-translation data-lang-eng="March 16, 2025" data-lang-ban="১৬ই মার্চ, ২০২৫ খ্রি."></time>
+                  </div>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="/blogs/advance-electrotherapy-adporc-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Advanced Electrotherapy at ADPORC: Modern Pain Relief & Faster Rehabilitation"
+                      data-lang-ban="ADPORC‑এ উন্নত ইলেক্ট্রোথেরাপি: আধুনিক ব্যথা উপশম ও দ্রুত পুনর্বাসন">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Electrotherapy plays a central role in modern physiotherapy for reducing pain, controlling inflammation, improving circulation, strengthening weak muscles, and accelerating tissue healing. At ADPORC, we offer a full range of advanced electrotherapy modalities combined with manual therapy and targeted exercise programs."
+                    data-lang-ban="ইলেক্ট্রোথেরাপি আধুনিক ফিজিওথেরাপিতে একটি গুরুত্বপূর্ণ ভূমিকা পালন করে ব্যথা কমানো, প্রদাহ নিয়ন্ত্রণ, রক্তসঞ্চালন বৃদ্ধি, দুর্বল পেশি শক্তিশালী করা এবং টিস্যু দ্রুত নিরাময়ে সহায়তা করার জন্য। ADPORC‑এ আমরা উন্নত ইলেক্ট্রোথেরাপির পূর্ণ পরিসর প্রদান করি, যা ম্যানুয়াল থেরাপি ও লক্ষ্যভিত্তিক ব্যায়াম প্রোগ্রামের সঙ্গে সমন্বিতভাবে পরিচালিত হয়।">
+                  </p>
+                  <a href="/blogs/advance-electrotherapy-adporc-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন"></a>
+                </div>
+              </div>
+              <!-- blog-0.2: best physiotherapy --
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <img src="/assets/images/banners/banner-1.jpg" loading="lazy" alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-03-14" data-translation data-lang-eng="March 14, 2025" data-lang-ban="১৪ই মার্চ, ২০২৫ খ্রি.">March 14, 2025</time>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">
+                    <a href="/blogs/best-physiotherapy-center-jatrbari.html" class="card-title" data-translation 
+                      data-lang-eng="Best Physiotherapy Center in Jatrabari – ADPORC Care"
+                      data-lang-ban="যাত্রাবাড়ীতে সেরা ফিজিওথেরাপি সেন্টার – ADPORC কেয়ার">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Looking for the best physiotherapy in Jatrabari? ADPORC offers advanced treatment for back pain, neck pain, knee pain, paralysis, sports injuries, and more. Expert physiotherapists, modern electrotherapy & personalized rehabilitation." 
+                    data-lang-ban="যাত্রাবাড়ীতে সেরা ফিজিওথেরাপি সেন্টার খুঁজছেন? ADPORC-এ রয়েছে ব্যথা, পক্ষাঘাত, খেলাধুলার আঘাত, ব্যাক-নেক-হাঁটু ব্যথার আধুনিক ও ব্যক্তিগত চিকিৎসা।">
+                  </p>
+                  <a href="/blogs/best-physiotherapy-center-jatrbari.html" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
+                </div>
+              </div>
+              <!-- blog-0.1: best physiotherapy --
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <img src="/assets/images/banners/banner-1.jpg" loading="lazy" alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-03-14" data-translation data-lang-eng="March 14, 2025" data-lang-ban="১৪ই মার্চ, ২০২৫ খ্রি.">March 14, 2025</time>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">
+                    <a href="/blogs/best-physiotherapy-center-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Best Physiotherapy Center in Dhaka – ADPORC Care"
+                      data-lang-ban=" ঢাকায় সেরা ফিজিওথেরাপি সেন্টার – ADPORC কেয়ার">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Best physiotherapy Center in Dhaka is ADPORC, where Dr. Saddam Hossain,PT’s expert care, personalized treatment plans, and gentle hands-on techniques relieve pain and restore your freedom to move." 
+                    data-lang-ban="ঢাকায় সেরা ফিজিওথেরাপি সেন্টার ADPORC, যেখানে ডা. সাদ্দাম হোসেন, পিটি-এর বিশেষজ্ঞ যত্ন, ব্যক্তিগত থেরাপি পরিকল্পনা ও কোমল হাতে-কলমের পদ্ধতি আপনার ব্যথা কমিয়ে আবার স্বাধীনভাবে চলাচলে সহায়তা করে।">
+                  </p>
+                  <a href="/blogs/best-physiotherapy-center-dhaka.html" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
+                </div>
+              </div>
+              <!-- blog-0: assisted --
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <img src="/assets/images/banners/banner-2.jpg" loading="lazy" alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-03-14" data-translation data-lang-eng="March 14, 2025" data-lang-ban="১৪ই মার্চ, ২০২৫ খ্রি.">March 14, 2025</time>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">
+                    <a href="/blogs/assisted-physiotherapy-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Empowering Recovery: Recovery Through Precision Care" 
+                      data-lang-ban="সঠিক যত্নে দ্রুত আরোগ্য: নিজেকে ফিরে পাওয়ার আত্মবিশ্বাস নিয়ে।">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Discover how ADPORC's certified physiotherapists help restore mobility, reduce pain, and speed up recovery 
+                    using assisted therapy, electrotherapy, and personalized care in Dhaka." 
+                    data-lang-ban="ঢাকায় ADPORC-এর সনদপ্রাপ্ত ফিজিওথেরাপিস্টরা কিভাবে ব্যথা কমিয়ে, গতিশীলতা ফিরিয়ে, এবং ব্যক্তিগত যত্নের মাধ্যমে রোগীর পুনরুদ্ধার নিশ্চিত করেন তা জানুন।">
+                  </p>
+                  <a href="/blogs/assisted-physiotherapy-dhaka.html" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
+                </div>
+              </div>
+              <!-- blog-end -->
+            </div>
+          </div>
+        </section>
+      </main>
+      <!-- FAQ section -->
+      <section class="section faq" id="faq" aria-label="faq">
+        <div class="container">
+          <h2 class="section-subtitle text-center" data-translation data-lang-eng="FAQ" data-lang-ban="সাধারণ জিজ্ঞাসা"></h2>
+          <div class="faq-list">
+            <!-- Q1 -->
+            <div class="faq-item 1">
+              <button class="faq-question" aria-expanded="false" 
+                data-translation data-lang-eng="Q1: Do I need a doctor’s referral to book an appointment?" 
+                data-lang-ban="প্রশ্ন-১: চিকিৎসা নিতে কি ডাক্তারের প্রেসক্রিপশন লাগবে?">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="faq-answer" 
+                data-translation data-lang-eng="No referral needed. ADPORC is a first-contact physiotherapy center, patients can consult us directly without prior prescriptions." 
+                data-lang-ban="না, ADPORC একটি First-Contact Physiotherapy Center। আপনি সরাসরি এসে পরামর্শ নিতে পারেন প্রেসক্রিপশন ছাড়া।">
               </div>
             </div>
-            <?php endforeach; ?>
+            <!-- Q2 -->
+            <div class="faq-item 2">
+              <button class="faq-question" aria-expanded="false" 
+                data-translation data-lang-eng="Q2: Do you treat PLID and arthritis-related back pain?" 
+                data-lang-ban="প্রশ্ন-২: PLID ও কোমরের ব্যথা এবং আর্থ্রাইটিসজনিত ব্যথার চিকিৎসা করেন?">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="faq-answer" 
+                data-translation data-lang-eng="Yes. Our clinic specializes in managing PLID, cervical and lumbar spondylosis, and arthritis-related pain with targeted, evidence-based physiotherapy." 
+                data-lang-ban="হ্যাঁ। আমরা PLID, সার্ভিকাল/ল্যাম্বার স্পন্ডিলোসিস ও আর্থ্রাইটিস ব্যথার জন্য বিশেষায়িত ফিজিওথেরাপি প্রদান করি।">
+              </div>
+            </div>
+            <!-- Q3 -->
+            <div class="faq-item 3">
+              <button class="faq-question" aria-expanded="false" 
+                data-translation data-lang-eng="Q3: Do you provide home-based physiotherapy services?" 
+                data-lang-ban="প্রশ্ন-৩: হোম-ভিত্তিক ফিজিওথেরাপি সেবা কি দেওয়া হয়?">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="faq-answer" 
+                data-translation data-lang-eng="Yes. ADPORC offers professional home physiotherapy for patients with limited mobility, post-surgical needs, or neurological conditions. Home sessions are conducted by licensed physiotherapists, ensuring full clinical standards, subject to availability and medical eligibility." 
+                data-lang-ban="হ্যাঁ। যেসকল রোগী চলাফেরায় অসুবিধায় ভুগছেন, অপারেশনের পর অথবা নিউরোলজিক্যাল অবস্থায় রয়েছেন, তাদের জন্য ADPORC পেশাদার হোম ফিজিওথেরাপি সেবা প্রদান করে।">
+              </div>
+            </div>
+            <!-- Q4 -->
+            <div class="faq-item 4">
+              <button class="faq-question" aria-expanded="false" 
+                data-translation data-lang-eng="Q4: Are sessions one-on-one?" 
+                data-lang-ban="প্রশ্ন-৪: একজন ফিজিওথেরাপিস্ট ডাক্তারই দেখবেন?">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="faq-answer" 
+                data-translation data-lang-eng="Absolutely. You’ll always receive private care under a licensed physiotherapist" 
+                data-lang-ban="অবশ্যই। প্রতিটি রোগীর জন্য নির্দিষ্ট ফিজিওথেরাপিস্ট ডাক্তার থাকেন।">
+              </div>
+            </div>
+            <!-- Q5 -->
+            <div class="faq-item 5">
+              <button class="faq-question" aria-expanded="false" 
+                data-translation data-lang-eng="Q5: What types of physiotherapy do you offer?" 
+                data-lang-ban="প্রশ্ন-৫: কী ধরনের ফিজিওথেরাপি সেবা দেন?">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="faq-answer card-text" 
+                data-translation data-lang-eng="At ADPORC, we provide personalized treatments in: 
+                  Musculoskeletal care (e.g. neck, back, joint pain); Neurological rehabilitation (e.g. stroke, facial palsy); Orthopedic conditions (e.g. post-surgery, joint stabilization). 
+                  We also offer advanced electrotherapy and manual therapy techniques." 
+                data-lang-ban="ADPORC-এ আমরা নিচের ক্ষেত্রগুলোতে ফিজিওথেরাপি সেবা দিয়ে থাকি: 
+                  হাড় ও মাংসপেশি জনিত সমস্যা (ঘাড়, কোমর, জয়েন্ট ব্যথা); নিউরোলজিক্যাল রিহ্যাব (স্ট্রোক,  বেলস্‌ প্যালসি); অর্থোপেডিক চিকিৎসা (অপারেশন পরবর্তী ফিজিওথেরাপি, জয়েন্ট স্ট্যাবিলাইজেশন) আমাদের সেবায় আধুনিক ইলেক্ট্রোথেরাপি ও ম্যানুয়াল থেরাপি অন্তর্ভুক্ত রয়েছে।">
+              </div>
+            </div>
+            <!-- Q6 -->
+            <div class="faq-item 6">
+              <button class="faq-question" aria-expanded="false" 
+                data-translation data-lang-eng="Q6: How long is each physiotherapy session? Sessions" 
+                data-lang-ban="প্রশ্ন-৬: প্রতিটি সেশন কতক্ষণ হয়?">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="faq-answer" 
+                data-translation data-lang-eng="Typically sessions range from 30 to 45 minutes. Duration may vary based on your condition and recovery stage." 
+                data-lang-ban="প্রতিটি সেশন সাধারণত ৩০ থেকে ৪৫ মিনিটের হয়, রোগীর অবস্থা ও চিকিৎসা পরিকল্পনার উপর ভিত্তি করে।">
+              </div>
+            </div>
+            <!-- Q7 -->
+            <div class="faq-item 7">
+              <button class="faq-question" aria-expanded="false" 
+                data-translation data-lang-eng="Q7: Do you treat sports injuries like ACL tears or muscle strains?" 
+                data-lang-ban="প্রশ্ন-৭: ACL বা মাসল টিয়ার-এর মতো স্পোর্টস ইনজুরির চিকিৎসা করেন?">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="faq-answer" 
+                data-translation data-lang-eng="Yes. ADPORC offers specialized sports rehabilitation for ACL injuries, muscle tears, sprains, and joint pain. Our physiotherapists design treatment plans tailored to your recovery goals whether you're a weekend athlete or a professional in training." 
+                data-lang-ban="হ্যাঁ। ADPORC-এ স্পোর্টস ইনজুরির জন্য বিশেষায়িত ফিজিওথেরাপি সেবা দেওয়া হয়। ACL টিয়ার, মাসল স্ট্রেইন, লিগামেন্ট স্প্রেইন ও জয়েন্ট পেইন রিকভারি-র জন্য বিশেষায়িত ফিজিওথেরাপি সেবা দেয়। হোক আপনি অ্যাথলেট বা সাধারণ খেলোয়াড় আমরা আপনাকে লক্ষ্যভিত্তিক পরিকল্পনা দিই।">
+              </div>
+            </div>
+            <!-- Q8 -->
+            <div class="faq-item 8">
+              <button class="faq-question" aria-expanded="false" 
+                data-translation data-lang-eng="Q8: Can I get physiotherapy after surgery?" 
+                data-lang-ban="প্রশ্ন-৮: অপারেশনের পর ফিজিওথেরাপি ট্রিটমেন্ট নেওয়া যায়?">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="faq-answer" 
+                data-translation data-lang-eng="Definitely. Our post-operative rehab programs help patients regain mobility, strength, and confidence after orthopedic or neurological surgeries." 
+                data-lang-ban="অবশ্যই। অপারেশনের পর সুস্থ হয়ে ওঠার জন্য ফিজিওথেরাপি অত্যন্ত গুরুত্বপূর্ণ এবং আমাদের পোস্ট-অপারেটিভ রিহ্যাব সেবায় রোগীরা নিরাপদভাবে শক্তি, গতি ও আত্মবিশ্বাস ফিরে পান।">
+              </div>
+            </div>
+            <!-- Q9 -->
+            <div class="faq-item 9">
+              <button class="faq-question" aria-expanded="false" 
+                data-translation data-lang-eng="Q9: Is ADPORC suitable for elderly patients?" 
+                data-lang-ban="প্রশ্ন-৯: ADPORC কি বয়স্ক রোগীদের জন্য কি উপযুক্ত?">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="faq-answer" 
+                data-translation data-lang-eng="Yes. We provide safe, gentle, and age-appropriate therapy for seniors dealing with arthritis, balance disorders, and mobility limitations." 
+                data-lang-ban="হ্যাঁ। আমরা আর্থ্রাইটিস, ব্যালেন্স সমস্যা ও চলাফেরার অসুবিধার জন্য বয়স্কদের উপযোগী চিকিৎসা দিই।">
+              </div>
+            </div>
+            <!-- Q10-->
+            <div class="faq-item 10">
+              <button class="faq-question" aria-expanded="false" 
+                data-translation data-lang-eng="Q10: How do I book an appointment?" 
+                data-lang-ban="প্রশ্ন-১০: কীভাবে ADPORC-এ অ্যাপয়েন্টমেন্ট বুক করব?">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="faq-answer" 
+                data-translation data-lang-eng="Booking is simple! You can- just call or WhatsApp us at 01950-935236, 
+                  or fill out the online form at our website." 
+                data-lang-ban="অ্যাপয়েন্টমেন্ট নেওয়া খুবই সহজ! আপনি- ০১৯৫০-৯৩৫২৩৬ নম্বরে কল বা WhatsApp করুন, অথবা ওয়েবসাইট-এর অনলাইন ফর্ম পূরণ করুন।">
+              </div>
+            </div>
           </div>
         </div>
       </section>
-    </main>
-
-    <!-- marquee container -->
-    <div class="marquee-container">
-      <div class="marquee">
-        <span><img src="/adporc-logo-rounded.png" alt="best physiotherapy center in Dhaka" class="marquee-logo">Asia Digital Physiotherapy &amp; Orthopedic Rehabilitation Center</span>
-        <span><img src="/adporc-logo-rounded.png" alt="best physiotherapy center in Dhaka" class="marquee-logo">Asia Digital Physiotherapy &amp; Orthopedic Rehabilitation Center</span>
-        <span><img src="/adporc-logo-rounded.png" alt="best physiotherapy center in Dhaka" class="marquee-logo">Asia Digital Physiotherapy &amp; Orthopedic Rehabilitation Center</span>
+      <!-- marquee container -->
+      <div class="marquee-container">
+        <div class="marquee">
+          <span>
+            <img src="/adporc-logo-rounded.png" alt="best physiotherapy center in Dhaka" class="marquee-logo">
+            Asia Digital Physiotherapy & Orthopedic Rehabilitation Center
+          </span>
+          <span>
+            <img src="/adporc-logo-rounded.png" alt="best physiotherapy center in Dhaka" class="marquee-logo">
+            Asia Digital Physiotherapy & Orthopedic Rehabilitation Center
+          </span>
+          <span>
+            <img src="/adporc-logo-rounded.png" alt="best physiotherapy center in Dhaka" class="marquee-logo">
+            Asia Digital Physiotherapy & Orthopedic Rehabilitation Center
+          </span>
+        </div>
       </div>
-    </div>
-
-    <!-- #footer -->
-    <footer class="footer">
-      <div class="footer-top section">
-        <div class="container">
-          <div class="footer-brand">
-            <a href="/home" class="logo font-eng">ADPORC</a>
-            <p class="footer-text" data-translation
-              data-lang-eng="<?= h($footer_text_en) ?>"
-              data-lang-ban="<?= h($footer_text_bn) ?>"></p>
-            <div class="schedule footer-list-title">
-              <div class="schedule-icon"><ion-icon name="time-outline"></ion-icon></div>
-              <span class="span" data-translation
-                data-lang-eng="<?= h($schedule_en) ?>"
-                data-lang-ban="<?= h($schedule_bn) ?>"></span>
+      <!-- #footer -->
+      <footer class="footer">
+        <!-- footer-top -->
+        <div class="footer-top section">
+          <div class="container">
+            <div class="footer-brand">
+              <a href="/home.html" class="logo" style="font-family: Poppins">ADPORC</a>
+              <p class="footer-text" data-translation data-lang-eng="One of the best physiotherapy center in Dhaka city.
+                Feel better, move easier, and get back to living your life with simple and effective physiotherapy care." 
+                data-lang-ban="ঢাকা শহরের অন্যতম সেরা ফিজিওথেরাপি সেন্টার। সহজ এবং কার্যকর ফিজিওথেরাপি যত্নের মাধ্যমে ভালো অনুভব 
+                করুন, সহজে চলাফেরা করুন এবং আপনার জীবনযাত্রায় ফিরে যান।">
+              </p>
+              <div class="schedule footer-list-title">
+                <div class="schedule-icon">
+                  <ion-icon name="time-outline"></ion-icon>
+                </div>
+                <span class="span" data-translation 
+                  data-lang-eng="Saturday to Friday:<br>10:00am - 01:00pm<br>02:00pm - 10:00pm" 
+                  data-lang-ban="প্রতিদিন সকাল ১০টা থেকে দুপুর ১টা <br>এবং বিকাল ৩টা থেকে রাত ১০টা">
+                </span>
+              </div>
             </div>
+            <!-- other links -->
+            <ul class="footer-list">
+              <li>
+                <p class="footer-list-title" data-translation data-lang-eng="Other Links" data-lang-ban="অন্যান্য লিংক"></p>
+              </li>
+              <li>
+                <a href="/home.html" class="footer-link">
+                  <ion-icon name="add-outline"></ion-icon>
+                  <span class="span" data-translation data-lang-eng="Home" data-lang-ban="হোম"></span>
+                </a>
+              </li>
+              <li>
+                <a href="/about-us.html" class="footer-link">
+                  <ion-icon name="add-outline"></ion-icon>
+                  <span class="span"data-translation data-lang-eng="About Us" data-lang-ban="আমাদের সম্পর্কে"></span>
+                </a>
+              </li>
+              <li>
+                <a href="/services.html" class="footer-link">
+                  <ion-icon name="add-outline"></ion-icon>
+                  <span class="span" data-translation data-lang-eng="Our Services" data-lang-ban="আমাদের সেবা সমূহ"></span>
+                </a>
+              </li>
+              <li>
+                <a href="/home.html#our-team" class="footer-link">
+                  <ion-icon name="add-outline"></ion-icon>
+                  <span class="span" data-translation data-lang-eng="Our Team" data-lang-ban="আমাদের টিম"></span>
+                </a>
+              </li>
+              <li>
+                <a href="/blogs.html" class="footer-link">
+                  <ion-icon name="add-outline"></ion-icon>
+                  <span class="span" data-nav-link 
+                    data-translation data-lang-eng="Latest Blog" data-lang-ban="সর্বশেষ ব্লগ"></span>
+                </a>
+              </li>
+            </ul>
+            <!-- our services -->
+            <ul class="footer-list">
+              <li>
+                <p class="footer-list-title" data-translation data-lang-eng="Our Services" data-lang-ban="আমাদের সেবা সমূহ"></p>
+              </li>
+              <li>
+                <a href="/blogs/neck-pain-physiotherapy-treatment-dhaka.html" class="footer-link">
+                  <ion-icon name="add-outline"></ion-icon>
+                  <span class="span" data-translation data-lang-eng="Neck Pain" data-lang-ban="ঘাড় ব্যথা"></span>
+                </a>
+              </li>
+              <li>
+                <a href="/blogs/frozen-shoulder-physiotherapy-treatment-dhaka.html" class="footer-link">
+                  <ion-icon name="add-outline"></ion-icon>
+                  <span class="span" data-translation data-lang-eng="Frozen Shoulder" data-lang-ban="ফ্রোজেন শোল্ডার"></span>
+                </a>
+              </li>
+              <li>
+                <a href="/blogs/back-pain-physiotherapy-treatment-dhaka.html" class="footer-link">
+                  <ion-icon name="add-outline"></ion-icon>
+                  <span class="span" data-translation data-lang-eng="Back Pain" data-lang-ban="ব্যাক পেইন"></span>
+                </a>
+              </li>
+              <li>
+                <a href="/blogs/plid-physiotherapy-treatment-dhaka.html" class="footer-link">
+                  <ion-icon name="add-outline"></ion-icon>
+                  <span class="span" data-translation data-lang-eng="PLID" data-lang-ban="পিএলআইডি"></span>
+                </a>
+              </li>
+              <li>
+                <a href="/blogs/knee-pain-physiotherapy-treatment-dhaka.html" class="footer-link">
+                  <ion-icon name="add-outline"></ion-icon>
+                  <span class="span" data-translation data-lang-eng="Knee Pain" data-lang-ban="হাঁটু ব্যথা"></span>
+                </a>
+              </li>
+              <li>
+                <a href="/blogs/acl-injury-physiotherapy-treatment-dhaka.html" class="footer-link">
+                  <ion-icon name="add-outline"></ion-icon>
+                  <span class="span" data-translation data-lang-eng="ACL Injury" data-lang-ban="লিগামেন্ট ইনজুরি"></span>
+                </a>
+              </li>
+              <li>
+                <a href="/blogs/bells-palsy-physiotherapy-treatment-dhaka.html" class="footer-link">
+                  <ion-icon name="add-outline"></ion-icon>
+                  <span class="span" data-translation data-lang-eng="Stroke" data-lang-ban="স্ট্রোক"></span>
+                </a>
+              </li>
+              <li>
+                <a href="/blogs/bells-palsy-physiotherapy-treatment-dhaka.html" class="footer-link">
+                  <ion-icon name="add-outline"></ion-icon>
+                  <span class="span" data-translation data-lang-eng="Bell’s Palsy" data-lang-ban="বেলস্ পালসি"></span>
+                </a>
+              </li>
+              <li>
+                <a href="/blogs/advance-electrotherapy-adporc-dhaka.html" class="footer-link">
+                  <ion-icon name="add-outline"></ion-icon>
+                  <span class="span" data-translation data-lang-eng="Advanced Electrotherapy" data-lang-ban="আধুনিক ইলেকট্রোথেরাপি"></span>
+                </a>
+              </li>
+            </ul>
+            <!-- contact us -->
+            <ul class="footer-list">
+              <li>
+                <p class="footer-list-title" data-translation data-lang-eng="Contact Us" data-lang-ban="যোগাযোগ"></p>
+              </li>
+              <li class="footer-item">
+                <div class="item-icon">
+                  <ion-icon name="location-outline"></ion-icon>
+                </div>                
+                <a href="https://maps.app.goo.gl/hpFe4M5S28s8ggV57" class="footer-link" target="_blank" rel="noopener noreferrer" 
+                    data-translation data-lang-eng="270/1 Dholaipar, South Jatrabari, <br>Dhaka-1204 Bangladesh" 
+                    data-lang-ban="২৭০/১ ধোলাইপাড়, দক্ষিণ যাত্রাবাড়ী, ঢাকা-১২০৪"></a>
+              </li>
+              <li class="footer-item">
+                <div class="item-icon">
+                  <ion-icon name="call-outline"></ion-icon>
+                </div>
+                <a href="tel:+880 1950-935236" class="footer-link" target="_blank" rel="noopener noreferrer" style="font-family: Poppins">01950-935236</a>
+              </li>
+              <li class="footer-item">
+                <div class="item-icon">
+                  <ion-icon name="mail-outline"></ion-icon>
+                </div>
+                <a href="mailto:info@adporc.com" target="_blank" rel="noopener noreferrer" class="footer-link" style="font-family: Poppins">info@adporc.com</a>
+              </li>
+            </ul>
           </div>
-          <ul class="footer-list">
-            <li><p class="footer-list-title" data-translation data-lang-eng="Other Links" data-lang-ban="অন্যান্য লিংক">Other Links</p></li>
-            <li><a href="/home" class="footer-link"><ion-icon name="add-outline"></ion-icon><span class="span" data-translation data-lang-eng="Home" data-lang-ban="হোম">Home</span></a></li>
-            <li><a href="/about-us" class="footer-link"><ion-icon name="add-outline"></ion-icon><span class="span" data-translation data-lang-eng="About Us" data-lang-ban="আমাদের সম্পর্কে">About Us</span></a></li>
-            <li><a href="/services" class="footer-link"><ion-icon name="add-outline"></ion-icon><span class="span" data-translation data-lang-eng="Our Services" data-lang-ban="আমাদের সেবা সমূহ">Our Services</span></a></li>
-            <li><a href="/home#our-team" class="footer-link"><ion-icon name="add-outline"></ion-icon><span class="span" data-translation data-lang-eng="Our Team" data-lang-ban="আমাদের টিম">Our Team</span></a></li>
-            <li><a href="/blogs" class="footer-link"><ion-icon name="add-outline"></ion-icon><span class="span" data-translation data-lang-eng="Latest Blog" data-lang-ban="সর্বশেষ ব্লগ">Latest Blog</span></a></li>
-          </ul>
-          <ul class="footer-list">
-            <li><p class="footer-list-title" data-translation data-lang-eng="Our Services" data-lang-ban="আমাদের সেবা সমূহ">Our Services</p></li>
-            <li><a href="/blogs/neck-pain-physiotherapy-treatment-dhaka" class="footer-link"><ion-icon name="add-outline"></ion-icon><span class="span" data-translation data-lang-eng="Neck Pain" data-lang-ban="ঘাড় ব্যথা">Neck Pain</span></a></li>
-            <li><a href="/blogs/frozen-shoulder-physiotherapy-treatment-dhaka" class="footer-link"><ion-icon name="add-outline"></ion-icon><span class="span" data-translation data-lang-eng="Frozen Shoulder" data-lang-ban="ফ্রোজেন শোল্ডার">Frozen Shoulder</span></a></li>
-            <li><a href="/blogs/back-pain-physiotherapy-treatment-dhaka" class="footer-link"><ion-icon name="add-outline"></ion-icon><span class="span" data-translation data-lang-eng="Back Pain" data-lang-ban="ব্যাক পেইন">Back Pain</span></a></li>
-            <li><a href="/blogs/plid-physiotherapy-treatment-dhaka" class="footer-link"><ion-icon name="add-outline"></ion-icon><span class="span" data-translation data-lang-eng="PLID" data-lang-ban="পিএলআইডি">PLID</span></a></li>
-            <li><a href="/blogs/knee-pain-physiotherapy-treatment-dhaka" class="footer-link"><ion-icon name="add-outline"></ion-icon><span class="span" data-translation data-lang-eng="Knee Pain" data-lang-ban="হাঁটু ব্যথা">Knee Pain</span></a></li>
-            <li><a href="/blogs/acl-injury-physiotherapy-treatment-dhaka" class="footer-link"><ion-icon name="add-outline"></ion-icon><span class="span" data-translation data-lang-eng="ACL Injury" data-lang-ban="লিগামেন্ট ইনজুরি">ACL Injury</span></a></li>
-            <li><a href="/blogs/best-stroke-physiotherapy-management-dhaka" class="footer-link"><ion-icon name="add-outline"></ion-icon><span class="span" data-translation data-lang-eng="Stroke" data-lang-ban="স্ট্রোক">Stroke</span></a></li>
-            <li><a href="/blogs/bells-palsy-physiotherapy-treatment-dhaka" class="footer-link"><ion-icon name="add-outline"></ion-icon><span class="span" data-translation data-lang-eng="Bell's Palsy" data-lang-ban="বেলস্ পালসি">Bell's Palsy</span></a></li>
-            <li><a href="/blogs/advance-electrotherapy-adporc-dhaka" class="footer-link"><ion-icon name="add-outline"></ion-icon><span class="span" data-translation data-lang-eng="Advanced Electrotherapy" data-lang-ban="আধুনিক ইলেকট্রোথেরাপি">Advanced Electrotherapy</span></a></li>
-          </ul>
-          <ul class="footer-list">
-            <li><p class="footer-list-title" data-translation data-lang-eng="Contact Us" data-lang-ban="যোগাযোগ">Contact Us</p></li>
-            <li class="footer-item">
-              <div class="item-icon"><ion-icon name="location-outline"></ion-icon></div>
-              <a href="<?= h($maps_url) ?>" class="footer-link" target="_blank" rel="noopener noreferrer"
-                data-translation data-lang-eng="<?= h($address_en) ?>" data-lang-ban="<?= h($address_bn) ?>"><?= h($address_en) ?></a>
-            </li>
-            <li class="footer-item">
-              <div class="item-icon"><ion-icon name="call-outline"></ion-icon></div>
-              <a href="tel:+880<?= h(str_replace('-', '', $phone)) ?>" class="footer-link font-eng" target="_blank" rel="noopener noreferrer"><?= h($phone) ?></a>
-            </li>
-            <li class="footer-item">
-              <div class="item-icon"><ion-icon name="mail-outline"></ion-icon></div>
-              <a href="mailto:info@adporc.com" target="_blank" rel="noopener noreferrer" class="footer-link font-eng">info@adporc.com</a>
-            </li>
-          </ul>
         </div>
-      </div>
-      <div class="footer-bottom">
-        <div class="footer-left">
-          <ul class="social-list">
-            <li><a href="<?= h($social['facebook'] ?? '#') ?>" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><ion-icon name="logo-facebook"></ion-icon></a></li>
-            <li><a href="https://www.instagram.com/adporc" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram"><ion-icon name="logo-instagram"></ion-icon></a></li>
-            <li><a href="https://www.tiktok.com/@adporc" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok"><ion-icon name="logo-tiktok"></ion-icon></a></li>
-            <li><a href="<?= h($social['youtube'] ?? '#') ?>" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube"><ion-icon name="logo-youtube"></ion-icon></a></li>
-            <li><a href="<?= h($social['linkedin'] ?? '#') ?>" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a></li>
-          </ul>
-          <p class="copyright font-eng">&copy; 2025-26 All Rights Reserved by <a href="https://www.adporc.com/" target="_blank" rel="noopener noreferrer">ADPORC</a></p>
+        <!-- footer-bottom -->
+        <div class="footer-bottom">
+          <div class="footer-left">
+            <ul class="social-list">
+              <li>
+                <a href="https://www.facebook.com/adporc" target="_blank" rel="noopener noreferrer" class="social-link">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/adporc" target="_blank" rel="noopener noreferrer" class="social-link">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.tiktok.com/@adporc" target="_blank" rel="noopener noreferrer" class="social-link">
+                  <ion-icon name="logo-tiktok"></ion-icon>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/@adporc" target="_blank" rel="noopener noreferrer" class="social-link">
+                  <ion-icon name="logo-youtube"></ion-icon>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/company/adporc/posts/" target="_blank" rel="noopener noreferrer" class="social-link">
+                  <ion-icon name="logo-linkedin"></ion-icon>
+                </a>
+              </li>
+            </ul>
+            <p class="copyright"  style="font-family: Poppins">&copy; 2025-26 All Rights Reserved by <a href="https://www.adporc.com/" target="_blank" rel="noopener noreferrer">ADPORC</a></p>
+          </div>
+          <p class="developer"  style="font-family: sans-serif"><a href="https://www.youtube.com/@itzmehdude" target="_blank" rel="noopener noreferrer">itzmehdude</a></p>
         </div>
-        <p class="developer font-eng"><a href="https://www.youtube.com/@itzmehdude" target="_blank" rel="noopener noreferrer">itzmehdude</a></p>
-      </div>
-    </footer>
-
-    <!-- floating buttons -->
-    <div class="floating-buttons">
-      <div class="chat-toggle">
-        <button class="chat-toggle-btn" id="chatToggleBtn" aria-label="Chat with us">
-          <i class="fa-solid fa-comments"></i>
-        </button>
-        <div class="chaty-channel-list" id="chatOptions">
-          <a href="tel:+8801950935236" target="_blank" rel="noopener noreferrer" class="chat-option" data-service="phone" aria-label="Call us"><i class="fa-solid fa-phone"></i></a>
-          <a href="<?= h($social['messenger'] ?? 'https://web.messenger.com/t/111178477047534?text=Assalamualaikum%2C%20') ?>" target="_blank" rel="noopener noreferrer" class="chat-option" data-service="messenger" aria-label="Messenger"><i class="fa-brands fa-facebook-messenger"></i></a>
-          <a href="<?= h($social['whatsapp'] ?? 'https://api.whatsapp.com/send/?phone=8801950935236&text=Assalamualaikum%2C%20') ?>" target="_blank" rel="noopener noreferrer" class="chat-option" data-service="whatsapp" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      </footer>
+      <!-- floating buttons -->
+      <div class="floating-buttons">
+        <!-- chat toggle button -->
+        <div class="chat-toggle">
+          <button id="chatToggleBtn" class="chat-toggle-btn">
+            <i class="fa-solid fa-comments"></i> <!-- chat icon -->
+          </button>
+          <div class="chaty-channel-list" id="chatOptions">
+            <a href="tel:+8801950935236" target="_blank" rel="noopener noreferrer" class="chat-option" data-service="phone">
+              <i class="fa-solid fa-phone"></i> <!-- phone icon -->
+            </a>
+            <a href="https://web.messenger.com/t/111178477047534?text=Assalamualaikum%2C%20" target="_blank" rel="noopener noreferrer" class="chat-option" data-service="messenger">
+              <i class="fa-brands fa-facebook-messenger"></i> <!-- messenger icon -->
+            </a>
+            <a href="https://api.whatsapp.com/send/?phone=8801950935236&text=Assalamualaikum%2C%20" target="_blank" rel="noopener noreferrer" class="chat-option" data-service="whatsapp">
+              <i class="fa-brands fa-whatsapp"></i> <!-- whatsapp icon -->
+            </a>
+          </div>
         </div>
+        <!-- back to top button -->
+        <a href="#top" class="back-top-btn" aria-label="Back to Top">
+          <ion-icon name="caret-up" aria-hidden="true"></ion-icon>
+        </a>
       </div>
-      <a href="#top" class="back-top-btn" aria-label="Back to Top"><ion-icon name="caret-up" aria-hidden="true"></ion-icon></a>
-    </div>
-
-    <!-- scripts -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="/assets/js/script.js" defer></script>
-    <!-- GTM noscript -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?= h($gtm_id) ?>"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  </body>
-</html>
+      <!-- custom js link -->
+      <script src="/assets/js/script.js" defer></script>
+      <!-- blog pagination -->
+      <script src="/assets/js/pagination.js" defer></script>
+      <!-- ionicon link -->
+      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <!-- google tag manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DZHWJDS"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    </body>
+ </html>

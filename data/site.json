@@ -1,36 +1,35 @@
 {
-  "clinic": {
-    "name": "ADPORC",
-    "full_name": "Asia Digital Physiotherapy & Orthopedic Rehabilitation Center",
-    "address_en": "270/1 Dholaipar, South Jatrabari, Dhaka-1204",
-    "address_bn": "২৭০/১ ধোলাইপাড়, দক্ষিণ যাত্রাবাড়ী, ঢাকা-১২০৪",
-    "phone": "01950-935236",
-    "phone_full": "+8801950935236",
-    "maps_url": "https://maps.app.goo.gl/GWgL6zbSVLHhMkFY9",
-    "maps_url_footer": "https://maps.app.goo.gl/hpFe4M5S28s8ggV57"
-  },
-  "schedule": {
-    "en": "Saturday to Friday:<br>10:00am - 01:00pm<br>02:00pm - 10:00pm",
-    "bn": "প্রতিদিন সকাল ১০টা থেকে দুপুর ১টা <br>এবং বিকাল ৩টা থেকে রাত ১০টা"
-  },
-  "social": {
-    "facebook": "https://www.facebook.com/adporc",
-    "youtube": "https://www.youtube.com/@adporc",
-    "linkedin": "https://www.linkedin.com/company/adporc/posts/",
-    "whatsapp": "https://api.whatsapp.com/send/?phone=8801950935236&text=Assalamualaikum%2C%20",
-    "messenger": "https://web.messenger.com/t/111178477047534?text=Assalamualaikum%2C%20",
-    "instagram": "",
-    "tiktok": ""
-  },
-  "analytics": {
-    "gtag_id": "G-BJMDW5QDN2",
-    "clarity_id": "uh2rk88w4t",
-    "gtm_id": "GTM-5DZHWJDS"
-  },
-  "google_sheet_appointment_url": "https://script.google.com/macros/s/AKfycbzwG_e3As_Ymeadtfi1cbkZyg3q7xVhmfUhCB-ZuKpg3LVikxJKT-mfLwPj5HThC-jfvQ/exec",
-  "google_sheet_phone_url": "https://script.google.com/macros/s/AKfycbyyhyKWODeLPB9fDxxE7MisAK3c4mG5MfgXImHRyfk3MCkV2AOFSv-9zXhfvmJEznlq0Q/exec",
-  "footer": {
-    "text_en": "One of the best physiotherapy center in Dhaka city. Feel better, move easier, and get back to living your life with simple and effective physiotherapy care.",
-    "text_bn": "ঢাকা শহরের অন্যতম সেরা ফিজিওথেরাপি সেন্টার। সহজ এবং কার্যকর ফিজিওথেরাপি যত্নের মাধ্যমে ভালো অনুভব করুন, সহজে চলাফেরা করুন এবং আপনার জীবনযাত্রায় ফিরে যান।"
-  }
+    "clinic": {
+        "name": "ADPORC",
+        "full_name": "Asia Digital Physiotherapy & Orthopedic Rehabilitation Center",
+        "address_en": "270/1 Dholaipar, South Jatrabari, Dhaka-1204",
+        "address_bn": "২৭০/১ ধোলাইপাড়, দক্ষিণ যাত্রাবাড়ী, ঢাকা-১২০৪",
+        "phone": "01950-935236",
+        "phone_full": "+8801950935236",
+        "maps_url": "https://maps.app.goo.gl/GWgL6zbSVLHhMkFY9",
+        "maps_url_footer": "https://maps.app.goo.gl/hpFe4M5S28s8ggV57"
+    },
+    "schedule": {
+        "en": "Saturday to Friday:<br>10:00am - 01:00pm<br>02:00pm - 10:00pm",
+        "bn": "প্রতিদিন সকাল ১০টা থেকে দুপুর ১টা <br>এবং বিকাল ৩টা থেকে রাত ১০টা"
+    },
+    "social": {
+        "facebook": "https://www.facebook.com/adporc",
+        "youtube": "https://www.youtube.com/@adporc",
+        "linkedin": "https://www.linkedin.com/company/adporc/posts/",
+        "whatsapp": "https://api.whatsapp.com/send/?phone=8801950935236&text=Assalamualaikum%2C%20",
+        "messenger": "https://web.messenger.com/t/111178477047534?text=Assalamualaikum%2C%20",
+        "instagram": "https://www.instagram.com/@adporc"
+    },
+    "analytics": {
+        "gtag_id": "G-BJMDW5QDN2",
+        "clarity_id": "uh2rk88w4t",
+        "gtm_id": "GTM-5DZHWJDS"
+    },
+    "footer": {
+        "text_en": "One of the best physiotherapy center in Dhaka city. Feel better, move easier, and get back to living your life with simple and effective physiotherapy care.",
+        "text_bn": "ঢাকা শহরের অন্যতম সেরা ফিজিওথেরাপি সেন্টার। সহজ এবং কার্যকর ফিজিওথেরাপি যত্নের মাধ্যমে ভালো অনুভব করুন, সহজে চলাফেরা করুন এবং আপনার জীবনযাত্রায় ফিরে যান।"
+    },
+    "google_sheet_appointment_url": "https://script.google.com/macros/s/AKfycbzwG_e3As_Ymeadtfi1cbkZyg3q7xVhmfUhCB-ZuKpg3LVikxJKT-mfLwPj5HThC-jfvQ/exec",
+    "google_sheet_phone_url": "https://script.google.com/macros/s/AKfycbyyhyKWODeLPB9fDxxE7MisAK3c4mG5MfgXImHRyfk3MCkV2AOFSv-9zXhfvmJEznlq0Q/exec"
 }

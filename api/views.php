@@ -1,95 +1,47 @@
 <?php
-// One-time seeder script
-// Reads /sitemap.xml and seeds initial view counts for existing blog pages
-// Run once, then delete this file
+// Blog page view counter API
+// GET  /api/views.php?slug=/blogs/some-blog  → increments count, returns { ok: true, count: N }
+// GET  /api/views.php                        → returns all counts { ok: true, views: {...} }
 
 header('Content-Type: application/json; charset=utf-8');
 
-$initialSeed = 800;
 $viewsFile = __DIR__ . '/views.json';
-$sitemapPath = $_SERVER['DOCUMENT_ROOT'] . '/sitemap.xml';
 
-if (!is_file($sitemapPath)) {
-  http_response_code(500);
-  echo json_encode([
-    'ok' => false,
-    'error' => 'sitemap.xml not found at document root',
-    'expected' => $sitemapPath
-  ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
-  exit;
-}
-
-// Load existing views.json if present
+// Load existing views
 $views = [];
 if (is_file($viewsFile)) {
-  $raw = file_get_contents($viewsFile);
-  $decoded = json_decode($raw, true);
-  if (is_array($decoded)) $views = $decoded;
+    $raw = file_get_contents($viewsFile);
+    $decoded = json_decode($raw, true);
+    if (is_array($decoded)) $views = $decoded;
 }
 
-// Parse sitemap (namespace-aware)
-libxml_use_internal_errors(true);
-$xml = simplexml_load_file($sitemapPath);
-if (!$xml) {
-  http_response_code(500);
-  echo json_encode(['ok' => false, 'error' => 'Failed to parse sitemap.xml'], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
-  exit;
+$slug = isset($_GET['slug']) ? trim($_GET['slug']) : '';
+
+// If no slug, return all views (for admin/dashboard use)
+if ($slug === '') {
+    echo json_encode(['ok' => true, 'views' => $views], JSON_UNESCAPED_SLASHES);
+    exit;
 }
 
-$namespaces = $xml->getNamespaces(true);
-if (isset($namespaces[''])) {
-  $xml->registerXPathNamespace('sm', $namespaces['']);
-  $locNodes = $xml->xpath('//sm:url/sm:loc');
+// Sanitize: only allow /blogs/... paths
+$slug = rtrim($slug, '/');
+if (strpos($slug, '/blogs/') !== 0 || $slug === '/blogs/') {
+    http_response_code(400);
+    echo json_encode(['ok' => false, 'error' => 'Invalid slug']);
+    exit;
+}
+
+// Increment view count
+if (!isset($views[$slug])) {
+    $views[$slug] = 1;
 } else {
-  $locNodes = $xml->xpath('//url/loc');
+    $views[$slug]++;
 }
 
-$foundBlogs = 0;
-$seeded = 0;
-$skipped = 0;
-
-if ($locNodes) {
-  foreach ($locNodes as $node) {
-    $url = trim((string)$node);
-    if (!$url) continue;
-
-    $path = parse_url($url, PHP_URL_PATH);
-    if (!$path) continue;
-
-    // Only seed individual blog detail pages
-    if (strpos($path, '/blogs/') === 0 && $path !== '/blogs/') {
-      $foundBlogs++;
-
-      if (!isset($views[$path])) {
-        $views[$path] = $initialSeed;
-        $seeded++;
-      } else {
-        $skipped++;
-      }
-    }
-  }
-}
-
-// Save views.json
+// Save back to file
 $json = json_encode($views, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
-if ($json === false) {
-  http_response_code(500);
-  echo json_encode(['ok' => false, 'error' => 'JSON encoding failed'], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
-  exit;
+if ($json !== false) {
+    file_put_contents($viewsFile, $json, LOCK_EX);
 }
 
-if (file_put_contents($viewsFile, $json, LOCK_EX) === false) {
-  http_response_code(500);
-  echo json_encode(['ok' => false, 'error' => 'Unable to write views.json (check permissions)'], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
-  exit;
-}
-
-echo json_encode([
-  'ok' => true,
-  'sitemap' => $sitemapPath,
-  'initial_seed' => $initialSeed,
-  'blogs_found_in_sitemap' => $foundBlogs,
-  'newly_seeded' => $seeded,
-  'already_existing' => $skipped,
-  'total_records' => count($views)
-], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+echo json_encode(['ok' => true, 'count' => $views[$slug]], JSON_UNESCAPED_SLASHES);

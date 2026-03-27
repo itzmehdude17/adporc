@@ -5,6 +5,15 @@ admin_require_login();
 $pageTitle = 'Blog Manager';
 $blogs = read_json('blogs.json') ?: [];
 
+// Load views from api/views.json
+$viewsFile = dirname(__DIR__) . '/api/views.json';
+$views = [];
+if (is_file($viewsFile)) {
+    $raw = file_get_contents($viewsFile);
+    $decoded = json_decode($raw, true);
+    if (is_array($decoded)) $views = $decoded;
+}
+
 include __DIR__ . '/_layout-top.php';
 ?>
 
@@ -92,6 +101,30 @@ include __DIR__ . '/_layout-top.php';
     <div id="page-buttons" style="display:flex;gap:5px;flex-wrap:wrap;"></div>
   </div>
 
+</div>
+
+<!-- Blog Views Editor -->
+<div class="card" style="margin-top:24px;">
+  <div class="card-header">
+    <h2>👁️ Blog View Counts</h2>
+    <button class="btn btn-primary btn-sm" onclick="saveViews()">Save Views</button>
+  </div>
+  <p style="font-size:.85rem;color:#666;margin-bottom:16px;">
+    Set the initial view count for each blog. Views will increment automatically when visitors open the blog page.
+  </p>
+  <div id="views-list">
+    <?php foreach ($blogs as $blog):
+      $slug = '/blogs/' . ($blog['slug'] ?? '');
+      $count = $views[$slug] ?? 0;
+    ?>
+    <div class="views-row" style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #eee;">
+      <input type="number" min="0" class="form-control" style="width:100px;flex-shrink:0;" 
+        data-view-slug="<?= h($slug) ?>" value="<?= (int)$count ?>">
+      <span style="font-size:.85rem;color:#333;"><?= h($blog['title_en'] ?? $blog['slug'] ?? 'Untitled') ?></span>
+      <span style="font-size:.75rem;color:#999;margin-left:auto;white-space:nowrap;"><?= h($slug) ?></span>
+    </div>
+    <?php endforeach; ?>
+  </div>
 </div>
 
 <script>
@@ -270,6 +303,39 @@ function wireItem(item) {
 
 document.querySelectorAll('#blog-list .repeatable-item').forEach(wireItem);
 renderPagination(); // init on page load
+
+/* ── Save Blog Views ─────────────────────────────── */
+async function saveViews() {
+  const inputs = document.querySelectorAll('[data-view-slug]');
+  const data = {};
+  inputs.forEach(el => {
+    const slug = el.getAttribute('data-view-slug');
+    data[slug] = parseInt(el.value) || 0;
+  });
+
+  const btn = event.target;
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+
+  try {
+    const res = await fetch('/admin/save.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': getCsrfToken()
+      },
+      body: JSON.stringify({ section: 'blog_views', data: data })
+    });
+    const json = await res.json();
+    if (json.ok) showToast('Views saved!', 'success');
+    else showToast(json.error || 'Save failed.', 'error');
+  } catch (e) {
+    showToast('Network error.', 'error');
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Save Views';
+}
 </script>
 
 <?php include __DIR__ . '/_layout-bottom.php'; ?>
