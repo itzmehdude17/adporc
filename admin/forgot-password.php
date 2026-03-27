@@ -13,18 +13,27 @@ $success = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email  = trim($_POST['email'] ?? '');
     $config = admin_get_config();
-    $stored = $config['recovery_email'] ?? '';
 
     // Always wait a moment to prevent email-enumeration timing attacks
     usleep(random_int(150000, 350000));
 
-    if ($email !== '' && $stored !== '' && hash_equals(strtolower($stored), strtolower($email))) {
+    // Find the user by email (case-insensitive)
+    $matched_user = null;
+    foreach ($config['users'] ?? [] as $u) {
+        if (!empty($u['email']) && hash_equals(strtolower($u['email']), strtolower($email))) {
+            $matched_user = $u;
+            break;
+        }
+    }
+
+    if ($email !== '' && $matched_user) {
         // Generate a secure single-use token valid for 1 hour
         $token   = bin2hex(random_bytes(32));
         $expires = time() + 3600;
 
         $config['reset_token']   = password_hash($token, PASSWORD_BCRYPT);
         $config['reset_expires'] = $expires;
+        $config['reset_user_id'] = $matched_user['id'];
         write_json('config.json', $config);
 
         $resetLink = 'https://' . $_SERVER['HTTP_HOST'] . '/admin/reset-password.php?token=' . urlencode($token);
@@ -37,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                  . "— ADPORC Admin System";
 
         $headers = "From: noreply@adporc.com\r\nX-Mailer: PHP/" . PHP_VERSION;
-        mail($stored, $subject, $body, $headers);
+        mail($matched_user['email'], $subject, $body, $headers);
     }
 
     // Always show the same message regardless of whether email matched

@@ -8,8 +8,7 @@
             "password_hash": "$2y$10$1WUDV93W..vnOY.seEs..u/7tjLsrPUkNehT2UAdfwYef0YxN81A.",
             "created_at": "2026-03-27",
             "last_login": "2026-03-27 12:01:31",
-            "is_active": true,
-            "temp_password": null
+            "is_active": true
         },
         {
             "id": "usr_3d38c516",
@@ -19,8 +18,7 @@
             "password_hash": "$2y$12$EkXwZptSA5l/pl6bJjE5eOQAasszwtTZbsO3qkuncjPJIgT8TI0v.",
             "created_at": "2026-03-27",
             "last_login": "2026-03-27 12:38:51",
-            "is_active": true,
-            "temp_password": "Saddam@5236"
+            "is_active": true
         }
     ]
 }

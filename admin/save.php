@@ -42,6 +42,44 @@ $sectionMap = [
 ];
 
 if (!array_key_exists($section, $sectionMap)) {
+    // Handle blog_single: update one blog entry by serial position
+    if ($section === 'blog_single') {
+        if (!is_array($data) || !isset($data['serial'])) {
+            http_response_code(400);
+            exit(json_encode(['ok' => false, 'error' => 'Invalid blog data']));
+        }
+        $serial = (int)$data['serial'];
+        $views = isset($data['views']) ? max(0, (int)$data['views']) : null;
+        unset($data['serial'], $data['views']);
+        $blogs = read_json('blogs.json') ?: [];
+        $total = count($blogs);
+        $index = $total - $serial; // serial N = index 0 (newest), serial 1 = last index
+        if ($index < 0 || $index >= $total) {
+            http_response_code(400);
+            exit(json_encode(['ok' => false, 'error' => 'Blog not found at serial #' . $serial]));
+        }
+        $blogs[$index] = $data;
+        $ok = write_json('blogs.json', $blogs);
+        // Also update views if provided
+        if ($ok && $views !== null && isset($data['slug'])) {
+            $viewsFile = dirname(__DIR__) . '/api/views.json';
+            $allViews = [];
+            if (is_file($viewsFile)) {
+                $decoded = json_decode(file_get_contents($viewsFile), true);
+                if (is_array($decoded)) $allViews = $decoded;
+            }
+            $allViews['/blogs/' . $data['slug']] = $views;
+            file_put_contents($viewsFile, json_encode($allViews, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT), LOCK_EX);
+        }
+        if ($ok) {
+            echo json_encode(['ok' => true, 'message' => 'Blog #' . $serial . ' saved!']);
+        } else {
+            http_response_code(500);
+            echo json_encode(['ok' => false, 'error' => 'Failed to write blogs.json']);
+        }
+        exit;
+    }
+
     // Handle blog_views separately (stored in api/views.json, not data/)
     if ($section === 'blog_views') {
         if (!is_array($data)) {

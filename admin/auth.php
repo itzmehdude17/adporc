@@ -6,8 +6,14 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start([
         'cookie_httponly' => true,
         'cookie_samesite' => 'Strict',
+        'cookie_secure'   => (($_SERVER['HTTPS'] ?? '') === 'on'),
     ]);
 }
+
+// Security headers
+header('X-Content-Type-Options: nosniff');
+header('X-Frame-Options: DENY');
+header('Referrer-Policy: same-origin');
 
 define('ADMIN_DATA_DIR', dirname(__DIR__) . '/data/');
 define('ADMIN_CONFIG_FILE', ADMIN_DATA_DIR . 'config.json');
@@ -144,3 +150,59 @@ function h(string $str): string {
     return htmlspecialchars($str, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
+// ── Login rate limiting (per IP) ────────────────────────────
+define('LOGIN_ATTEMPTS_FILE', ADMIN_DATA_DIR . 'login_attempts.json');
+define('LOGIN_MAX_ATTEMPTS', 5);
+define('LOGIN_WINDOW_SECONDS', 900); // 15 minutes
+
+function login_get_attempts(): array {
+    if (!file_exists(LOGIN_ATTEMPTS_FILE)) return [];
+    $data = json_decode(file_get_contents(LOGIN_ATTEMPTS_FILE), true);
+    return is_array($data) ? $data : [];
+}
+
+function login_save_attempts(array $data): void {
+    file_put_contents(LOGIN_ATTEMPTS_FILE, json_encode($data, JSON_PRETTY_PRINT), LOCK_EX);
+}
+
+function login_get_client_ip(): string {
+    // Use REMOTE_ADDR only — never trust X-Forwarded-For (spoofable)
+    return $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+}
+
+function login_is_blocked(): bool {
+    $ip = login_get_client_ip();
+    $attempts = login_get_attempts();
+    if (!isset($attempts[$ip])) return false;
+    $record = $attempts[$ip];
+    // Expired window — not blocked
+    if (time() - ($record['first_attempt'] ?? 0) > LOGIN_WINDOW_SECONDS) return false;
+    return ($record['count'] ?? 0) >= LOGIN_MAX_ATTEMPTS;
+}
+
+function login_record_failure(): void {
+    $ip = login_get_client_ip();
+    $attempts = login_get_attempts();
+    $now = time();
+    if (!isset($attempts[$ip]) || ($now - ($attempts[$ip]['first_attempt'] ?? 0)) > LOGIN_WINDOW_SECONDS) {
+        $attempts[$ip] = ['count' => 1, 'first_attempt' => $now];
+    } else {
+        $attempts[$ip]['count']++;
+    }
+    login_save_attempts($attempts);
+}
+
+function login_clear(string $ip = ''): void {
+    $ip = $ip ?: login_get_client_ip();
+    $attempts = login_get_attempts();
+    unset($attempts[$ip]);
+    login_save_attempts($attempts);
+}
+
+function login_remaining_lockout(): int {
+    $ip = login_get_client_ip();
+    $attempts = login_get_attempts();
+    if (!isset($attempts[$ip])) return 0;
+    $elapsed = time() - ($attempts[$ip]['first_attempt'] ?? 0);
+    return max(0, LOGIN_WINDOW_SECONDS - $elapsed);
+}

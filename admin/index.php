@@ -49,24 +49,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // ── Login ──
     } elseif ($action === 'login' && $mode === 'login') {
-        // Migrate legacy single-password config if needed
-        admin_migrate_legacy();
-
-        $username = trim($_POST['username'] ?? '');
-        $pw       = $_POST['password']    ?? '';
-        $user     = admin_find_user($username);
-
-        if ($user && ($user['is_active'] ?? true) && password_verify($pw, $user['password_hash'] ?? '')) {
-            // Clear temp_password once they've used it to log in (if they haven't changed it yet, it stays)
-            admin_do_login($user);
-            // Update last_login timestamp
-            $user['last_login'] = date('Y-m-d H:i:s');
-            admin_update_user($user);
-            header('Location: /admin/dashboard.php');
-            exit;
+        // Rate-limit check
+        if (login_is_blocked()) {
+            $secs  = login_remaining_lockout();
+            $mins  = (int) ceil($secs / 60);
+            $error = "Too many failed attempts. Try again in {$mins} minute(s).";
         } else {
-            usleep(random_int(150000, 350000));
-            $error = 'Incorrect username or password.';
+            // Migrate legacy single-password config if needed
+            admin_migrate_legacy();
+
+            $username = trim($_POST['username'] ?? '');
+            $pw       = $_POST['password']    ?? '';
+            $user     = admin_find_user($username);
+
+            if ($user && ($user['is_active'] ?? true) && password_verify($pw, $user['password_hash'] ?? '')) {
+                login_clear();
+                admin_do_login($user);
+                // Update last_login timestamp
+                $user['last_login'] = date('Y-m-d H:i:s');
+                admin_update_user($user);
+                header('Location: /admin/dashboard.php');
+                exit;
+            } else {
+                login_record_failure();
+                usleep(random_int(150000, 350000));
+                $error = 'Incorrect username or password.';
+            }
         }
     }
 }

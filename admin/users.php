@@ -36,10 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'created_at'    => date('Y-m-d'),
                     'last_login'    => null,
                     'is_active'     => true,
-                    'temp_password' => $pw,   // master can see initial password until user changes it
                 ];
                 admin_save_config($cfg);
-                $success = "User <strong>" . h($username) . "</strong> created. Share the initial password with them.";
+                $success = "User <strong>" . h($username) . "</strong> created with password: <code>" . h($pw) . "</code><br><strong>Copy it now — it will not be shown again.</strong>";
             }
         }
 
@@ -56,9 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 foreach ($cfg['users'] as &$user) {
                     if ($user['id'] === $uid) {
                         $user['password_hash'] = password_hash($pw, PASSWORD_BCRYPT, ['cost' => 12]);
-                        $user['temp_password'] = $pw;  // master can see the password they just set
+                        unset($user['temp_password']);
                         $found = true;
-                        $success = "Password reset for <strong>" . h($user['username']) . "</strong>.";
+                        $success = "Password reset for <strong>" . h($user['username']) . "</strong>. New password: <code>" . h($pw) . "</code><br><strong>Copy it now — it will not be shown again.</strong>";
                         break;
                     }
                 }
@@ -174,15 +173,10 @@ include __DIR__ . '/_layout-top.php';
           <td style="font-size:.82rem;color:#666;"><?= h($user['created_at'] ?? '—') ?></td>
           <td style="font-size:.82rem;color:#666;"><?= $user['last_login'] ? h($user['last_login']) : '<span style="color:#ccc;">Never</span>' ?></td>
           <td>
-            <?php if (!empty($user['temp_password'])): ?>
-              <div class="pass-reveal">
-                <input type="password" value="<?= h($user['temp_password']) ?>" id="pw_<?= h($user['id']) ?>" readonly>
-                <button type="button" class="btn btn-secondary btn-sm" onclick="togglePw('<?= h($user['id']) ?>')">Show</button>
-              </div>
-            <?php elseif ($user['id'] === 'master'): ?>
+            <?php if ($user['id'] === 'master'): ?>
               <span style="font-size:.78rem;color:#999;">Master account</span>
             <?php else: ?>
-              <span style="font-size:.78rem;color:#999;">Changed by user</span>
+              <span style="font-size:.78rem;color:#999;">Use "Reset PW" to set</span>
             <?php endif; ?>
           </td>
           <td>

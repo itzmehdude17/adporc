@@ -33,11 +33,14 @@ include __DIR__ . '/_layout-top.php';
   </p>
   <button type="button" class="add-item-btn" id="add-blog-btn" style="margin-bottom:16px;">+ Add Blog Entry</button>
   <div id="blog-list">
-    <?php $total = count($blogs); foreach (array_reverse($blogs) as $revIdx => $blog): $serial = $total - $revIdx; ?>
+    <?php $total = count($blogs); foreach ($blogs as $idx => $blog): $serial = $total - $idx; ?>
     <div class="repeatable-item" data-serial="<?= $serial ?>">
       <div class="item-header">
         <span class="item-number">#<?= $serial ?> — <?= h($blog['title_en'] ?? 'Post') ?></span>
-        <button type="button" class="btn btn-danger btn-sm" data-remove-item>Remove</button>
+        <div style="display:flex;gap:6px;">
+          <button type="button" class="btn btn-success btn-sm" data-save-item>Save</button>
+          <button type="button" class="btn btn-danger-light btn-sm" data-remove-item>Remove</button>
+        </div>
       </div>
       <div class="form-grid">
         <div class="form-group">
@@ -79,16 +82,22 @@ include __DIR__ . '/_layout-top.php';
           <input type="text" name="datetime" class="form-control" value="<?= h($blog['datetime'] ?? '') ?>" placeholder="2026-02-02T00:00:00+06:00">
         </div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Banner Image</label>
-        <div class="image-upload-group">
-          <img src="<?= h($blog['banner'] ?? '') ?>" class="image-preview blog-banner-preview">
-          <div class="image-upload-controls">
-            <input type="hidden" name="banner" value="<?= h($blog['banner'] ?? '') ?>">
-            <input type="file" class="blog-banner-input" accept="image/*" style="display:none">
-            <button type="button" class="btn-upload blog-banner-btn">Upload Banner</button>
-            <p style="font-size:.75rem;color:#999;margin-top:4px;">Recommended: 800×450px</p>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Banner Image</label>
+          <div class="image-upload-group">
+            <img src="<?= h($blog['banner'] ?? '') ?>" class="image-preview blog-banner-preview">
+            <div class="image-upload-controls">
+              <input type="hidden" name="banner" value="<?= h($blog['banner'] ?? '') ?>">
+              <input type="file" class="blog-banner-input" accept="image/*" style="display:none">
+              <button type="button" class="btn-upload blog-banner-btn">Upload Banner</button>
+              <p style="font-size:.75rem;color:#999;margin-top:4px;">Recommended: 800×450px</p>
+            </div>
           </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Initial Views</label>
+          <input type="number" min="0" name="views" class="form-control" value="<?= (int)($views['/blogs/' . ($blog['slug'] ?? '')] ?? 0) ?>">
         </div>
       </div>
     </div>
@@ -210,9 +219,9 @@ function collectBlog(item) {
 }
 
 async function saveBlogs() {
-  // Always save in ascending serial (oldest=1 first → index 0 in JSON)
+  // Save in descending serial (newest first → matches blogs.json format)
   const items = getAllItems().slice().sort((a, b) =>
-    (parseInt(a.dataset.serial) || 0) - (parseInt(b.dataset.serial) || 0)
+    (parseInt(b.dataset.serial) || 0) - (parseInt(a.dataset.serial) || 0)
   );
   const data = items.map(collectBlog);
   const btn = event.target;
@@ -226,7 +235,10 @@ function newBlogHtml(n) {
   return `<div class="repeatable-item" data-serial="${n}">
     <div class="item-header">
       <span class="item-number">#${n} — New Post</span>
-      <button type="button" class="btn btn-danger btn-sm" data-remove-item>Remove</button>
+      <div style="display:flex;gap:6px;">
+        <button type="button" class="btn btn-success btn-sm" data-save-item>Save</button>
+        <button type="button" class="btn btn-danger-light btn-sm" data-remove-item>Remove</button>
+      </div>
     </div>
     <div class="form-grid">
       <div class="form-group"><label class="form-label">Title <span class="badge">EN</span></label><input type="text" name="title_en" class="form-control" value=""></div>
@@ -244,15 +256,21 @@ function newBlogHtml(n) {
       <div class="form-group"><label class="form-label">Slug</label><input type="text" name="slug" class="form-control" value="" placeholder="blog-post-slug"></div>
       <div class="form-group"><label class="form-label">Datetime (ISO)</label><input type="text" name="datetime" class="form-control" value="" placeholder="2026-01-01T00:00:00+06:00"></div>
     </div>
-    <div class="form-group">
-      <label class="form-label">Banner Image</label>
-      <div class="image-upload-group">
-        <img src="" class="image-preview blog-banner-preview" style="background:#eee">
-        <div class="image-upload-controls">
-          <input type="hidden" name="banner" value="">
-          <input type="file" class="blog-banner-input" accept="image/*" style="display:none">
-          <button type="button" class="btn-upload blog-banner-btn">Upload Banner</button>
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">Banner Image</label>
+        <div class="image-upload-group">
+          <img src="" class="image-preview blog-banner-preview" style="background:#eee">
+          <div class="image-upload-controls">
+            <input type="hidden" name="banner" value="">
+            <input type="file" class="blog-banner-input" accept="image/*" style="display:none">
+            <button type="button" class="btn-upload blog-banner-btn">Upload Banner</button>
+          </div>
         </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Initial Views</label>
+        <input type="number" min="0" name="views" class="form-control" value="0">
       </div>
     </div>
   </div>`;
@@ -279,13 +297,30 @@ document.getElementById('add-blog-btn').addEventListener('click', () => {
   renderPagination();
 });
 
-/* ── Wire remove + image upload ─────────────────────────────── */
+/* ── Wire remove + save + image upload ─────────────────────────────── */
 function wireItem(item) {
   item.querySelector('[data-remove-item]')?.addEventListener('click', () => {
     if (confirm('Remove this blog entry?')) {
       item.remove();
       renderPagination();
     }
+  });
+  item.querySelector('[data-save-item]')?.addEventListener('click', async function() {
+    const serial = parseInt(item.dataset.serial) || 0;
+    const data = collectBlog(item);
+    data.serial = serial;
+    this.disabled = true; this.textContent = 'Saving…';
+    try {
+      const res = await fetch('/admin/save.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': getCsrfToken() },
+        body: JSON.stringify({ section: 'blog_single', data })
+      });
+      const json = await res.json();
+      if (json.ok) showToast(json.message, 'success');
+      else showToast(json.error || 'Save failed.', 'error');
+    } catch (e) { showToast('Network error.', 'error'); }
+    this.disabled = false; this.textContent = 'Save';
   });
   const btn = item.querySelector('.blog-banner-btn');
   const inp = item.querySelector('.blog-banner-input');

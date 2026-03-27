@@ -30,11 +30,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $valid) {
     } elseif ($pw !== $pw2) {
         $error = 'Passwords do not match.';
     } else {
-        $config['password_hash'] = password_hash($pw, PASSWORD_BCRYPT);
-        unset($config['reset_token'], $config['reset_expires']); // single-use: clear token
-        write_json('config.json', $config);
-        $success = 'Password updated! You can now log in.';
-        $valid   = false; // hide the form
+        // Find and update the correct user's password
+        $uid   = $config['reset_user_id'] ?? '';
+        $found = false;
+        foreach ($config['users'] as &$u) {
+            if ($u['id'] === $uid) {
+                $u['password_hash'] = password_hash($pw, PASSWORD_BCRYPT);
+                $found = true;
+                break;
+            }
+        }
+        unset($u);
+
+        if (!$found) {
+            $error = 'User account no longer exists. Contact the site admin.';
+        } else {
+            unset($config['reset_token'], $config['reset_expires'], $config['reset_user_id']);
+            write_json('config.json', $config);
+            $success = 'Password updated! You can now log in.';
+            $valid   = false; // hide the form
+        }
     }
 }
 ?>
