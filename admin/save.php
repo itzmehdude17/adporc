@@ -34,9 +34,11 @@ $sectionMap = [
     'home_about'   => ['file' => 'home.json',   'key' => 'about'],
     'home_cta'     => ['file' => 'home.json',   'key' => 'cta'],
     'home_services'=> ['file' => 'home.json',   'key' => 'services'],
-    'team'         => ['file' => 'team.json',   'key' => null],
-    'faqs'         => ['file' => 'faqs.json',   'key' => null],
-    'blogs'        => ['file' => 'blogs.json',  'key' => null],
+    'team'         => ['file' => 'team.json',        'key' => null],
+    'faqs'         => ['file' => 'faqs.json',        'key' => null],
+    'blogs'        => ['file' => 'blogs.json',       'key' => null],
+    'about_page'   => ['file' => 'about.json',       'key' => null],
+    'services_page'=> ['file' => 'services_page.json','key' => null],
 ];
 
 if (!array_key_exists($section, $sectionMap)) {

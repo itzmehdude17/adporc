@@ -129,11 +129,15 @@ include __DIR__ . '/_layout-top.php';
         <input type="text" class="form-control" name="gtm_id" value="<?= h($site['analytics']['gtm_id'] ?? '') ?>" placeholder="GTM-XXXXXXX">
       </div>
       <div class="form-group">
-        <label class="form-label">Google Sheet URL (for appointment form)</label>
-        <input type="url" class="form-control" name="google_sheet_url" value="<?= h($site['google_sheet_url'] ?? '') ?>" placeholder="https://script.google.com/...">
+        <label class="form-label">Google Sheet URL (Appointment Form)</label>
+        <input type="url" class="form-control" name="google_sheet_appointment_url" value="<?= h($site['google_sheet_appointment_url'] ?? '') ?>" placeholder="https://script.google.com/...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Google Sheet URL (Phone Form)</label>
+        <input type="url" class="form-control" name="google_sheet_phone_url" value="<?= h($site['google_sheet_phone_url'] ?? '') ?>" placeholder="https://script.google.com/...">
       </div>
     </div>
-    <p style="font-size:.8rem;color:#999;margin-top:4px;">The Google Sheet URL is pasted into the form action. This is the Apps Script web app URL that receives form submissions.</p>
+    <p style="font-size:.8rem;color:#999;margin-top:4px;">These are the Apps Script web app URLs that receive form submissions. Each form posts to its own Google Sheet.</p>
   </div>
 </div>
 
@@ -199,17 +203,18 @@ function collectAllSiteData() {
     const inputs = container.querySelectorAll('[name]');
     const sectionData = {};
     inputs.forEach(el => { sectionData[el.name] = el.value.trim(); });
-    if (sec === 'google_sheet_url') {
-      result.google_sheet_url = sectionData.google_sheet_url || '';
-    } else {
-      result[sec] = sectionData;
-    }
+    result[sec] = sectionData;
   });
-  // Handle google_sheet_url from analytics section
-  const urlInput = document.querySelector('#section-analytics [name="google_sheet_url"]');
-  if (urlInput) result.google_sheet_url = urlInput.value.trim();
-  // Remove it from analytics sub obj
-  if (result.analytics) delete result.analytics.google_sheet_url;
+  // Handle google_sheet URLs from analytics section
+  const appointmentUrlInput = document.querySelector('#section-analytics [name="google_sheet_appointment_url"]');
+  if (appointmentUrlInput) result.google_sheet_appointment_url = appointmentUrlInput.value.trim();
+  const phoneUrlInput = document.querySelector('#section-analytics [name="google_sheet_phone_url"]');
+  if (phoneUrlInput) result.google_sheet_phone_url = phoneUrlInput.value.trim();
+  // Remove them from analytics sub obj
+  if (result.analytics) {
+    delete result.analytics.google_sheet_appointment_url;
+    delete result.analytics.google_sheet_phone_url;
+  }
   return result;
 }
 

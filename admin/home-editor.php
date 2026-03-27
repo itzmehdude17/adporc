@@ -13,15 +13,15 @@ include __DIR__ . '/_layout-top.php';
 ?>
 
 <!-- TABS -->
-<div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;">
-  <button class="btn btn-primary btn-sm tab-btn active" onclick="showTab('hero',this)">Hero</button>
-  <button class="btn btn-secondary btn-sm tab-btn" onclick="showTab('services',this)">Services</button>
-  <button class="btn btn-secondary btn-sm tab-btn" onclick="showTab('about',this)">About</button>
-  <button class="btn btn-secondary btn-sm tab-btn" onclick="showTab('cta',this)">CTA Banner</button>
+<div class="tab-buttons">
+  <button class="tab-btn active" onclick="showTab('hero',this)">Hero</button>
+  <button class="tab-btn" onclick="showTab('services',this)">Services</button>
+  <button class="tab-btn" onclick="showTab('about',this)">About</button>
+  <button class="tab-btn" onclick="showTab('cta',this)">CTA Banner</button>
 </div>
 
 <!-- HERO SECTION -->
-<div id="tab-hero" class="tab-panel">
+<div id="tab-hero" class="tab-pane active">
   <div class="card">
     <div class="card-header">
       <h2>🦸 Hero Section</h2>
@@ -92,7 +92,7 @@ include __DIR__ . '/_layout-top.php';
 </div>
 
 <!-- SERVICES SECTION -->
-<div id="tab-services" class="tab-panel" style="display:none">
+<div id="tab-services" class="tab-pane">
   <div class="card">
     <div class="card-header">
       <h2>🩺 Services</h2>
@@ -150,7 +150,7 @@ include __DIR__ . '/_layout-top.php';
 </div>
 
 <!-- ABOUT SECTION -->
-<div id="tab-about" class="tab-panel" style="display:none">
+<div id="tab-about" class="tab-pane">
   <div class="card">
     <div class="card-header">
       <h2>ℹ️ About Section</h2>
@@ -203,7 +203,7 @@ include __DIR__ . '/_layout-top.php';
 </div>
 
 <!-- CTA SECTION -->
-<div id="tab-cta" class="tab-panel" style="display:none">
+<div id="tab-cta" class="tab-pane">
   <div class="card">
     <div class="card-header">
       <h2>📢 CTA Banner Section</h2>
@@ -247,10 +247,10 @@ include __DIR__ . '/_layout-top.php';
 
 <script>
 function showTab(name, btn) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
-  document.querySelectorAll('.tab-btn').forEach(b => { b.className = b.className.replace('btn-primary','btn-secondary'); });
-  document.getElementById('tab-' + name).style.display = '';
-  btn.className = btn.className.replace('btn-secondary','btn-primary');
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-buttons .tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
 }
 
 async function saveHomeSection(section, formId) {

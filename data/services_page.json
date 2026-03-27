@@ -1,0 +1,39 @@
+{
+  "banner": "/assets/images/banners/banner-1.jpg",
+  "title_en": "Our Services",
+  "title_bn": "আমাদের সেবা সমূহ",
+  "conditions_en": [
+    "Neck pain and stiffness",
+    "Low back pain",
+    "Knee pain",
+    "Ankle and heel pain",
+    "Headache and migraine-related neck strain",
+    "Shoulder pain and frozen shoulder",
+    "Tingling, heaviness, or weakness in hands and feet",
+    "Spine problems including cervical and lumbar spondylosis",
+    "Disc prolapse / PLID",
+    "Slipped disc / Spondylolisthesis",
+    "Joint pain (hip, elbow, wrist, ankle)",
+    "Stroke and paralysis rehabilitation",
+    "Sudden facial paralysis (Bell's palsy)",
+    "Sports injuries and muscle strain",
+    "ACL Injury"
+  ],
+  "conditions_bn": [
+    "ঘাড় ব্যথা ও শক্তভাব",
+    "কোমর ব্যথা",
+    "হাঁটু ব্যথা",
+    "পায়ের গোড়ালির ব্যথা",
+    "মাথা ব্যথা ও মাইগ্রেইন-সম্পর্কিত ঘাড়ের টান",
+    "কাঁধের ব্যথা ও ফ্রোজেন শোল্ডার",
+    "হাত-পা ঝিনঝিন, ভারী বা অবস লাগা",
+    "স্পন্ডাইলোসিস সমস্যা (ঘাড় ও কোমরে)",
+    "ডিস্ক প্রলাপ্স / পিএলআইডি",
+    "স্লিপড ডিস্ক / স্পন্ডিলোলিস্থেসিস",
+    "বিভিন্ন জয়েন্টের ব্যথা (হিপ, কনুই, কবজি, গোড়ালি)",
+    "হঠাৎ মুখ বেকে যাওয়া (বেলস্‌ পালসি)",
+    "স্ট্রোক ও প্যারালাইসিস পুনর্বাসন",
+    "খেলাধুলাজনিত আঘাত ও পেশির টান",
+    "ACL ইনজুরি"
+  ]
+}

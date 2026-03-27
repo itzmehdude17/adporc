@@ -11,16 +11,23 @@ include __DIR__ . '/_layout-top.php';
 <div class="card">
   <div class="card-header">
     <h2>📝 Blog Posts</h2>
-    <button class="btn btn-primary btn-sm" onclick="saveBlogs()">Save All</button>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+      <select id="sort-select" class="form-control" style="width:auto;padding:5px 10px;font-size:.85rem;" onchange="applySortAndPage()">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+      </select>
+      <button class="btn btn-primary btn-sm" onclick="saveBlogs()">Save All</button>
+    </div>
   </div>
   <p style="font-size:.85rem;color:#666;margin-bottom:16px;">
     Manage blog entries shown on the home page and blogs page. The <strong>Slug</strong> is the filename without <code>.html</code> (e.g. <code>knee-pain-physiotherapy-treatment-dhaka</code>).
   </p>
+  <button type="button" class="add-item-btn" id="add-blog-btn" style="margin-bottom:16px;">+ Add Blog Entry</button>
   <div id="blog-list">
-    <?php foreach ($blogs as $i => $blog): ?>
-    <div class="repeatable-item">
+    <?php $total = count($blogs); foreach (array_reverse($blogs) as $revIdx => $blog): $serial = $total - $revIdx; ?>
+    <div class="repeatable-item" data-serial="<?= $serial ?>">
       <div class="item-header">
-        <span class="item-number">#<?= $i + 1 ?> — <?= h($blog['title_en'] ?? 'Post') ?></span>
+        <span class="item-number">#<?= $serial ?> — <?= h($blog['title_en'] ?? 'Post') ?></span>
         <button type="button" class="btn btn-danger btn-sm" data-remove-item>Remove</button>
       </div>
       <div class="form-grid">
@@ -78,10 +85,91 @@ include __DIR__ . '/_layout-top.php';
     </div>
     <?php endforeach; ?>
   </div>
-  <button type="button" class="add-item-btn" id="add-blog-btn">+ Add Blog Entry</button>
+
+  <!-- Pagination bar -->
+  <div id="pagination-bar" style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;flex-wrap:wrap;gap:8px;">
+    <span id="page-info" style="font-size:.85rem;color:#666;"></span>
+    <div id="page-buttons" style="display:flex;gap:5px;flex-wrap:wrap;"></div>
+  </div>
+
 </div>
 
 <script>
+const ITEMS_PER_PAGE = 5;
+let currentPage = 1;
+
+function getAllItems() {
+  return Array.from(document.querySelectorAll('#blog-list .repeatable-item'));
+}
+
+/* ── Sort ─────────────────────────────── */
+function applySortAndPage() {
+  const sort = document.getElementById('sort-select').value;
+  const list = document.getElementById('blog-list');
+  const items = getAllItems();
+  items.sort((a, b) => {
+    const sa = parseInt(a.dataset.serial) || 0;
+    const sb = parseInt(b.dataset.serial) || 0;
+    return sort === 'oldest' ? sa - sb : sb - sa;
+  });
+  items.forEach(item => list.appendChild(item));
+  currentPage = 1;
+  renderPagination();
+}
+
+/* ── Pagination ─────────────────────────────── */
+function pageRange(cur, total) {
+  if (total <= 7) return Array.from({length: total}, (_, i) => i + 1);
+  if (cur <= 4)          return [1,2,3,4,5,'…',total];
+  if (cur >= total - 3)  return [1,'…',total-4,total-3,total-2,total-1,total];
+  return [1,'…',cur-1,cur,cur+1,'…',total];
+}
+
+function renderPagination() {
+  const items  = getAllItems();
+  const total  = items.length;
+  const pages  = Math.max(1, Math.ceil(total / ITEMS_PER_PAGE));
+  if (currentPage > pages) currentPage = pages;
+  const start  = (currentPage - 1) * ITEMS_PER_PAGE;
+  const end    = start + ITEMS_PER_PAGE;
+
+  items.forEach((item, i) => {
+    item.style.display = (i >= start && i < end) ? '' : 'none';
+  });
+
+  const bar  = document.getElementById('pagination-bar');
+  const info = document.getElementById('page-info');
+  const btns = document.getElementById('page-buttons');
+
+  info.textContent = `Showing ${total ? start+1 : 0}–${Math.min(end,total)} of ${total} posts`;
+  btns.innerHTML   = '';
+  bar.style.display = pages <= 1 ? 'none' : 'flex';
+
+  const mk = (label, page, active, disabled) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = label;
+    b.className = 'btn btn-sm' + (active ? ' btn-primary' : '');
+    b.disabled = disabled;
+    b.style.minWidth = '34px';
+    if (!disabled) b.onclick = () => { currentPage = page; renderPagination(); };
+    return b;
+  };
+
+  btns.appendChild(mk('←', currentPage - 1, false, currentPage === 1));
+  pageRange(currentPage, pages).forEach(p => {
+    if (p === '…') {
+      const s = document.createElement('span');
+      s.textContent = '…'; s.style.cssText = 'padding:0 4px;line-height:30px;color:#999;';
+      btns.appendChild(s);
+    } else {
+      btns.appendChild(mk(p, p, p === currentPage, false));
+    }
+  });
+  btns.appendChild(mk('→', currentPage + 1, false, currentPage === pages));
+}
+
+/* ── Collect & Save ─────────────────────────────── */
 function collectBlog(item) {
   const d = {};
   item.querySelectorAll('[name]').forEach(el => { d[el.name] = el.value; });
@@ -89,16 +177,20 @@ function collectBlog(item) {
 }
 
 async function saveBlogs() {
-  const items = document.querySelectorAll('#blog-list .repeatable-item');
-  const data = Array.from(items).map(collectBlog);
+  // Always save in ascending serial (oldest=1 first → index 0 in JSON)
+  const items = getAllItems().slice().sort((a, b) =>
+    (parseInt(a.dataset.serial) || 0) - (parseInt(b.dataset.serial) || 0)
+  );
+  const data = items.map(collectBlog);
   const btn = event.target;
-  btn.disabled = true; btn.textContent = 'Saving...';
+  btn.disabled = true; btn.textContent = 'Saving…';
   await saveSection('blogs', data);
   btn.disabled = false; btn.textContent = 'Save All';
 }
 
+/* ── New blog HTML template ─────────────────────────────── */
 function newBlogHtml(n) {
-  return `<div class="repeatable-item">
+  return `<div class="repeatable-item" data-serial="${n}">
     <div class="item-header">
       <span class="item-number">#${n} — New Post</span>
       <button type="button" class="btn btn-danger btn-sm" data-remove-item>Remove</button>
@@ -133,19 +225,34 @@ function newBlogHtml(n) {
   </div>`;
 }
 
+/* ── Add blog ─────────────────────────────── */
 document.getElementById('add-blog-btn').addEventListener('click', () => {
-  const list = document.getElementById('blog-list');
-  const n = list.children.length + 1;
-  const tmp = document.createElement('div');
-  tmp.innerHTML = newBlogHtml(n);
-  const item = tmp.firstElementChild;
-  list.appendChild(item);
+  const list      = document.getElementById('blog-list');
+  const allItems  = getAllItems();
+  const n         = allItems.length + 1;
+  const tmp       = document.createElement('div');
+  tmp.innerHTML   = newBlogHtml(n);
+  const item      = tmp.firstElementChild;
+  const sort      = document.getElementById('sort-select').value;
+
+  if (sort === 'oldest') {
+    list.appendChild(item);
+    currentPage = Math.ceil(n / ITEMS_PER_PAGE); // jump to last page
+  } else {
+    list.prepend(item);
+    currentPage = 1; // jump to first page
+  }
   wireItem(item);
+  renderPagination();
 });
 
+/* ── Wire remove + image upload ─────────────────────────────── */
 function wireItem(item) {
   item.querySelector('[data-remove-item]')?.addEventListener('click', () => {
-    if (confirm('Remove this blog entry?')) item.remove();
+    if (confirm('Remove this blog entry?')) {
+      item.remove();
+      renderPagination();
+    }
   });
   const btn = item.querySelector('.blog-banner-btn');
   const inp = item.querySelector('.blog-banner-input');
@@ -153,7 +260,7 @@ function wireItem(item) {
     btn.addEventListener('click', () => inp.click());
     inp.addEventListener('change', async function() {
       if (!this.files[0]) return;
-      const preview = item.querySelector('.blog-banner-preview');
+      const preview   = item.querySelector('.blog-banner-preview');
       const pathInput = item.querySelector('[name="banner"]');
       const url = await uploadImage(this.files[0], preview);
       if (url && pathInput) pathInput.value = url;
@@ -162,6 +269,7 @@ function wireItem(item) {
 }
 
 document.querySelectorAll('#blog-list .repeatable-item').forEach(wireItem);
+renderPagination(); // init on page load
 </script>
 
 <?php include __DIR__ . '/_layout-bottom.php'; ?>

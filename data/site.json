@@ -27,7 +27,8 @@
     "clarity_id": "uh2rk88w4t",
     "gtm_id": "GTM-5DZHWJDS"
   },
-  "google_sheet_url": "",
+  "google_sheet_appointment_url": "https://script.google.com/macros/s/AKfycbzwG_e3As_Ymeadtfi1cbkZyg3q7xVhmfUhCB-ZuKpg3LVikxJKT-mfLwPj5HThC-jfvQ/exec",
+  "google_sheet_phone_url": "https://script.google.com/macros/s/AKfycbyyhyKWODeLPB9fDxxE7MisAK3c4mG5MfgXImHRyfk3MCkV2AOFSv-9zXhfvmJEznlq0Q/exec",
   "footer": {
     "text_en": "One of the best physiotherapy center in Dhaka city. Feel better, move easier, and get back to living your life with simple and effective physiotherapy care.",
     "text_bn": "ঢাকা শহরের অন্যতম সেরা ফিজিওথেরাপি সেন্টার। সহজ এবং কার্যকর ফিজিওথেরাপি যত্নের মাধ্যমে ভালো অনুভব করুন, সহজে চলাফেরা করুন এবং আপনার জীবনযাত্রায় ফিরে যান।"

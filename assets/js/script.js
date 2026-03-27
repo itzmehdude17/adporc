@@ -102,6 +102,14 @@ function showToast(message, type = "success") {
 }
 
 // Form Submissions
+const APPOINTMENT_SHEET_URL = "https://script.google.com/macros/s/AKfycbzwG_e3As_Ymeadtfi1cbkZyg3q7xVhmfUhCB-ZuKpg3LVikxJKT-mfLwPj5HThC-jfvQ/exec";
+const PHONE_SHEET_URL = "https://script.google.com/macros/s/AKfycbyyhyKWODeLPB9fDxxE7MisAK3c4mG5MfgXImHRyfk3MCkV2AOFSv-9zXhfvmJEznlq0Q/exec";
+
+function getFormAction(form, fallback) {
+  const action = form.getAttribute("action");
+  return (action && action.startsWith("https://script.google.com/")) ? action : fallback;
+}
+
 function initFormSubmissions() {
   const appointmentForm = document.getElementById("appointmentForm");
   const phoneForm = document.getElementById("phoneForm");
@@ -114,9 +122,12 @@ function initFormSubmissions() {
       submitBtn.disabled = true;
       submitBtn.textContent = "Submitting...";
 
-      fetch(appointmentForm.action, {
+      const formData = new URLSearchParams(new FormData(appointmentForm));
+      fetch(getFormAction(appointmentForm, APPOINTMENT_SHEET_URL), {
         method: "POST",
-        body: new FormData(appointmentForm)
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData
       })
       .then(() => {
         showToast("Submitted successfully!");
@@ -140,9 +151,12 @@ function initFormSubmissions() {
       submitBtn.disabled = true;
       submitBtn.textContent = "Submitting...";
 
-      fetch(phoneForm.action, {
+      const formData = new URLSearchParams(new FormData(phoneForm));
+      fetch(getFormAction(phoneForm, PHONE_SHEET_URL), {
         method: "POST",
-        body: new FormData(phoneForm)
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData
       })
       .then(() => {
         showToast("Thank you! We'll call you soon.");

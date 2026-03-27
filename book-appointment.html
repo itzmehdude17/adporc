@@ -664,9 +664,11 @@
         forms.forEach((appointmentForm) => {
           appointmentForm.addEventListener("submit", function(e) {
             e.preventDefault();
-            const formData = new FormData(appointmentForm);
+            const formData = new URLSearchParams(new FormData(appointmentForm));
             fetch("https://script.google.com/macros/s/AKfycbzwG_e3As_Ymeadtfi1cbkZyg3q7xVhmfUhCB-ZuKpg3LVikxJKT-mfLwPj5HThC-jfvQ/exec", {
               method: "POST",
+              mode: "no-cors",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
               body: formData
             })
               .then((response) => {

@@ -2717,9 +2717,11 @@
           if (appointmentForm) {
             appointmentForm.addEventListener("submit", function(e) {
               e.preventDefault();
-              const formData = new FormData(appointmentForm);
+              const formData = new URLSearchParams(new FormData(appointmentForm));
               fetch("https://script.google.com/macros/s/AKfycbzwG_e3As_Ymeadtfi1cbkZyg3q7xVhmfUhCB-ZuKpg3LVikxJKT-mfLwPj5HThC-jfvQ/exec", {
                 method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: formData
               })
                 .then((response) => {
@@ -2740,9 +2742,9 @@
           if (phoneForm) {
             phoneForm.addEventListener("submit", function(e) {
               e.preventDefault();
-              const formData = new FormData(phoneForm);
-              fetch("https://script.google.com/macros/s/AKfycbzckbkLPqBm0C71cwKK3t_F8lE9tQdg3qO4s4_zh3Gs3c6kZI52-iWWgOJc_qop0byHyA/exec", { 
-                method: "POST", body: formData })
+              const formData = new URLSearchParams(new FormData(phoneForm));
+              fetch("https://script.google.com/macros/s/AKfycbyyhyKWODeLPB9fDxxE7MisAK3c4mG5MfgXImHRyfk3MCkV2AOFSv-9zXhfvmJEznlq0Q/exec", { 
+                method: "POST", mode: "no-cors", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: formData })
                 .then((response) => {
                   alert("Thank you! We'll call you soon.");
                   phoneForm.reset();

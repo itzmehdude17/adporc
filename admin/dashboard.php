@@ -47,10 +47,10 @@ include __DIR__ . '/_layout-top.php';
     <h3>Site Settings</h3>
     <p>Contact info, social links, schedule</p>
   </a>
-  <a href="/admin/home-editor.php" class="section-nav-card">
-    <div class="icon">🏠</div>
-    <h3>Home Page</h3>
-    <p>Hero, services, about, CTA sections</p>
+  <a href="/admin/page-editor" class="section-nav-card">
+    <div class="icon">📄</div>
+    <h3>Page Editor</h3>
+    <p>Home, About Us &amp; Services pages</p>
   </a>
   <a href="/admin/team-editor.php" class="section-nav-card">
     <div class="icon">👥</div>

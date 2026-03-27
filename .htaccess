@@ -22,8 +22,8 @@ RewriteRule ^api/ - [L]
     # Fallback: if mod_alias unavailable, try mod_rewrite version
 <IfModule mod_rewrite.c>
     RewriteRule ^blogs/best-physiotherapy-dhaka$ /blogs/best-physiotherapy-center-dhaka [R=301,L]
-    RewriteRule ^blogs/plantar-fasciitis-treatment-in-dhaka$ /blogs/plantar-fasciitis-treatment-treatment-dhaka [R=301,L]
-    RewriteRule ^blogs/carpal-tunnel-syndrome-treatment-in-dhaka$ /blogs/carpal-tunnel-syndirome-physiotherapy-treatment-dhaka [R=301,L]
+    RewriteRule ^blogs/plantar-fasciitis-treatment-in-dhaka$ /blogs/plantar-fasciitis-physiotherapy-treatment-dhaka [R=301,L]
+    RewriteRule ^blogs/carpal-tunnel-syndrome-treatment-in-dhaka$ /blogs/carpal-tunnel-syndrome-physiotherapy-treatment-dhaka [R=301,L]
     RewriteRule ^blogs/haglunds-deformity-physiotherapy-treatment-dhaka$ /blogs/haglunds-deformity-physiotherapy-treatment-dhaka [R=301,L]
     RewriteRule ^blogs/best-physiotherapy-for-plid-dhaka$ /blogs/plid-physiotherapy-treatment-dhaka [R=301,L]
     RewriteRule ^blogs/best-physiotherapy-for-trigger-finger-dhaka$ /blogs/trigger-finger-physiotherapy-treatment-dhaka [R=301,L]
