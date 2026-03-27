@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // Shared admin layout — top of every protected page
 // Usage: include_once this after requiring auth.php and calling admin_require_login()
 // Set $pageTitle before including.
