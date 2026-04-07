@@ -576,6 +576,50 @@
             <p class="section-title" data-translation data-lang-eng="<b>Latest Blogs</b>" data-lang-ban="<b>সর্বশেষ ব্লগসমূহ</b>"><b>Latest Blogs</b></p>
 
             <div class="blog-list">
+              <!-- blog-27: cervical myelopathy -->
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <img src="/assets/images/banners/cervical-myelopathy-physiotherapy.png" loading="lazy" alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2026-04-06" data-translation data-lang-eng="06/04/2026" data-lang-ban="০৬/০৪/২০২৬"></time>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">
+                    <a href="/blogs/cervical-myelopathy-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Cervical Myelopathy: Symptoms, Causes, and Physiotherapy Treatment in Jatrabari, Dhaka" 
+                      data-lang-ban="সার্ভাইক্যাল মাইলোপ্যাথি: উপসর্গ, কারণ এবং ফিজিওথেরাপি চিকিৎসা">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Cervical Myelopathy is one of the most serious conditions affecting the neck and spinal cord. Unlike common neck pain, this condition involves compression of the spinal cord, which can lead to progressive neurological deficits and even permanent disability if not managed properly."
+                    data-lang-ban="সার্ভাইক্যাল মাইলোপ্যাথি ঘাড় ও স্পাইনাল কর্ডকে প্রভাবিত করে এমন একটি গুরুতর অবস্থা। সাধারণ ঘাড়ের ব্যথার মতো নয়, এই অবস্থায় স্পাইনাল কর্ডে চাপ সৃষ্টি হয়, যার ফলে ধীরে ধীরে স্নায়বিক ঘাটতি দেখা দিতে পারে এবং সঠিকভাবে চিকিৎসা না করলে স্থায়ী অক্ষমতাও হতে পারে।">
+                  </p>
+                  <a href="/blogs/cervical-myelopathy-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
+                </div>
+              </div>
+              <!-- blog-26: cervical radiculopathy -->
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <img src="/assets/images/banners/cervical-radiculopahty-physiotherapy.png" loading="lazy" alt="blog-img" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2026-04-02" data-translation data-lang-eng="02/04/2026" data-lang-ban="০২/০৪/২০২৬"></time>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">
+                    <a href="/blogs/cervical-radiculopahty-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Cervical Radiculopathy: Symptoms, Causes, and Physiotherapy Treatment in Jatrabari, Dhaka" 
+                      data-lang-ban="সার্ভাইক্যাল রেডিকুলোপ্যাথি: উপসর্গ, কারণ এবং ফিজিওথেরাপি চিকিৎসা">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Cervical radiculopathy is a common yet often misunderstood cause of neck pain that radiates into the shoulder, arm, or hand due to nerve root compression in the cervical spine. Many patients assume it is just muscle pain or general spondylosis, which delays proper treatment and allows the condition to worsen."
+                    data-lang-ban="সার্ভাইক্যাল রেডিকুলোপ্যাথি ঘাড়ের ব্যথার একটি সাধারণ কিন্তু অনেক সময় ভুলভাবে বোঝা হয় এমন সমস্যা, যেখানে সার্ভাইক্যাল স্পাইনের নার্ভ রুটে চাপ পড়ার কারণে ব্যথা ঘাড় থেকে কাঁধ, হাত বা আঙুল পর্যন্ত ছড়িয়ে যায়। অনেক রোগী এটিকে সাধারণ মাংসপেশির ব্যথা বা সাধারণ স্পন্ডাইলোসিস মনে করে অবহেলা করেন, ফলে সঠিক চিকিৎসা দেরিতে শুরু হয় এবং সমস্যা আরও জটিল হয়ে ওঠে।">
+                  </p>
+                  <a href="/blogs/cervical-radiculopahty-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
+                </div>
+              </div>
               <!-- blog-25: elbow pain -->
               <div class="blog-card">
                 <figure class="card-banner">
@@ -1163,74 +1207,13 @@
                   <a href="/blogs/advance-electrotherapy-adporc-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন"></a>
                 </div>
               </div>
-              <!-- blog-0.2: best physiotherapy --
-              <div class="blog-card">
-                <figure class="card-banner">
-                  <img src="/assets/images/banners/banner-1.jpg" loading="lazy" alt="blog-img" class="img-cover">
-                  <div class="card-badge">
-                    <ion-icon name="calendar-outline"></ion-icon>
-                    <time class="time" datetime="2025-03-14" data-translation data-lang-eng="14/03/2025" data-lang-ban="১৪/০৩/২০২৫"></time>
-                </figure>
-                <div class="card-content">
-                  <h3 class="h3 card-title">
-                    <a href="/blogs/best-physiotherapy-center-jatrbari.html" class="card-title" data-translation 
-                      data-lang-eng="Best Physiotherapy Center in Jatrabari – ADPORC Care"
-                      data-lang-ban="যাত্রাবাড়ীতে সেরা ফিজিওথেরাপি সেন্টার – ADPORC কেয়ার">
-                    </a>
-                  </h3>
-                  <p class="card-text" data-translation 
-                    data-lang-eng="Looking for the best physiotherapy in Jatrabari? ADPORC offers advanced treatment for back pain, neck pain, knee pain, paralysis, sports injuries, and more. Expert physiotherapists, modern electrotherapy & personalized rehabilitation." 
-                    data-lang-ban="যাত্রাবাড়ীতে সেরা ফিজিওথেরাপি সেন্টার খুঁজছেন? ADPORC-এ রয়েছে ব্যথা, পক্ষাঘাত, খেলাধুলার আঘাত, ব্যাক-নেক-হাঁটু ব্যথার আধুনিক ও ব্যক্তিগত চিকিৎসা।">
-                  </p>
-                  <a href="/blogs/best-physiotherapy-center-jatrbari.html" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
-                </div>
-              </div>
-              <!-- blog-0.1: best physiotherapy --
-              <div class="blog-card">
-                <figure class="card-banner">
-                  <img src="/assets/images/banners/banner-1.jpg" loading="lazy" alt="blog-img" class="img-cover">
-                  <div class="card-badge">
-                    <ion-icon name="calendar-outline"></ion-icon>
-                    <time class="time" datetime="2025-03-14" data-translation data-lang-eng="14/03/2025" data-lang-ban="১৪/০৩/২০২৫"></time>
-                </figure>
-                <div class="card-content">
-                  <h3 class="h3 card-title">
-                    <a href="/blogs/best-physiotherapy-center-dhaka.html" class="card-title" data-translation 
-                      data-lang-eng="Best Physiotherapy Center in Dhaka – ADPORC Care"
-                      data-lang-ban=" ঢাকায় সেরা ফিজিওথেরাপি সেন্টার – ADPORC কেয়ার">
-                    </a>
-                  </h3>
-                  <p class="card-text" data-translation 
-                    data-lang-eng="Best physiotherapy Center in Dhaka is ADPORC, where Dr. Saddam Hossain,PT’s expert care, personalized treatment plans, and gentle hands-on techniques relieve pain and restore your freedom to move." 
-                    data-lang-ban="ঢাকায় সেরা ফিজিওথেরাপি সেন্টার ADPORC, যেখানে ডা. সাদ্দাম হোসেন, পিটি-এর বিশেষজ্ঞ যত্ন, ব্যক্তিগত থেরাপি পরিকল্পনা ও কোমল হাতে-কলমের পদ্ধতি আপনার ব্যথা কমিয়ে আবার স্বাধীনভাবে চলাচলে সহায়তা করে।">
-                  </p>
-                  <a href="/blogs/best-physiotherapy-center-dhaka.html" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
-                </div>
-              </div>
-              <!-- blog-0: assisted --
-              <div class="blog-card">
-                <figure class="card-banner">
-                  <img src="/assets/images/banners/banner-2.jpg" loading="lazy" alt="blog-img" class="img-cover">
-                  <div class="card-badge">
-                    <ion-icon name="calendar-outline"></ion-icon>
-                    <time class="time" datetime="2025-03-14" data-translation data-lang-eng="14/03/2025" data-lang-ban="১৪/০৩/২০২৫"></time>
-                </figure>
-                <div class="card-content">
-                  <h3 class="h3 card-title">
-                    <a href="/blogs/assisted-physiotherapy-dhaka.html" class="card-title" data-translation 
-                      data-lang-eng="Empowering Recovery: Recovery Through Precision Care" 
-                      data-lang-ban="সঠিক যত্নে দ্রুত আরোগ্য: নিজেকে ফিরে পাওয়ার আত্মবিশ্বাস নিয়ে।">
-                    </a>
-                  </h3>
-                  <p class="card-text" data-translation 
-                    data-lang-eng="Discover how ADPORC's certified physiotherapists help restore mobility, reduce pain, and speed up recovery 
-                    using assisted therapy, electrotherapy, and personalized care in Dhaka." 
-                    data-lang-ban="ঢাকায় ADPORC-এর সনদপ্রাপ্ত ফিজিওথেরাপিস্টরা কিভাবে ব্যথা কমিয়ে, গতিশীলতা ফিরিয়ে, এবং ব্যক্তিগত যত্নের মাধ্যমে রোগীর পুনরুদ্ধার নিশ্চিত করেন তা জানুন।">
-                  </p>
-                  <a href="/blogs/assisted-physiotherapy-dhaka.html" class="btn" data-translation data-lang-eng="Read More" data-lang-ban="বিস্তারিত পড়ুন">Read More</a>
-                </div>
-              </div> -->
-              <!-- blog-end -->
+            </div>
+
+            <!-- See more blogs button -->
+            <div class="blog-load-more-wrap">
+              <a href="/blogs.html" class="btn" data-translation="" data-lang-eng="See more blogs" data-lang-ban="আরও ব্লগ দেখুন">
+                See more blogs
+              </a>
             </div>
             
           </div>

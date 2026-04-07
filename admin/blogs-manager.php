@@ -5,8 +5,8 @@ admin_require_login();
 $pageTitle = 'Blog Manager';
 $blogs = read_json('blogs.json') ?: [];
 
-// Load views from api/views.json
-$viewsFile = dirname(__DIR__) . '/api/views.json';
+// Load views from sitedata/views.json
+$viewsFile = dirname(dirname(__DIR__)) . '/sitedata/views.json';
 $views = [];
 if (is_file($viewsFile)) {
     $raw = file_get_contents($viewsFile);

@@ -38,7 +38,7 @@ $e = $errors[$code];
 
 function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); }
 function loadJson($file) {
-    $path = __DIR__ . '/data/' . $file;
+    $path = dirname(__DIR__) . '/sitedata/' . $file;
     if (!file_exists($path)) return null;
     $raw = file_get_contents($path);
     return $raw ? json_decode($raw, true) : null;

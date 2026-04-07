@@ -62,7 +62,7 @@ if (!array_key_exists($section, $sectionMap)) {
         $ok = write_json('blogs.json', $blogs);
         // Also update views if provided
         if ($ok && $views !== null && isset($data['slug'])) {
-            $viewsFile = dirname(__DIR__) . '/api/views.json';
+            $viewsFile = dirname(dirname(__DIR__)) . '/sitedata/views.json';
             $allViews = [];
             if (is_file($viewsFile)) {
                 $decoded = json_decode(file_get_contents($viewsFile), true);
@@ -80,13 +80,13 @@ if (!array_key_exists($section, $sectionMap)) {
         exit;
     }
 
-    // Handle blog_views separately (stored in api/views.json, not data/)
+    // Handle blog_views separately (stored in sitedata/, outside public_html)
     if ($section === 'blog_views') {
         if (!is_array($data)) {
             http_response_code(400);
             exit(json_encode(['ok' => false, 'error' => 'Invalid views data']));
         }
-        $viewsFile = dirname(__DIR__) . '/api/views.json';
+        $viewsFile = dirname(dirname(__DIR__)) . '/sitedata/views.json';
         // Sanitize: only allow /blogs/... keys with integer values
         $clean = [];
         foreach ($data as $slug => $count) {

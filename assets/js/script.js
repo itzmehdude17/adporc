@@ -74,6 +74,7 @@ function initLanguageToggle() {
     });
 
     localStorage.setItem("lang", lang);
+    document.dispatchEvent(new CustomEvent("languageChanged", { detail: { lang } }));
   }
 
   setLanguage(currentLang);

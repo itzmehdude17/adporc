@@ -50,7 +50,7 @@ include __DIR__ . '/_layout-top.php';
   <a href="/admin/page-editor.php" class="section-nav-card">
     <div class="icon">📄</div>
     <h3>Page Editor</h3>
-    <p>Home, About Us &amp; Services pages</p>
+    <p>Home, About Us & Services pages</p>
   </a>
   <a href="/admin/team-editor.php" class="section-nav-card">
     <div class="icon">👥</div>

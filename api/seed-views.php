@@ -8,7 +8,7 @@ header('Content-Type: application/json; charset=utf-8');
 $initialSeed = 400;
 
 // Path to views storage
-$viewsFile = __DIR__ . '/views.json';
+$viewsFile = dirname(dirname(__DIR__)) . '/sitedata/views.json';
 
 // Possible sitemap locations
 $sitemapCandidates = [

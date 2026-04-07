@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $success = 'Master account created! Please sign in.';
                 $mode    = 'login';
             } else {
-                $error = 'Could not write config file. Check that /data/ exists and is writable.';
+                $error = 'Could not write config file. Check that /sitedata/ exists and is writable.';
             }
         }
 

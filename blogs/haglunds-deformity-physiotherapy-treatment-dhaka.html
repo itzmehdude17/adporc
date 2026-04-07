@@ -1,4 +1,4 @@
-<!-- itzmehdude -->
+﻿<!-- itzmehdude -->
 <!DOCTYPE html>
  <html lang="en">
     <head>
@@ -196,55 +196,6 @@
           </div>
         </div>
       </header>
-      <!-- pop-up appointment form -->
-      <div class="popup-overlay" id="popupForm">
-        <div class="popup-content">
-          <button class="popup-close-btn" id="popupCloseBtn" aria-label="Close form">
-            <ion-icon name="close-outline"></ion-icon>
-          </button>
-          <h2 class="popup-title" data-translation data-lang-eng="Book an Appointment" data-lang-ban="অ্যাপয়েন্টমেন্ট বুক করুন">
-            Book an Appointment
-          </h2>
-          <form id="appointmentForm" name="submit-to-google-sheet" class="appointment-form">
-            <!-- name -->
-            <div class="form-group">
-              <label for="name" data-translation data-lang-eng="Name" data-lang-ban="নাম">Name</label>
-              <input name="Name" type="text" id="name" placeholder="Enter your name" required>
-            </div>
-            <!-- phone -->
-            <div class="form-group">
-              <label for="phone" data-translation data-lang-eng="Phone Number" data-lang-ban="ফোন নম্বর">Phone Number</label>
-              <input name="Phone" type="tel" id="phone" placeholder="Enter your phone number" required pattern="[0-9]{11}" title="Please enter a valid 11-digit phone number">
-            </div>
-            <!-- age -->
-            <div class="form-group">
-              <label for="age" data-translation data-lang-eng="Age" data-lang-ban="বয়স">Age</label>
-              <input name="Age" type="tel" id="age" placeholder="Enter your age" title="Numbers only">
-            </div>
-            <!-- gender -->
-            <div class="form-group">
-              <label for="gender" data-translation data-lang-eng="Gender" data-lang-ban="লিঙ্গ">Gender</label>
-              <select class="form-control" name="Gender" id="gender" required>
-                <option value="" disabled selected hidden data-translation data-lang-eng="Select your gender (Binary Only)" data-lang-ban="আপনার লিঙ্গ নির্বাচন করুন (শুধুমাত্র বাইনারি) "></option>
-                <option value="male" data-translation data-lang-eng="Male" data-lang-ban="পুরুষ">Male</option>
-              <option value="female" data-translation data-lang-eng="Female" data-lang-ban="স্ত্রী">Female</option>
-            </select>
-            </div>
-            <!-- address -->
-            <div class="form-group">
-              <label for="address" data-translation data-lang-eng="Address" data-lang-ban="ঠিকানা">Address</label>
-              <input name="Address" type="text" id="address" placeholder="Enter your address" required>
-            </div>
-            <!-- complaint -->
-            <div class="form-group">
-              <label for="complaint" data-translation data-lang-eng="Chief Complaint" data-lang-ban="মূল সমস্যা">Chief Complaint</label>
-              <textarea name="Complaint" id="complaint" placeholder="Enter your chief complaint" rows="4" required></textarea>
-            </div>
-            <!-- button -->
-            <button type="submit" class="btn btn-primary btn-block" data-translation data-lang-eng="Submit" data-lang-ban="জমা দিন">Submit</button>
-          </form>
-        </div>
-      </div>
       <!-- main-body -->
       <main>
         <section class="section blog" id="blog" aria-label="blog">
@@ -257,8 +208,8 @@
             </h1>
             <!-- blog-meta -->
             <p class="blog-meta" data-translation 
-              data-lang-eng="Last revised by Admin on 4 November 2025" 
-              data-lang-ban="সর্বশেষ সংশোধন করেছেন এডমিন ৪ঠা নভেম্বর ২০২৫ তারিখে">
+              data-lang-eng="Published: 04/11/25" 
+              data-lang-ban="প্রকাশিত: ০৪/১১/২৫">
             </p>
             <!-- blog-banner -->
             <figure class="blog-banner">
@@ -529,30 +480,55 @@
         <section class="section blog" id="also-read" aria-label="also-read">
           <div class="container">
             <p class="section-subtitle" data-translation data-lang-eng="You may also like" data-lang-ban="এছাড়াও পড়ুন"></p>
-            <div class="blog-card">
-              <figure class="card-banner img-holder" style="--width: 1180; --height: 800;">
-                <img src="/assets/images/banners/plantar-fasciitis-physiotherapy.png" width="1180" height="800" loading="lazy" decoding="async"
-                  alt="best physiotherapy center in Dhaka" class="img-cover">
-                <div class="card-badge">
-                  <ion-icon name="calendar-outline"></ion-icon>
-                  <time class="time" datetime="2025-11-14" data-translation 
-                    data-lang-eng="November 14, 2025" data-lang-ban="১৪ই নভেম্বর ২০২৫ খ্রি.">November 14, 2025</time>
+              <!-- blog-13: plantar fasciitis -->
+              <div class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 1180; --height: 800;">
+                  <img src="/assets/images/banners/plantar-fasciitis-physiotherapy.png" width="1180" height="800" loading="lazy"
+                    alt="best physiotherapy center in Dhaka" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-11-10" data-translation data-lang-eng="10/11/2025" data-lang-ban="১০/১১/২০২৫"></time>
+                  </div>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="/blogs/plantar-fasciitis-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Plantar Fasciitis (Heel Pain): Causes, Symptoms &  Physiotherapy Treatment in Jatrabari, Dhaka"
+                      data-lang-ban="প্লান্টার ফ্যাসাইটিস (পায়ের পাতায় ব্যথা): উপসর্গ, কারণ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Plantar fasciitis, commonly known as heel pain, is one of the most frequent causes of foot discomfort in adults. It becomes worse in the morning, during the first steps after waking up, or after long periods of standing." 
+                    data-lang-ban="প্লানটার ফ্যাসাইটিস বা হিল পেইন প্রাপ্তবয়স্কদের মধ্যে সবচেয়ে বেশি দেখা যাওয়া পায়ের সমস্যাগুলোর একটি। বিশেষ করে সকালে ঘুম থেকে ওঠার পর প্রথম কয়েকটি পা ফেলতেই ব্যথা তীব্র হয়ে ওঠে। দীর্ঘক্ষণ দাঁড়িয়ে থাকা বা হাঁটার পর ব্যথা আরও বেড়ে যায়।">
+                  </p>
+                  <a href="/blogs/plantar-fasciitis-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন"></a>
                 </div>
-              </figure>
-              <div class="card-content">
-                <h3 class="h3">
-                  <a href="/blogs/plantar-fasciitis-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
-                    data-lang-eng="Plantar Fasciitis (Heel Pain): Causes, Symptoms &  Physiotherapy Treatment in Jatrabari, Dhaka"
-                    data-lang-ban="প্লান্টার ফ্যাসাইটিস (পায়ের পাতায় ব্যথা): উপসর্গ, কারণ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি">
-                  </a>
-                </h3>
-                <p class="card-text" data-translation 
-                  data-lang-eng="Plantar fasciitis, commonly known as heel pain, is one of the most frequent causes of foot discomfort in adults. It becomes worse in the morning, during the first steps after waking up, or after long periods of standing." 
-                  data-lang-ban="প্লানটার ফ্যাসাইটিস বা হিল পেইন প্রাপ্তবয়স্কদের মধ্যে সবচেয়ে বেশি দেখা যাওয়া পায়ের সমস্যাগুলোর একটি। বিশেষ করে সকালে ঘুম থেকে ওঠার পর প্রথম কয়েকটি পা ফেলতেই ব্যথা তীব্র হয়ে ওঠে। দীর্ঘক্ষণ দাঁড়িয়ে থাকা বা হাঁটার পর ব্যথা আরও বেড়ে যায়।">
-                </p>
-                <a href="/blogs/plantar-fasciitis-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন"></a>
               </div>
-            </div>
+              <!-- blog-14: tarsal tunnel syndrome -->
+              <div class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 1180; --height: 800;">
+                  <img src="/assets/images/banners/tarsal-tunnel-syndrome-physiotherapy.png" width="1180" height="800" loading="lazy"
+                    alt="best physiotherapy center in Dhaka" class="img-cover">
+                  <div class="card-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <time class="time" datetime="2025-11-14" data-translation data-lang-eng="14/11/2025" data-lang-ban="১৪/১১/২০২৫"></time>
+                  </div>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="/blogs/tarsal-tunnel-syndrome-physiotherapy-treatment-dhaka.html" class="card-title" data-translation 
+                      data-lang-eng="Tarsal Tunnel Syndrome: Causes, Symptoms &  Physiotherapy Treatment in Jatrabari, Dhaka"
+                      data-lang-ban="টারসাল টানেল সিনড্রোম: উপসর্গ, কারণ ও যাত্রাবাড়ী, ঢাকায় সেরা ফিজিওথেরাপি">
+                    </a>
+                  </h3>
+                  <p class="card-text" data-translation 
+                    data-lang-eng="Tarsal Tunnel Syndrome is a condition that causes pain, numbness, and tingling in the foot. It occurs when the tibial nerve is compressed as it travels through the tarsal tunnel." 
+                    data-lang-ban="টারসাল টানেল সিনড্রোম একটি অবস্থা যা পায়ে ব্যথা, অসাড়তা এবং ঝনঝনানি সৃষ্টি করে। এটি ঘটে যখন টিবিয়াল নার্ভ টারসাল টানেলের মাধ্যমে যাওয়ার সময় চাপে আসে।">
+                  </p>
+                  <a href="/blogs/tarsal-tunnel-syndrome-physiotherapy-treatment-dhaka.html" class="btn" data-translation data-lang-eng="Read more" data-lang-ban="বিস্তারিত পড়ুন"></a>
+                </div>
+              </div>
+            
           </div>
         </section>
         <!-- FAQ section -->
@@ -703,6 +679,55 @@
             <img src="/adporc-logo-rounded.png" alt="best physiotherapy center in Dhaka" class="marquee-logo">
             Asia Digital Physiotherapy & Orthopedic Rehabilitation Center
           </span>
+        </div>
+      </div>
+      <!-- pop-up appointment form -->
+      <div class="popup-overlay" id="popupForm">
+        <div class="popup-content">
+          <button class="popup-close-btn" id="popupCloseBtn" aria-label="Close form">
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+          <h2 class="popup-title" data-translation data-lang-eng="Book an Appointment" data-lang-ban="অ্যাপয়েন্টমেন্ট বুক করুন">
+            Book an Appointment
+          </h2>
+          <form id="appointmentForm" name="submit-to-google-sheet" class="appointment-form">
+            <!-- name -->
+            <div class="form-group">
+              <label for="name" data-translation data-lang-eng="Name" data-lang-ban="নাম">Name</label>
+              <input name="Name" type="text" id="name" placeholder="Enter your name" required>
+            </div>
+            <!-- phone -->
+            <div class="form-group">
+              <label for="phone" data-translation data-lang-eng="Phone Number" data-lang-ban="ফোন নম্বর">Phone Number</label>
+              <input name="Phone" type="tel" id="phone" placeholder="Enter your phone number" required pattern="[0-9]{11}" title="Please enter a valid 11-digit phone number">
+            </div>
+            <!-- age -->
+            <div class="form-group">
+              <label for="age" data-translation data-lang-eng="Age" data-lang-ban="বয়স">Age</label>
+              <input name="Age" type="tel" id="age" placeholder="Enter your age" title="Numbers only">
+            </div>
+            <!-- gender -->
+            <div class="form-group">
+              <label for="gender" data-translation data-lang-eng="Gender" data-lang-ban="লিঙ্গ">Gender</label>
+              <select class="form-control" name="Gender" id="gender" required>
+                <option value="" disabled selected hidden data-translation data-lang-eng="Select your gender (Binary Only)" data-lang-ban="আপনার লিঙ্গ নির্বাচন করুন (শুধুমাত্র বাইনারি) "></option>
+                <option value="male" data-translation data-lang-eng="Male" data-lang-ban="পুরুষ">Male</option>
+              <option value="female" data-translation data-lang-eng="Female" data-lang-ban="স্ত্রী">Female</option>
+            </select>
+            </div>
+            <!-- address -->
+            <div class="form-group">
+              <label for="address" data-translation data-lang-eng="Address" data-lang-ban="ঠিকানা">Address</label>
+              <input name="Address" type="text" id="address" placeholder="Enter your address" required>
+            </div>
+            <!-- complaint -->
+            <div class="form-group">
+              <label for="complaint" data-translation data-lang-eng="Chief Complaint" data-lang-ban="মূল সমস্যা">Chief Complaint</label>
+              <textarea name="Complaint" id="complaint" placeholder="Enter your chief complaint" rows="4" required></textarea>
+            </div>
+            <!-- button -->
+            <button type="submit" class="btn btn-primary btn-block" data-translation data-lang-eng="Submit" data-lang-ban="জমা দিন">Submit</button>
+          </form>
         </div>
       </div>
       <!-- #footer -->

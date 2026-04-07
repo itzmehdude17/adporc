@@ -195,55 +195,6 @@
           </div>
         </div>
       </header>
-      <!-- pop-up appointment form -->
-      <div class="popup-overlay" id="popupForm">
-        <div class="popup-content">
-          <button class="popup-close-btn" id="popupCloseBtn" aria-label="Close form">
-            <ion-icon name="close-outline"></ion-icon>
-          </button>
-          <h2 class="popup-title" data-translation data-lang-eng="Book an Appointment" data-lang-ban="অ্যাপয়েন্টমেন্ট বুক করুন">
-            Book an Appointment
-          </h2>
-          <form id="appointmentForm" name="submit-to-google-sheet" class="appointment-form">
-            <!-- name -->
-            <div class="form-group">
-              <label for="name" data-translation data-lang-eng="Name" data-lang-ban="নাম">Name</label>
-              <input name="Name" type="text" id="name" placeholder="Enter your name" required>
-            </div>
-            <!-- phone -->
-            <div class="form-group">
-              <label for="phone" data-translation data-lang-eng="Phone Number" data-lang-ban="ফোন নম্বর">Phone Number</label>
-              <input name="Phone" type="tel" id="phone" placeholder="Enter your phone number" required pattern="[0-9]{11}" title="Please enter a valid 11-digit phone number">
-            </div>
-            <!-- age -->
-            <div class="form-group">
-              <label for="age" data-translation data-lang-eng="Age" data-lang-ban="বয়স">Age</label>
-              <input name="Age" type="tel" id="age" placeholder="Enter your age" title="Numbers only">
-            </div>
-            <!-- gender -->
-            <div class="form-group">
-              <label for="gender" data-translation data-lang-eng="Gender" data-lang-ban="লিঙ্গ">Gender</label>
-              <select class="form-control" name="Gender" id="gender" required>
-                <option value="" disabled selected hidden data-translation data-lang-eng="Select your gender (Binary Only)" data-lang-ban="আপনার লিঙ্গ নির্বাচন করুন (শুধুমাত্র বাইনারি) "></option>
-                <option value="male" data-translation data-lang-eng="Male" data-lang-ban="পুরুষ">Male</option>
-              <option value="female" data-translation data-lang-eng="Female" data-lang-ban="স্ত্রী">Female</option>
-            </select>
-            </div>
-            <!-- address -->
-            <div class="form-group">
-              <label for="address" data-translation data-lang-eng="Address" data-lang-ban="ঠিকানা">Address</label>
-              <input name="Address" type="text" id="address" placeholder="Enter your address" required>
-            </div>
-            <!-- complaint -->
-            <div class="form-group">
-              <label for="complaint" data-translation data-lang-eng="Chief Complaint" data-lang-ban="মূল সমস্যা">Chief Complaint</label>
-              <textarea name="Complaint" id="complaint" placeholder="Enter your chief complaint" rows="4" required></textarea>
-            </div>
-            <!-- button -->
-            <button type="submit" class="btn btn-primary btn-block" data-translation data-lang-eng="Submit" data-lang-ban="জমা দিন">Submit</button>
-          </form>
-        </div>
-      </div>
       <!-- main-body -->
       <main>
         <!-- about us section -->
@@ -361,139 +312,139 @@
             </div>
           </div>
         </section>
-      </main>
-      <!-- FAQ section -->
-      <section class="section faq" id="faq" aria-label="faq">
-        <div class="container">
-          <h2 class="section-subtitle text-center" data-translation data-lang-eng="FAQ" data-lang-ban="সাধারণ জিজ্ঞাসা"></h2>
-          <div class="faq-list">
-            <!-- Q1 -->
-            <div class="faq-item 1">
-              <button class="faq-question" aria-expanded="false" 
-                data-translation data-lang-eng="Q1: Do I need a doctor’s referral to book an appointment?" 
-                data-lang-ban="প্রশ্ন-১: চিকিৎসা নিতে কি ডাক্তারের প্রেসক্রিপশন লাগবে?">
-                <i class="fa-solid fa-chevron-down"></i>
-              </button>
-              <div class="faq-answer" 
-                data-translation data-lang-eng="No referral needed. ADPORC is a first-contact physiotherapy center, patients can consult us directly without prior prescriptions." 
-                data-lang-ban="না, ADPORC একটি First-Contact Physiotherapy Center। আপনি সরাসরি এসে পরামর্শ নিতে পারেন প্রেসক্রিপশন ছাড়া।">
+        <!-- FAQ section -->
+        <section class="section faq" id="faq" aria-label="faq">
+          <div class="container">
+            <h2 class="section-subtitle text-center" data-translation data-lang-eng="FAQ" data-lang-ban="সাধারণ জিজ্ঞাসা"></h2>
+            <div class="faq-list">
+              <!-- Q1 -->
+              <div class="faq-item 1">
+                <button class="faq-question" aria-expanded="false" 
+                  data-translation data-lang-eng="Q1: Do I need a doctor’s referral to book an appointment?" 
+                  data-lang-ban="প্রশ্ন-১: চিকিৎসা নিতে কি ডাক্তারের প্রেসক্রিপশন লাগবে?">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer" 
+                  data-translation data-lang-eng="No referral needed. ADPORC is a first-contact physiotherapy center, patients can consult us directly without prior prescriptions." 
+                  data-lang-ban="না, ADPORC একটি First-Contact Physiotherapy Center। আপনি সরাসরি এসে পরামর্শ নিতে পারেন প্রেসক্রিপশন ছাড়া।">
+                </div>
               </div>
-            </div>
-            <!-- Q2 -->
-            <div class="faq-item 2">
-              <button class="faq-question" aria-expanded="false" 
-                data-translation data-lang-eng="Q2: Do you treat PLID and arthritis-related back pain?" 
-                data-lang-ban="প্রশ্ন-২: PLID ও কোমরের ব্যথা এবং আর্থ্রাইটিসজনিত ব্যথার চিকিৎসা করেন?">
-                <i class="fa-solid fa-chevron-down"></i>
-              </button>
-              <div class="faq-answer" 
-                data-translation data-lang-eng="Yes. Our clinic specializes in managing PLID, cervical and lumbar spondylosis, and arthritis-related pain with targeted, evidence-based physiotherapy." 
-                data-lang-ban="হ্যাঁ। আমরা PLID, সার্ভিকাল/ল্যাম্বার স্পন্ডিলোসিস ও আর্থ্রাইটিস ব্যথার জন্য বিশেষায়িত ফিজিওথেরাপি প্রদান করি।">
+              <!-- Q2 -->
+              <div class="faq-item 2">
+                <button class="faq-question" aria-expanded="false" 
+                  data-translation data-lang-eng="Q2: Do you treat PLID and arthritis-related back pain?" 
+                  data-lang-ban="প্রশ্ন-২: PLID ও কোমরের ব্যথা এবং আর্থ্রাইটিসজনিত ব্যথার চিকিৎসা করেন?">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer" 
+                  data-translation data-lang-eng="Yes. Our clinic specializes in managing PLID, cervical and lumbar spondylosis, and arthritis-related pain with targeted, evidence-based physiotherapy." 
+                  data-lang-ban="হ্যাঁ। আমরা PLID, সার্ভিকাল/ল্যাম্বার স্পন্ডিলোসিস ও আর্থ্রাইটিস ব্যথার জন্য বিশেষায়িত ফিজিওথেরাপি প্রদান করি।">
+                </div>
               </div>
-            </div>
-            <!-- Q3 -->
-            <div class="faq-item 3">
-              <button class="faq-question" aria-expanded="false" 
-                data-translation data-lang-eng="Q3: Do you provide home-based physiotherapy services?" 
-                data-lang-ban="প্রশ্ন-৩: হোম-ভিত্তিক ফিজিওথেরাপি সেবা কি দেওয়া হয়?">
-                <i class="fa-solid fa-chevron-down"></i>
-              </button>
-              <div class="faq-answer" 
-                data-translation data-lang-eng="Yes. ADPORC offers professional home physiotherapy for patients with limited mobility, post-surgical needs, or neurological conditions. Home sessions are conducted by licensed physiotherapists, ensuring full clinical standards, subject to availability and medical eligibility." 
-                data-lang-ban="হ্যাঁ। যেসকল রোগী চলাফেরায় অসুবিধায় ভুগছেন, অপারেশনের পর অথবা নিউরোলজিক্যাল অবস্থায় রয়েছেন, তাদের জন্য ADPORC পেশাদার হোম ফিজিওথেরাপি সেবা প্রদান করে।">
+              <!-- Q3 -->
+              <div class="faq-item 3">
+                <button class="faq-question" aria-expanded="false" 
+                  data-translation data-lang-eng="Q3: Do you provide home-based physiotherapy services?" 
+                  data-lang-ban="প্রশ্ন-৩: হোম-ভিত্তিক ফিজিওথেরাপি সেবা কি দেওয়া হয়?">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer" 
+                  data-translation data-lang-eng="Yes. ADPORC offers professional home physiotherapy for patients with limited mobility, post-surgical needs, or neurological conditions. Home sessions are conducted by licensed physiotherapists, ensuring full clinical standards, subject to availability and medical eligibility." 
+                  data-lang-ban="হ্যাঁ। যেসকল রোগী চলাফেরায় অসুবিধায় ভুগছেন, অপারেশনের পর অথবা নিউরোলজিক্যাল অবস্থায় রয়েছেন, তাদের জন্য ADPORC পেশাদার হোম ফিজিওথেরাপি সেবা প্রদান করে।">
+                </div>
               </div>
-            </div>
-            <!-- Q4 -->
-            <div class="faq-item 4">
-              <button class="faq-question" aria-expanded="false" 
-                data-translation data-lang-eng="Q4: Are sessions one-on-one?" 
-                data-lang-ban="প্রশ্ন-৪: একজন ফিজিওথেরাপিস্ট ডাক্তারই দেখবেন?">
-                <i class="fa-solid fa-chevron-down"></i>
-              </button>
-              <div class="faq-answer" 
-                data-translation data-lang-eng="Absolutely. You’ll always receive private care under a licensed physiotherapist" 
-                data-lang-ban="অবশ্যই। প্রতিটি রোগীর জন্য নির্দিষ্ট ফিজিওথেরাপিস্ট ডাক্তার থাকেন।">
+              <!-- Q4 -->
+              <div class="faq-item 4">
+                <button class="faq-question" aria-expanded="false" 
+                  data-translation data-lang-eng="Q4: Are sessions one-on-one?" 
+                  data-lang-ban="প্রশ্ন-৪: একজন ফিজিওথেরাপিস্ট ডাক্তারই দেখবেন?">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer" 
+                  data-translation data-lang-eng="Absolutely. You’ll always receive private care under a licensed physiotherapist" 
+                  data-lang-ban="অবশ্যই। প্রতিটি রোগীর জন্য নির্দিষ্ট ফিজিওথেরাপিস্ট ডাক্তার থাকেন।">
+                </div>
               </div>
-            </div>
-            <!-- Q5 -->
-            <div class="faq-item 5">
-              <button class="faq-question" aria-expanded="false" 
-                data-translation data-lang-eng="Q5: What types of physiotherapy do you offer?" 
-                data-lang-ban="প্রশ্ন-৫: কী ধরনের ফিজিওথেরাপি সেবা দেন?">
-                <i class="fa-solid fa-chevron-down"></i>
-              </button>
-              <div class="faq-answer card-text" 
-                data-translation data-lang-eng="At ADPORC, we provide personalized treatments in: 
-                  Musculoskeletal care (e.g. neck, back, joint pain); Neurological rehabilitation (e.g. stroke, facial palsy); Orthopedic conditions (e.g. post-surgery, joint stabilization). 
-                  We also offer advanced electrotherapy and manual therapy techniques." 
-                data-lang-ban="ADPORC-এ আমরা নিচের ক্ষেত্রগুলোতে ফিজিওথেরাপি সেবা দিয়ে থাকি: 
-                  হাড় ও মাংসপেশি জনিত সমস্যা (ঘাড়, কোমর, জয়েন্ট ব্যথা); নিউরোলজিক্যাল রিহ্যাব (স্ট্রোক,  বেলস্‌ প্যালসি); অর্থোপেডিক চিকিৎসা (অপারেশন পরবর্তী ফিজিওথেরাপি, জয়েন্ট স্ট্যাবিলাইজেশন) আমাদের সেবায় আধুনিক ইলেক্ট্রোথেরাপি ও ম্যানুয়াল থেরাপি অন্তর্ভুক্ত রয়েছে।">
+              <!-- Q5 -->
+              <div class="faq-item 5">
+                <button class="faq-question" aria-expanded="false" 
+                  data-translation data-lang-eng="Q5: What types of physiotherapy do you offer?" 
+                  data-lang-ban="প্রশ্ন-৫: কী ধরনের ফিজিওথেরাপি সেবা দেন?">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer card-text" 
+                  data-translation data-lang-eng="At ADPORC, we provide personalized treatments in: 
+                    Musculoskeletal care (e.g. neck, back, joint pain); Neurological rehabilitation (e.g. stroke, facial palsy); Orthopedic conditions (e.g. post-surgery, joint stabilization). 
+                    We also offer advanced electrotherapy and manual therapy techniques." 
+                  data-lang-ban="ADPORC-এ আমরা নিচের ক্ষেত্রগুলোতে ফিজিওথেরাপি সেবা দিয়ে থাকি: 
+                    হাড় ও মাংসপেশি জনিত সমস্যা (ঘাড়, কোমর, জয়েন্ট ব্যথা); নিউরোলজিক্যাল রিহ্যাব (স্ট্রোক,  বেলস্‌ প্যালসি); অর্থোপেডিক চিকিৎসা (অপারেশন পরবর্তী ফিজিওথেরাপি, জয়েন্ট স্ট্যাবিলাইজেশন) আমাদের সেবায় আধুনিক ইলেক্ট্রোথেরাপি ও ম্যানুয়াল থেরাপি অন্তর্ভুক্ত রয়েছে।">
+                </div>
               </div>
-            </div>
-            <!-- Q6 -->
-            <div class="faq-item 6">
-              <button class="faq-question" aria-expanded="false" 
-                data-translation data-lang-eng="Q6: How long is each physiotherapy session? Sessions" 
-                data-lang-ban="প্রশ্ন-৬: প্রতিটি সেশন কতক্ষণ হয়?">
-                <i class="fa-solid fa-chevron-down"></i>
-              </button>
-              <div class="faq-answer" 
-                data-translation data-lang-eng="Typically sessions range from 30 to 45 minutes. Duration may vary based on your condition and recovery stage." 
-                data-lang-ban="প্রতিটি সেশন সাধারণত ৩০ থেকে ৪৫ মিনিটের হয়, রোগীর অবস্থা ও চিকিৎসা পরিকল্পনার উপর ভিত্তি করে।">
+              <!-- Q6 -->
+              <div class="faq-item 6">
+                <button class="faq-question" aria-expanded="false" 
+                  data-translation data-lang-eng="Q6: How long is each physiotherapy session? Sessions" 
+                  data-lang-ban="প্রশ্ন-৬: প্রতিটি সেশন কতক্ষণ হয়?">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer" 
+                  data-translation data-lang-eng="Typically sessions range from 30 to 45 minutes. Duration may vary based on your condition and recovery stage." 
+                  data-lang-ban="প্রতিটি সেশন সাধারণত ৩০ থেকে ৪৫ মিনিটের হয়, রোগীর অবস্থা ও চিকিৎসা পরিকল্পনার উপর ভিত্তি করে।">
+                </div>
               </div>
-            </div>
-            <!-- Q7 -->
-            <div class="faq-item 7">
-              <button class="faq-question" aria-expanded="false" 
-                data-translation data-lang-eng="Q7: Do you treat sports injuries like ACL tears or muscle strains?" 
-                data-lang-ban="প্রশ্ন-৭: ACL বা মাসল টিয়ার-এর মতো স্পোর্টস ইনজুরির চিকিৎসা করেন?">
-                <i class="fa-solid fa-chevron-down"></i>
-              </button>
-              <div class="faq-answer" 
-                data-translation data-lang-eng="Yes. ADPORC offers specialized sports rehabilitation for ACL injuries, muscle tears, sprains, and joint pain. Our physiotherapists design treatment plans tailored to your recovery goals whether you're a weekend athlete or a professional in training." 
-                data-lang-ban="হ্যাঁ। ADPORC-এ স্পোর্টস ইনজুরির জন্য বিশেষায়িত ফিজিওথেরাপি সেবা দেওয়া হয়। ACL টিয়ার, মাসল স্ট্রেইন, লিগামেন্ট স্প্রেইন ও জয়েন্ট পেইন রিকভারি-র জন্য বিশেষায়িত ফিজিওথেরাপি সেবা দেয়। হোক আপনি অ্যাথলেট বা সাধারণ খেলোয়াড় আমরা আপনাকে লক্ষ্যভিত্তিক পরিকল্পনা দিই।">
+              <!-- Q7 -->
+              <div class="faq-item 7">
+                <button class="faq-question" aria-expanded="false" 
+                  data-translation data-lang-eng="Q7: Do you treat sports injuries like ACL tears or muscle strains?" 
+                  data-lang-ban="প্রশ্ন-৭: ACL বা মাসল টিয়ার-এর মতো স্পোর্টস ইনজুরির চিকিৎসা করেন?">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer" 
+                  data-translation data-lang-eng="Yes. ADPORC offers specialized sports rehabilitation for ACL injuries, muscle tears, sprains, and joint pain. Our physiotherapists design treatment plans tailored to your recovery goals whether you're a weekend athlete or a professional in training." 
+                  data-lang-ban="হ্যাঁ। ADPORC-এ স্পোর্টস ইনজুরির জন্য বিশেষায়িত ফিজিওথেরাপি সেবা দেওয়া হয়। ACL টিয়ার, মাসল স্ট্রেইন, লিগামেন্ট স্প্রেইন ও জয়েন্ট পেইন রিকভারি-র জন্য বিশেষায়িত ফিজিওথেরাপি সেবা দেয়। হোক আপনি অ্যাথলেট বা সাধারণ খেলোয়াড় আমরা আপনাকে লক্ষ্যভিত্তিক পরিকল্পনা দিই।">
+                </div>
               </div>
-            </div>
-            <!-- Q8 -->
-            <div class="faq-item 8">
-              <button class="faq-question" aria-expanded="false" 
-                data-translation data-lang-eng="Q8: Can I get physiotherapy after surgery?" 
-                data-lang-ban="প্রশ্ন-৮: অপারেশনের পর ফিজিওথেরাপি ট্রিটমেন্ট নেওয়া যায়?">
-                <i class="fa-solid fa-chevron-down"></i>
-              </button>
-              <div class="faq-answer" 
-                data-translation data-lang-eng="Definitely. Our post-operative rehab programs help patients regain mobility, strength, and confidence after orthopedic or neurological surgeries." 
-                data-lang-ban="অবশ্যই। অপারেশনের পর সুস্থ হয়ে ওঠার জন্য ফিজিওথেরাপি অত্যন্ত গুরুত্বপূর্ণ এবং আমাদের পোস্ট-অপারেটিভ রিহ্যাব সেবায় রোগীরা নিরাপদভাবে শক্তি, গতি ও আত্মবিশ্বাস ফিরে পান।">
+              <!-- Q8 -->
+              <div class="faq-item 8">
+                <button class="faq-question" aria-expanded="false" 
+                  data-translation data-lang-eng="Q8: Can I get physiotherapy after surgery?" 
+                  data-lang-ban="প্রশ্ন-৮: অপারেশনের পর ফিজিওথেরাপি ট্রিটমেন্ট নেওয়া যায়?">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer" 
+                  data-translation data-lang-eng="Definitely. Our post-operative rehab programs help patients regain mobility, strength, and confidence after orthopedic or neurological surgeries." 
+                  data-lang-ban="অবশ্যই। অপারেশনের পর সুস্থ হয়ে ওঠার জন্য ফিজিওথেরাপি অত্যন্ত গুরুত্বপূর্ণ এবং আমাদের পোস্ট-অপারেটিভ রিহ্যাব সেবায় রোগীরা নিরাপদভাবে শক্তি, গতি ও আত্মবিশ্বাস ফিরে পান।">
+                </div>
               </div>
-            </div>
-            <!-- Q9 -->
-            <div class="faq-item 9">
-              <button class="faq-question" aria-expanded="false" 
-                data-translation data-lang-eng="Q9: Is ADPORC suitable for elderly patients?" 
-                data-lang-ban="প্রশ্ন-৯: ADPORC কি বয়স্ক রোগীদের জন্য কি উপযুক্ত?">
-                <i class="fa-solid fa-chevron-down"></i>
-              </button>
-              <div class="faq-answer" 
-                data-translation data-lang-eng="Yes. We provide safe, gentle, and age-appropriate therapy for seniors dealing with arthritis, balance disorders, and mobility limitations." 
-                data-lang-ban="হ্যাঁ। আমরা আর্থ্রাইটিস, ব্যালেন্স সমস্যা ও চলাফেরার অসুবিধার জন্য বয়স্কদের উপযোগী চিকিৎসা দিই।">
+              <!-- Q9 -->
+              <div class="faq-item 9">
+                <button class="faq-question" aria-expanded="false" 
+                  data-translation data-lang-eng="Q9: Is ADPORC suitable for elderly patients?" 
+                  data-lang-ban="প্রশ্ন-৯: ADPORC কি বয়স্ক রোগীদের জন্য কি উপযুক্ত?">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer" 
+                  data-translation data-lang-eng="Yes. We provide safe, gentle, and age-appropriate therapy for seniors dealing with arthritis, balance disorders, and mobility limitations." 
+                  data-lang-ban="হ্যাঁ। আমরা আর্থ্রাইটিস, ব্যালেন্স সমস্যা ও চলাফেরার অসুবিধার জন্য বয়স্কদের উপযোগী চিকিৎসা দিই।">
+                </div>
               </div>
-            </div>
-            <!-- Q10-->
-            <div class="faq-item 10">
-              <button class="faq-question" aria-expanded="false" 
-                data-translation data-lang-eng="Q10: How do I book an appointment?" 
-                data-lang-ban="প্রশ্ন-১০: কীভাবে ADPORC-এ অ্যাপয়েন্টমেন্ট বুক করব?">
-                <i class="fa-solid fa-chevron-down"></i>
-              </button>
-              <div class="faq-answer" 
-                data-translation data-lang-eng="Booking is simple! You can- just call or WhatsApp us at 01950-935236, 
-                  or fill out the online form at our website." 
-                data-lang-ban="অ্যাপয়েন্টমেন্ট নেওয়া খুবই সহজ! আপনি- ০১৯৫০-৯৩৫২৩৬ নম্বরে কল বা WhatsApp করুন, অথবা ওয়েবসাইট-এর অনলাইন ফর্ম পূরণ করুন।">
+              <!-- Q10-->
+              <div class="faq-item 10">
+                <button class="faq-question" aria-expanded="false" 
+                  data-translation data-lang-eng="Q10: How do I book an appointment?" 
+                  data-lang-ban="প্রশ্ন-১০: কীভাবে ADPORC-এ অ্যাপয়েন্টমেন্ট বুক করব?">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer" 
+                  data-translation data-lang-eng="Booking is simple! You can- just call or WhatsApp us at 01950-935236, 
+                    or fill out the online form at our website." 
+                  data-lang-ban="অ্যাপয়েন্টমেন্ট নেওয়া খুবই সহজ! আপনি- ০১৯৫০-৯৩৫২৩৬ নম্বরে কল বা WhatsApp করুন, অথবা ওয়েবসাইট-এর অনলাইন ফর্ম পূরণ করুন।">
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
       <!-- marquee container -->
       <div class="marquee-container">
         <div class="marquee">
@@ -509,6 +460,55 @@
             <img src="/adporc-logo-rounded.png" alt="best physiotherapy center in Dhaka" class="marquee-logo">
             Asia Digital Physiotherapy & Orthopedic Rehabilitation Center
           </span>
+        </div>
+      </div>
+      <!-- pop-up appointment form -->
+      <div class="popup-overlay" id="popupForm">
+        <div class="popup-content">
+          <button class="popup-close-btn" id="popupCloseBtn" aria-label="Close form">
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+          <h2 class="popup-title" data-translation data-lang-eng="Book an Appointment" data-lang-ban="অ্যাপয়েন্টমেন্ট বুক করুন">
+            Book an Appointment
+          </h2>
+          <form id="appointmentForm" name="submit-to-google-sheet" class="appointment-form">
+            <!-- name -->
+            <div class="form-group">
+              <label for="name" data-translation data-lang-eng="Name" data-lang-ban="নাম">Name</label>
+              <input name="Name" type="text" id="name" placeholder="Enter your name" required>
+            </div>
+            <!-- phone -->
+            <div class="form-group">
+              <label for="phone" data-translation data-lang-eng="Phone Number" data-lang-ban="ফোন নম্বর">Phone Number</label>
+              <input name="Phone" type="tel" id="phone" placeholder="Enter your phone number" required pattern="[0-9]{11}" title="Please enter a valid 11-digit phone number">
+            </div>
+            <!-- age -->
+            <div class="form-group">
+              <label for="age" data-translation data-lang-eng="Age" data-lang-ban="বয়স">Age</label>
+              <input name="Age" type="tel" id="age" placeholder="Enter your age" title="Numbers only">
+            </div>
+            <!-- gender -->
+            <div class="form-group">
+              <label for="gender" data-translation data-lang-eng="Gender" data-lang-ban="লিঙ্গ">Gender</label>
+              <select class="form-control" name="Gender" id="gender" required>
+                <option value="" disabled selected hidden data-translation data-lang-eng="Select your gender (Binary Only)" data-lang-ban="আপনার লিঙ্গ নির্বাচন করুন (শুধুমাত্র বাইনারি) "></option>
+                <option value="male" data-translation data-lang-eng="Male" data-lang-ban="পুরুষ">Male</option>
+              <option value="female" data-translation data-lang-eng="Female" data-lang-ban="স্ত্রী">Female</option>
+            </select>
+            </div>
+            <!-- address -->
+            <div class="form-group">
+              <label for="address" data-translation data-lang-eng="Address" data-lang-ban="ঠিকানা">Address</label>
+              <input name="Address" type="text" id="address" placeholder="Enter your address" required>
+            </div>
+            <!-- complaint -->
+            <div class="form-group">
+              <label for="complaint" data-translation data-lang-eng="Chief Complaint" data-lang-ban="মূল সমস্যা">Chief Complaint</label>
+              <textarea name="Complaint" id="complaint" placeholder="Enter your chief complaint" rows="4" required></textarea>
+            </div>
+            <!-- button -->
+            <button type="submit" class="btn btn-primary btn-block" data-translation data-lang-eng="Submit" data-lang-ban="জমা দিন">Submit</button>
+          </form>
         </div>
       </div>
       <!-- #footer -->

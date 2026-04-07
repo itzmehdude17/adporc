@@ -2059,7 +2059,6 @@
           })(window, document, "clarity", "script", "uh2rk88w4t");
       </script>
     </head>
-
     <body id="top">
       <!-- #header -->
       <header class="header">
@@ -2152,55 +2151,6 @@
           </div>
         </div>
       </header>
-      <!-- pop-up appointment form -->
-      <div class="popup-overlay" id="popupForm">
-        <div class="popup-content">
-          <button class="popup-close-btn" id="popupCloseBtn" aria-label="Close form">
-            <ion-icon name="close-outline"></ion-icon>
-          </button>
-          <h2 class="popup-title" data-translation data-lang-eng="Book an Appointment" data-lang-ban="অ্যাপয়েন্টমেন্ট বুক করুন">
-            Book an Appointment
-          </h2>
-          <form id="appointmentForm" name="submit-to-google-sheet" class="appointment-form">
-            <!-- name -->
-            <div class="form-group">
-              <label for="name" data-translation data-lang-eng="Name" data-lang-ban="নাম">Name</label>
-              <input name="Name" type="text" id="name" placeholder="Enter your name" required>
-            </div>
-            <!-- phone -->
-            <div class="form-group">
-              <label for="phone" data-translation data-lang-eng="Phone Number" data-lang-ban="ফোন নম্বর">Phone Number</label>
-              <input name="Phone" type="tel" id="phone" placeholder="Enter your phone number" required pattern="[0-9]{11}" title="Please enter a valid 11-digit phone number">
-            </div>
-            <!-- age -->
-            <div class="form-group">
-              <label for="age" data-translation data-lang-eng="Age" data-lang-ban="বয়স">Age</label>
-              <input name="Age" type="tel" id="age" placeholder="Enter your age" title="Numbers only">
-            </div>
-            <!-- gender -->
-            <div class="form-group">
-              <label for="gender" data-translation data-lang-eng="Gender" data-lang-ban="লিঙ্গ">Gender</label>
-              <select class="form-control" name="Gender" id="gender" required>
-                <option value="" disabled selected hidden data-translation data-lang-eng="Select your gender (Binary Only)" data-lang-ban="আপনার লিঙ্গ নির্বাচন করুন (শুধুমাত্র বাইনারি) "></option>
-                <option value="male" data-translation data-lang-eng="Male" data-lang-ban="পুরুষ">Male</option>
-              <option value="female" data-translation data-lang-eng="Female" data-lang-ban="স্ত্রী">Female</option>
-            </select>
-            </div>
-            <!-- address -->
-            <div class="form-group">
-              <label for="address" data-translation data-lang-eng="Address" data-lang-ban="ঠিকানা">Address</label>
-              <input name="Address" type="text" id="address" placeholder="Enter your address" required>
-            </div>
-            <!-- complaint -->
-            <div class="form-group">
-              <label for="complaint" data-translation data-lang-eng="Chief Complaint" data-lang-ban="মূল সমস্যা">Chief Complaint</label>
-              <textarea name="Complaint" id="complaint" placeholder="Enter your chief complaint" rows="4" required></textarea>
-            </div>
-            <!-- button -->
-            <button type="submit" class="btn btn-primary btn-block" data-translation data-lang-eng="Submit" data-lang-ban="জমা দিন">Submit</button>
-          </form>
-        </div>
-      </div>
       <!-- main-body -->
       <main>
         <!-- 404-error -->
@@ -2225,8 +2175,7 @@
             data-lang-ban="হোমপেজে ফিরে যান">
           </a>
         </section>
-      </main>
-      <!-- FAQ section -->
+        <!-- FAQ section -->
       <section class="section faq" id="faq" aria-label="faq">
         <div class="container">
           <h2 class="section-subtitle text-center" data-translation data-lang-eng="FAQ" data-lang-ban="সাধারণ জিজ্ঞাসা"></h2>
@@ -2358,6 +2307,7 @@
           </div>
         </div>
       </section>
+      </main>
       <!-- marquee container -->
       <div class="marquee-container">
         <div class="marquee">
@@ -2385,6 +2335,55 @@
             <img src="/adporc-logo-rounded.png" alt="best physiotherapy center in Dhaka" class="marquee-logo">
             Asia Digital Physiotherapy & Orthopedic Rehabilitation Center
           </span>
+        </div>
+      </div>
+      <!-- pop-up appointment form -->
+      <div class="popup-overlay" id="popupForm">
+        <div class="popup-content">
+          <button class="popup-close-btn" id="popupCloseBtn" aria-label="Close form">
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+          <h2 class="popup-title" data-translation data-lang-eng="Book an Appointment" data-lang-ban="অ্যাপয়েন্টমেন্ট বুক করুন">
+            Book an Appointment
+          </h2>
+          <form id="appointmentForm" name="submit-to-google-sheet" class="appointment-form">
+            <!-- name -->
+            <div class="form-group">
+              <label for="name" data-translation data-lang-eng="Name" data-lang-ban="নাম">Name</label>
+              <input name="Name" type="text" id="name" placeholder="Enter your name" required>
+            </div>
+            <!-- phone -->
+            <div class="form-group">
+              <label for="phone" data-translation data-lang-eng="Phone Number" data-lang-ban="ফোন নম্বর">Phone Number</label>
+              <input name="Phone" type="tel" id="phone" placeholder="Enter your phone number" required pattern="[0-9]{11}" title="Please enter a valid 11-digit phone number">
+            </div>
+            <!-- age -->
+            <div class="form-group">
+              <label for="age" data-translation data-lang-eng="Age" data-lang-ban="বয়স">Age</label>
+              <input name="Age" type="tel" id="age" placeholder="Enter your age" title="Numbers only">
+            </div>
+            <!-- gender -->
+            <div class="form-group">
+              <label for="gender" data-translation data-lang-eng="Gender" data-lang-ban="লিঙ্গ">Gender</label>
+              <select class="form-control" name="Gender" id="gender" required>
+                <option value="" disabled selected hidden data-translation data-lang-eng="Select your gender (Binary Only)" data-lang-ban="আপনার লিঙ্গ নির্বাচন করুন (শুধুমাত্র বাইনারি) "></option>
+                <option value="male" data-translation data-lang-eng="Male" data-lang-ban="পুরুষ">Male</option>
+              <option value="female" data-translation data-lang-eng="Female" data-lang-ban="স্ত্রী">Female</option>
+            </select>
+            </div>
+            <!-- address -->
+            <div class="form-group">
+              <label for="address" data-translation data-lang-eng="Address" data-lang-ban="ঠিকানা">Address</label>
+              <input name="Address" type="text" id="address" placeholder="Enter your address" required>
+            </div>
+            <!-- complaint -->
+            <div class="form-group">
+              <label for="complaint" data-translation data-lang-eng="Chief Complaint" data-lang-ban="মূল সমস্যা">Chief Complaint</label>
+              <textarea name="Complaint" id="complaint" placeholder="Enter your chief complaint" rows="4" required></textarea>
+            </div>
+            <!-- button -->
+            <button type="submit" class="btn btn-primary btn-block" data-translation data-lang-eng="Submit" data-lang-ban="জমা দিন">Submit</button>
+          </form>
         </div>
       </div>
       <!-- #footer -->

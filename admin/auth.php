@@ -15,7 +15,7 @@ header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: DENY');
 header('Referrer-Policy: same-origin');
 
-define('ADMIN_DATA_DIR', dirname(__DIR__) . '/data/');
+define('ADMIN_DATA_DIR', dirname(dirname(__DIR__)) . '/sitedata/');
 define('ADMIN_CONFIG_FILE', ADMIN_DATA_DIR . 'config.json');
 define('ADMIN_ASSETS_DIR', dirname(__DIR__) . '/assets/images/');
 

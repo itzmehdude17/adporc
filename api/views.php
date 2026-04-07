@@ -5,7 +5,7 @@
 
 header('Content-Type: application/json; charset=utf-8');
 
-$viewsFile = __DIR__ . '/views.json';
+$viewsFile = dirname(dirname(__DIR__)) . '/sitedata/views.json';
 
 // Load existing views
 $views = [];

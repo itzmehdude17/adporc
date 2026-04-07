@@ -27,11 +27,11 @@ const BLOG_CATEGORIES = {
   'winter-joint-stiffness-physiotherapy-management-dhaka': 'Post-Operative',
   'best-stroke-physiotherapy-management-dhaka': 'Neurological',
   'bells-palsy-physiotherapy-treatment-dhaka': 'Neurological',
+  'assisted-physiotherapy-dhaka': 'Neurological',
   'plid-physiotherapy-treatment-dhaka': 'Back & Spine',
   'advance-electrotherapy-adporc-dhaka': 'Treatment Methods',
-  'assisted-physiotherapy-dhaka': 'Treatment Methods',
   'best-physiotherapy-center-dhaka': 'About ADPORC',
-  'best-physiotherapy-center-jatrbari': 'About ADPORC'
+  'best-physiotherapy-center-jatrbari': 'About ADPORC',
 };
 
 class BlogPagination {
